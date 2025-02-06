@@ -2,7 +2,6 @@ package net.rodmjorgeh.renovay.world.item;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -11,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rodmjorgeh.renovay.RenovayMod;
+import net.rodmjorgeh.renovay.world.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.entity.EntityRegistry;
 
 import java.util.ArrayList;
@@ -22,6 +22,13 @@ import java.util.function.Supplier;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RenovayMod.MOD_ID);
     private static Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>> itemsInTab = new HashMap<>();
+
+    public static final RegistryObject<Item> PALM_SIGN = register("palm_sign",
+            () -> new SignItem(BlockRegistry.PALM_SIGN.get(), BlockRegistry.PALM_WALL_SIGN.get(), new Item.Properties().setId(createId("palm_sign")).stacksTo(16)),
+            CreativeModeTabs.FUNCTIONAL_BLOCKS);
+    public static final RegistryObject<Item> PALM_HANGING_SIGN = register("palm_hanging_sign",
+            () -> new HangingSignItem(BlockRegistry.PALM_HANGING_SIGN.get(), BlockRegistry.PALM_WALL_HANGING_SIGN.get(), new Item.Properties().setId(createId("palm_hanging_sign")).stacksTo(16)),
+            CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistryObject<Item> PALM_BOAT = register("palm_boat",
             () -> new BoatItem(EntityRegistry.PALM_BOAT.get(), new Item.Properties().setId(createId("palm_boat")).stacksTo(1)),
@@ -51,6 +58,11 @@ public class ItemRegistry {
         }
     }
 
+    /**
+     * After being called from the {@code event}, knowing the {@code CreativeModeTab}, it adds all the
+     * items inside the map {@code Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>>} with
+     * the same key.
+     */
     public static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> x = event.getTabKey();
 

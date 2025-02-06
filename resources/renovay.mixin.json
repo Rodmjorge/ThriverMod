@@ -2,7 +2,9 @@
   "required": true,
   "package": "net.rodmjorgeh.renovay.plus",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "block.entity.BlockEntityTypePlus"
+  ],
   "client": [],
   "injectors": {
     "defaultRequire": 1

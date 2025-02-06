@@ -21,6 +21,7 @@ import net.rodmjorgeh.renovay.client.model.ModelLayersR;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.renovay.util.events.BusEvents;
 import net.rodmjorgeh.renovay.world.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.block.entity.BlockEntityRegistry;
 import net.rodmjorgeh.renovay.world.entity.EntityRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ public class RenovayMod {
         BlockRegistry.register(bus);
         ItemRegistry.register(bus);
         EntityRegistry.register(bus);
+        BlockEntityRegistry.register(bus);
 
         bus.addListener(ItemRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);
@@ -48,6 +50,9 @@ public class RenovayMod {
         MinecraftForge.EVENT_BUS.register(BusEvents.class);
     }
 
+    /**
+     * Creates a new {@code ResourceKey} based on the registry type.
+     */
     public static <T> ResourceKey<T> createId(String name, ResourceKey<? extends Registry<T>> registryType) {
         return ResourceKey.create(registryType, ResourceLocation.fromNamespaceAndPath(RenovayMod.MOD_ID, name));
     }
