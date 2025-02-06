@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "renovay:block/palm_log",
+    "side": "renovay:block/palm_log"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingTime": 200,
+  "experience": 0.1,
+  "ingredient": "renovay:weathered_sandstone",
+  "result": {
+    "count": 1,
+    "id": "renovay:smooth_weathered_sandstone"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "renovay:weathered_sandstone_bricks",
+  "result": {
+    "count": 1,
+    "id": "renovay:weathered_sandstone_brick_stairs"
+  }
+}

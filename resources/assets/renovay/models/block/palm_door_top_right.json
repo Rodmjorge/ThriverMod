@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "renovay:block/palm_door_bottom",
+    "top": "renovay:block/palm_door_top"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingTime": 200,
+  "experience": 0.1,
+  "ingredient": "renovay:red_sandstone_bricks",
+  "result": {
+    "count": 1,
+    "id": "renovay:cracked_red_sandstone_bricks"
+  }
+}

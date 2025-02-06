@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_weathered_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "renovay:weathered_sandstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "renovay:chiseled_weathered_sandstone_from_weathered_sandstone_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_weathered_sandstone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "renovay:chiseled_weathered_sandstone_from_weathered_sandstone_stonecutting"
+    ]
+  }
+}

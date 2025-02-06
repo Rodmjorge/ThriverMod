@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "renovay:weathered_sandstone",
+  "result": {
+    "count": 2,
+    "id": "renovay:cut_weathered_sandstone_slab"
+  }
+}

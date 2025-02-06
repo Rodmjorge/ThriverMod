@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": "minecraft:sandstone",
+    "C": "minecraft:coarse_dirt"
+  },
+  "pattern": [
+    "SC",
+    "CS"
+  ],
+  "result": {
+    "count": 4,
+    "id": "renovay:weathered_sandstone"
+  }
+}

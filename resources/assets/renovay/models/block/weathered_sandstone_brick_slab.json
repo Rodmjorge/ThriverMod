@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "renovay:block/weathered_sandstone_top",
+    "side": "renovay:block/weathered_sandstone_bricks",
+    "top": "renovay:block/weathered_sandstone_top"
+  }
+}

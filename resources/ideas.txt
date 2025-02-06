@@ -1,0 +1,104 @@
+Desert Ideas:
+1. OASIS ---------------------------------------------------------------------------------------------------------------
+  - New blocks:
+    - Palm Log
+    - Stripped Palm Log
+    - Palm Wood
+    - Stripped Palm Wood
+    - Palm Planks
+    - Palm Slab
+    - Palm Stairs
+    - Palm Fence
+    - Palm Fence Gate
+    - Palm Door
+    - Palm Trapdoor
+    - Palm Pressure Plate
+    - Palm Button
+    - Palm Leaves
+    - Palm Sprout
+    - Palm Sign
+    - Palm Hanging Sign
+    - Palm Boat
+    - Palm Boat with Chest
+    - Coconut
+      : Has three stages and starts attached to the palm tree;
+      : As an item, it can only be placed on the palm tree logs to grow new ones;
+      : When it drops after the third stage, it stays on the ground until broken, where it drops 2-4 coconuts;
+      : Can be used in compositing.
+    - Lotus Flower
+      : Spawns in the oasis, on top of Lily Pads;
+      : As an item, it can be placed solely on a Crafting Table to give 2 Pink Dye;
+      : On a Suspicious Stew, the effect would be Water Breathing for 8s.
+    - Reeds
+      : Underwater plant, spawning in oasis;
+      : Can be used to craft Paper, like Sugar Cane;
+      : Can be used as fuel;
+      : Can be used as food for Camels.
+    - Reed Mat
+      : 2 Reeds in a row horizontally;
+      : Works like a doormat, occupying 2 blocks in a row horizontally, though not all of it (leaving 3 pixels off);
+      : Like a Sign, you can write something on it.
+    - Thatch Block
+      : 4 Reeds to create 1 Thatch Block;
+      : Has a similar texture to a Hay Block, although more desaturated and without the red wire;
+      : Can be crafted back to 4 Reeds;
+      : Just like Hay Blocks, it can also extend a Campfire smoke, though it doesn't extend as much;
+      : Just like Hay Blocks, it also reduces fall damage, though by 60% instead of the Hay Block's 80%;
+      : Can also be used to craft Target, like the Hay Block;
+      : Can be used as food for Horses and Llamas, just like the Hay Block.
+    - Overgrown Sand
+      : Mix between Grass Block and Sand;
+      : Spawns as the soil in the oasis;
+      : Foliage can be placed on top.
+
+  - New items:
+    - Coconut Bowl
+      : Crafted with 3 coconuts in the same form as a normal Bowl;
+      : You can craft every type of food you can normally craft with the Wooden Bowl, except with the Coconut Bowl, every item has an increase of 4 on hunger;
+      : On Suspicious Stews with the Coconut Bowl, the duration of the effect is triple of that from a normal Bowl.
+    - Coconut Beetroot Soup
+    - Coconut Mushroom Stew
+    - Coconut Rabbit Stew
+    - Coconut Suspicious Stew
+    - Coconut Milk
+      : Coconut Bowl + Milk Bucket;
+      : Restores 4 hunger;
+      : Clears effects just like the Milk Bucket.
+
+  - New generation:
+    - Palm trees
+      : The log top will not feature normal tree rings since palm trees do not contain annual ones, instead it will feature a smooth surface on top;
+      : Spawns coconuts.
+
+2. SANDSTONE ADDITIONS -------------------------------------------------------------------------------------------------
+  - New blocks:
+    - Sandstone Pillar
+    - Sandstone Bricks
+    - Sandstone Brick Slab
+    - Sandstone Brick Stairs
+    - Sandstone Brick Wall
+    - Cracked Sandstone Bricks
+    - Red Sandstone Pillar
+    - Red Sandstone Bricks
+    - Red Sandstone Brick Slab
+    - Red Sandstone Brick Stairs
+    - Red Sandstone Brick Wall
+    - Cracked Red Sandstone Bricks
+    - Weathered Sandstone
+      : Grayish, desaturated version of normal Sandstone;
+      : Crafted with 2 Sandstone + 2 Coarse Dirt;
+    - Chiseled Weathered Sandstone
+    - Cut Weathered Sandstone
+    - Smooth Weathered Sandstone
+    - Weathered Sandstone Slab
+    - Weathered Sandstone Stairs
+    - Weathered Sandstone Wall
+    - Cut Weathered Sandstone Slab
+    - Smooth Weathered Sandstone Slab
+    - Smooth Weathered Sandstone Stairs
+    - Weathered Sandstone Pillar
+    - Weathered Sandstone Bricks
+    - Weathered Sandstone Brick Slab
+    - Weathered Sandstone Brick Stairs
+    - Weathered Sandstone Brick Wall
+    - Cracked Weathered Sandstone Bricks
