@@ -2,7 +2,15 @@ package net.rodmjorgeh.renovay.world.material;
 
 import net.minecraft.world.level.material.MapColor;
 
-public final class MapColorR {
+public class MapColorR {
 
-    public static final MapColor PALM_TREE = new MapColor(62, 13067354);
+    private static int ID_START = 62;
+    public static final MapColor PALM_TREE = create(13067354);
+
+    private static MapColor create(int color) {
+        MapColor mapColor = new MapColor(ID_START, color);
+        ID_START++;
+
+        return mapColor;
+    }
 }
