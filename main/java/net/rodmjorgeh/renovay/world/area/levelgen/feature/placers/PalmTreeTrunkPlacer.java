@@ -5,18 +5,17 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.DarkOakFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -43,10 +42,10 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
         int posY = pos.getY();
         int posZ = pos.getZ();
 
-        int minHeightToShift = 4 - random.nextInt(2);
+        int minHeightToShift = 3 - random.nextInt(2);
         int shiftX = 0;
         int shiftZ = 0;
-        int k = random.nextDouble() > 0.6 ? 2 : 1;
+        int k = random.nextBoolean() ? 2 : 1;
         int seperateI = 0;
 
         for (int i = 0; i < freeTreeHeight; i++) {
@@ -72,6 +71,10 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
 
                 for (int j = 0; j < logBase.size(); j++) {
                     this.placeLog(level, blockSetter, random, logBase.get(j), treeConfig);
+                }
+
+                if (lastItem) {
+                    list.add(new FoliagePlacer.FoliageAttachment(addedPos, 0, false));
                 }
             }
 

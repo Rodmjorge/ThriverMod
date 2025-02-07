@@ -23,7 +23,7 @@ public class ConfiguredFeaturesRegistry {
         register(context, PALM_TREE, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(BlockRegistry.PALM_LOG.get()),
-                        new PalmTreeTrunkPlacer(8, 1, 4),
+                        new PalmTreeTrunkPlacer(6, 1, 4),
                         BlockStateProvider.simple(BlockRegistry.PALM_LEAVES.get()),
                         new PalmTreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
                         new TwoLayersFeatureSize(1, 0, 3)

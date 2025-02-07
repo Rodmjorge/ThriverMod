@@ -67,7 +67,7 @@ public class BlockRegistry {
             () -> new ButtonBlock(BlockSetType.OAK, 30, Blocks.buttonProperties().mapColor(MapColorR.PALM_TREE).setId(createId("palm_button"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final RegistryObject<Block> PALM_LEAVES = register("palm_leaves",
-            () -> new LeavesBlock(Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
+            () -> new PalmLeavesBlock(Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final RegistryObject<Block> PALM_SPROUT = register("palm_sprout",
             () -> new SaplingBlock(TreeGrowerR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),

@@ -2,6 +2,7 @@ package net.rodmjorgeh.renovay.world.area.levelgen.feature.placers;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -24,14 +25,31 @@ public class PalmTreeFoliagePlacer extends FoliagePlacer {
     @Override
     protected void createFoliage(LevelSimulatedReader level, FoliageSetter foliageSetter, RandomSource random, TreeConfiguration treeConfig,
                                  int maxFreeTreeHeight, FoliageAttachment foliageAttachment, int foliageHeight, int foliageRadius, int offset) {
+        BlockPos pos = foliageAttachment.pos();
 
+        for (int i = 0; i < 3; i++) {
+            this.placeLeavesRow(level, foliageSetter, random, treeConfig, pos, 1 + i, i, false);
+        }
+
+        this.placeLeavesRow(level, foliageSetter, random, treeConfig, pos, 4, 1, false);
     }
 
     @Override
-    public int foliageHeight(RandomSource random, int height, TreeConfiguration treeConfig) { return 2; }
+    public int foliageHeight(RandomSource random, int height, TreeConfiguration treeConfig) { return 3; }
 
     @Override
-    protected boolean shouldSkipLocation(RandomSource pRandom, int pLocalX, int pLocalY, int pLocalZ, int pRange, boolean pLarge) {
-        return false;
+    protected boolean shouldSkipLocation(RandomSource random, int x, int y, int z, int range, boolean isLarge) {
+        if (y > 0) {
+            if ((x > 1 || z > 1) && range == 2) {
+                if (x == range && z == range) { return true; }
+
+                return random.nextDouble() > 0.6;
+            }
+            else if (range == 4 && ((x <= 2 && z <= 2) || (x == 4 && z == 4) || (x >= 3 && z == 1) || (x >= 3 && z == 2) || (x == 1 && z >= 3) || (x == 2 && z >= 3))) {
+                return true;
+            }
+        }
+
+        return y > 1 && range == 3 && ((x == 1 && z == 3) || (x == 3 && z == 1) || (x == 1 && z == 0) || (x == 0 && z == 1) || (x == 0 && z == 0));
     }
 }

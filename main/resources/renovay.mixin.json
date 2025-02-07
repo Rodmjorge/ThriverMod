@@ -3,7 +3,9 @@
   "package": "net.rodmjorgeh.renovay.plus",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "block.entity.BlockEntityTypePlus"
+    "block.LeavesBlockP",
+    "block.entity.BlockEntityTypeP",
+    "block.state.properties.BlockStatePropertiesP"
   ],
   "client": [],
   "injectors": {
