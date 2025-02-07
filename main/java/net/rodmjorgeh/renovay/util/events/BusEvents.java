@@ -2,19 +2,27 @@ package net.rodmjorgeh.renovay.util.events;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
-import net.rodmjorgeh.renovay.world.block.BlockRegistry;
-import net.rodmjorgeh.renovay.world.block.type.WoodTypeR;
+import net.rodmjorgeh.renovay.data.BuilderRegistries;
+import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.area.block.state.WoodTypeR;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = RenovayMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class BusEvents {

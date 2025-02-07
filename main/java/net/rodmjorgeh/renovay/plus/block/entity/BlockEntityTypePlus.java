@@ -1,11 +1,10 @@
 package net.rodmjorgeh.renovay.plus.block.entity;
 
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.rodmjorgeh.renovay.world.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -39,6 +38,13 @@ public class BlockEntityTypePlus {
             newValidBlocks.addAll(Arrays.asList(
                     BlockRegistry.PALM_SIGN.get(),
                     BlockRegistry.PALM_WALL_SIGN.get()
+            ));
+        }
+        // check if we are in the BlockEntityType instance where its validBlocks are HangingSignBlockEntity
+        else if (validBlocks.contains(Blocks.OAK_HANGING_SIGN)) {
+            newValidBlocks.addAll(Arrays.asList(
+                    BlockRegistry.PALM_HANGING_SIGN.get(),
+                    BlockRegistry.PALM_WALL_HANGING_SIGN.get()
             ));
         }
 

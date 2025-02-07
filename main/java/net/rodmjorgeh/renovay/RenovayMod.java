@@ -1,28 +1,21 @@
 package net.rodmjorgeh.renovay;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.data.models.blockstates.BlockStateGenerator;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.datafix.fixes.BlockStateData;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rodmjorgeh.renovay.client.model.ModelLayersR;
-import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.renovay.util.events.BusEvents;
-import net.rodmjorgeh.renovay.world.block.BlockRegistry;
-import net.rodmjorgeh.renovay.world.block.entity.BlockEntityRegistry;
-import net.rodmjorgeh.renovay.world.entity.EntityRegistry;
+import net.rodmjorgeh.renovay.util.events.DatagenEvents;
+import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.area.block.entity.BlockEntityRegistry;
+import net.rodmjorgeh.renovay.world.area.entity.EntityRegistry;
+import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.FoliagePlacerRegistry;
+import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.TrunkPlacerRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import org.slf4j.Logger;
 
@@ -40,6 +33,8 @@ public class RenovayMod {
         ItemRegistry.register(bus);
         EntityRegistry.register(bus);
         BlockEntityRegistry.register(bus);
+        TrunkPlacerRegistry.register(bus);
+        FoliagePlacerRegistry.register(bus);
 
         bus.addListener(ItemRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);
@@ -48,6 +43,7 @@ public class RenovayMod {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(BusEvents.class);
+        MinecraftForge.EVENT_BUS.register(DatagenEvents.class);
     }
 
     /**

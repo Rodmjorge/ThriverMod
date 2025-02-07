@@ -10,8 +10,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rodmjorgeh.renovay.RenovayMod;
-import net.rodmjorgeh.renovay.world.block.BlockRegistry;
-import net.rodmjorgeh.renovay.world.entity.EntityRegistry;
+import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.area.entity.EntityRegistry;
 
 import java.util.ArrayList;
 import java.util.HashMap;

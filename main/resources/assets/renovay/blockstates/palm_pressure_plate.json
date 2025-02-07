@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "renovay:block/palm_pressure_plate"
+    },
+    "powered=true": {
+      "model": "renovay:block/palm_pressure_plate_down"
+    }
+  }
+}
