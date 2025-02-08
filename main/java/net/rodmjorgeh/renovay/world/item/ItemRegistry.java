@@ -59,7 +59,7 @@ public class ItemRegistry {
     }
 
     /**
-     * After being called from the {@code event}, knowing the {@code CreativeModeTab}, it adds all the
+     * After being called from the {@code event}, knowing the {@link CreativeModeTab}, it adds all the
      * items inside the map {@code Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>>} with
      * the same key.
      */

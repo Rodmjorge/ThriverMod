@@ -6,6 +6,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rodmjorgeh.renovay.RenovayMod;
@@ -30,10 +31,7 @@ public abstract class LeavesBlockP {
             int j = decayDist;
 
             for (Direction direction : Direction.values()) {
-                BlockPos offsetPos = new BlockPos(
-                        pos.getX() + direction.getStepX(),
-                        pos.getY() + direction.getStepY(),
-                        pos.getZ() + direction.getStepZ());
+                BlockPos offsetPos = pos.relative(direction);
 
                 j = Math.min(j, LeavesBlock.getOptionalDistanceAt(level.getBlockState(offsetPos)).orElse(decayDist) + 1);
                 if (j == 1) {

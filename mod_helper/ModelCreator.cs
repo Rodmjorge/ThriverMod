@@ -49,6 +49,7 @@ namespace MinecraftModGenerator
         {
             #region palm tree
             FamilyWoodType("palm", "palm_sprout");
+            CreateItem("coconut");
             #endregion
 
             #region sandstone

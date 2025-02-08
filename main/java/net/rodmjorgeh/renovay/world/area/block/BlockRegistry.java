@@ -70,7 +70,7 @@ public class BlockRegistry {
             () -> new PalmLeavesBlock(Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final RegistryObject<Block> PALM_SPROUT = register("palm_sprout",
-            () -> new SaplingBlock(TreeGrowerR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),
+            () -> new PalmSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final RegistryObject<Block> PALM_SIGN = register("palm_sign",
             () -> new StandingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_sign"))),
@@ -84,6 +84,16 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign",
             () -> new WallHangingSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_HANGING_SIGN.get(), true).ofFullCopy(Blocks.JUNGLE_WALL_HANGING_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_wall_hanging_sign"))),
             false);
+
+    public static final RegistryObject<Block> COCONUT = register("coconut",
+            () -> new CoconutBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BROWN)
+                    .randomTicks()
+                    .strength(1.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .setId(createId("coconut"))),
+            CreativeModeTabs.NATURAL_BLOCKS, CreativeModeTabs.FOOD_AND_DRINKS);
 
 
     public static final RegistryObject<Block> SANDSTONE_BRICKS = register("sandstone_bricks",
@@ -170,7 +180,7 @@ public class BlockRegistry {
     }
 
     /**
-     * This method only ever gets called whenever you don't want a {@code BlockItem}, setting {@code includeItem}
+     * This method only ever gets called whenever you don't want a {@link BlockItem}, setting {@code includeItem}
      * as {@code false}. See below for the more common called method.
      */
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block, boolean includeItem) {
@@ -187,9 +197,9 @@ public class BlockRegistry {
      * Registers a block by calling the method above with {@code includeItem} set to {@code True}, because this block does
      * include an item.
      *
-     * @param name The name of the block
+     * @param name The name of the blocks
      * @param block The supplier for the block
-     * @param creativeModeTabs What tabs in Creative Mode the {@code BlockItem} should appear in. Then, register it in the tabs
+     * @param creativeModeTabs What tabs in Creative Mode the {@link BlockItem} should appear in. Then, register it in the tabs
      */
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block, ResourceKey<CreativeModeTab>... creativeModeTabs) {
         RegistryObject<T> registry = register(name, block, true);
@@ -199,8 +209,8 @@ public class BlockRegistry {
     }
 
     /**
-     * Registers a {@code BlockItem} by calling {@code ItemRegistry.register()}, where its registries are set as
-     * {@code Item}.
+     * Registers a {@link BlockItem} by calling {@link ItemRegistry}{@code .register()}, where its registries are set as
+     * {@link Item}.
      */
     private static <T extends Block> RegistryObject<Item> registerItem(String name, RegistryObject<T> registry) {
         return ItemRegistry.ITEMS.register(name, () -> new BlockItem(registry.get(), new Item.Properties().setId(ItemRegistry.createId(name))));

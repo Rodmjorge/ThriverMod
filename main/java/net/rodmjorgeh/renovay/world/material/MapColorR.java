@@ -8,7 +8,7 @@ public class MapColorR {
     public static final MapColor PALM_TREE = create(13067354);
 
     /**
-     * Creates a new {@code MapColor}, knowing the leftover IDs start at 62.
+     * Creates a new {@link MapColor}, knowing the leftover IDs start at 62.
      */
     private static MapColor create(int color) {
         MapColor mapColor = new MapColor(ID_START, color);
