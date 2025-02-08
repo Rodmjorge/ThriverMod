@@ -36,6 +36,12 @@ namespace MinecraftModGenerator
             CreateRecipe("palm_slab", "#palm_planks", "###", 6, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "wooden_slab");
             CreateRecipe("palm_stairs", "#palm_planks", "#  /## /###", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "wooden_stairs");
             CreateRecipe("palm_trapdoor", "#palm_planks", "###/###", 2, RecipeCategory.Redstone, RecipeAdvancementCategory.Redstone, group: "wooden_trapdoor");
+
+            CreateRecipe("coconut_bowl", "#coconut", "# #/ # ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+            CreateRecipe("coconut_mushroom_stew", ":brown_mushroom;:red_mushroom;coconut_bowl", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+            CreateRecipe("coconut_rabbit_stew_from_brown_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:brown_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
+            CreateRecipe("coconut_rabbit_stew_from_red_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:red_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
+            CreateRecipe("coconut_beetroot_soup", "coconut_bowl;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             #endregion
             #region sandstone
             CreateRecipe("sandstone_bricks", "#:cut_sandstone", "##/##", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);
@@ -235,13 +241,13 @@ namespace MinecraftModGenerator
                         var cond = new Condition() { items = new() { item } };
                         string criteriaName = "has_" + CleanIng(ing);
 
-                        criteriaDict.Add(criteriaName, new Criteria(cond, "minecraft:inventory_changed", false));
+                        criteriaDict.TryAdd(criteriaName, new Criteria(cond, "minecraft:inventory_changed", false));
                     }
 
                     break;
 
                 case RecipeAdvancementType.Boat:
-                    criteriaDict.Add("in_water", new Criteria(new Condition() { block = "minecraft:water" }, "minecraft:enter_block", false));
+                    criteriaDict.TryAdd("in_water", new Criteria(new Condition() { block = "minecraft:water" }, "minecraft:enter_block", false));
                     break;
 
                 case RecipeAdvancementType.Custom:

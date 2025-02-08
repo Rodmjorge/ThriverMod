@@ -35,6 +35,16 @@ namespace MinecraftModGenerator
             CreateLootTable("palm_sprout");
             CreateLootTable("palm_sign");
             CreateLootTable("palm_hanging_sign");
+
+            CreateLootTable("coconut", LootTableType.Custom, new() {
+                new(SetFunctions(ClassicEntry(FuncTex("coconut")),
+                    SetCount(
+                        BlockStateProperty(FuncTex("coconut"), "age", "3"),
+                        new MinMax(2, 3)
+                    ),
+                    new("minecraft:explosion_decay")
+                ))
+            });
             #endregion
 
             #region sandstone
@@ -70,12 +80,12 @@ namespace MinecraftModGenerator
             #endregion
         }
 
-        public void CreateLootTable(string name, LootTableType type = LootTableType.Common, LootTableRoot customRoot = null, params string[] nameAdders)
+        public void CreateLootTable(string name, LootTableType type = LootTableType.Common, List<Pool> customPools = null, params string[] nameAdders)
         {
-            CreateFile(GetPath(@"loot_table\blocks"), name, Serialize(GetRootFromType(name, type, customRoot, nameAdders.Select(x => FuncTex(x)).ToArray())));
+            CreateFile(GetPath(@"loot_table\blocks"), name, Serialize(GetRootFromType(name, type, customPools, nameAdders.Select(x => FuncTex(x)).ToArray())));
         }
 
-        protected LootTableRoot GetRootFromType(string name, LootTableType type, LootTableRoot customRoot, string[] nameAdders)
+        protected LootTableRoot GetRootFromType(string name, LootTableType type, List<Pool> customPools, string[] nameAdders)
         {
             string texName = FuncTex(name);
             string bTexName = FuncBlockTex(name);
@@ -99,7 +109,7 @@ namespace MinecraftModGenerator
                         new("minecraft:explosion_decay")
                     );
 
-                    pool = new Pool(classicEntry);
+                    pool = new(classicEntry);
                     return new("minecraft:block", new() { pool }, bTexName);
 
                 case LootTableType.Door:
@@ -107,7 +117,7 @@ namespace MinecraftModGenerator
                         BlockStateProperty(texName, "half", "lower")
                     );
 
-                    pool = new Pool(classicCond, classicEntry);
+                    pool = new(classicCond, classicEntry);
                     return new("minecraft:block", new() { pool }, bTexName);
 
                 case LootTableType.Leaves:
@@ -134,7 +144,7 @@ namespace MinecraftModGenerator
                     return new("minecraft:block", pools, bTexName);
 
                 case LootTableType.Custom:
-                    return customRoot;
+                    return new("minecraft:block", customPools, bTexName);
             }
         }
 

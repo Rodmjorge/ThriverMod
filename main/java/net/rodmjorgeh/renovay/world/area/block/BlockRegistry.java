@@ -93,7 +93,7 @@ public class BlockRegistry {
                     .sound(SoundType.WOOD)
                     .noOcclusion()
                     .setId(createId("coconut"))),
-            CreativeModeTabs.NATURAL_BLOCKS, CreativeModeTabs.FOOD_AND_DRINKS);
+            false);
 
 
     public static final RegistryObject<Block> SANDSTONE_BRICKS = register("sandstone_bricks",

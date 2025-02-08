@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "renovay:coconut_bowl",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot",
+    "minecraft:beetroot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "renovay:coconut_beetroot_soup"
+  }
+}
