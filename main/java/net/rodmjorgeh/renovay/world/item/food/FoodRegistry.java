@@ -6,9 +6,10 @@ public class FoodRegistry {
 
     public static final FoodProperties COCONUT = register(3, 0.3F);
     public static final FoodProperties COCONUT_BOWL = register(4, 0.3F);
-    public static final FoodProperties COCONUT_MUSHROOM_STEW = registerStew(10);
-    public static final FoodProperties COCONUT_RABBIT_STEW = registerStew(14);
-    public static final FoodProperties COCONUT_BEETROOT_SOUP = registerStew(10);
+    public static final FoodProperties COCONUT_MUSHROOM_STEW = registerStew(10, false);
+    public static final FoodProperties COCONUT_RABBIT_STEW = registerStew(14, false);
+    public static final FoodProperties COCONUT_BEETROOT_SOUP = registerStew(10, false);
+    public static final FoodProperties COCONUT_SUSPICIOUS_STEW = registerStew(10, true);
 
     private static FoodProperties register(int nutrition, float saturationMod) {
         return register(nutrition, saturationMod, false);
@@ -19,7 +20,7 @@ public class FoodRegistry {
                 new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationMod)).build();
     }
 
-    private static FoodProperties registerStew(int nutrition) {
-        return register(nutrition, 0.8F);
+    private static FoodProperties registerStew(int nutrition, boolean canAlwaysEat) {
+        return register(nutrition, 0.8F, canAlwaysEat);
     }
 }

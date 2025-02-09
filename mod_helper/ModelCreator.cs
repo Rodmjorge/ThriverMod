@@ -55,6 +55,7 @@ namespace MinecraftModGenerator
             CreateItem("coconut_mushroom_stew");
             CreateItem("coconut_rabbit_stew");
             CreateItem("coconut_beetroot_soup");
+            CreateItem("coconut_suspicious_stew");
             #endregion
 
             #region sandstone

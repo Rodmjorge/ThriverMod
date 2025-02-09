@@ -1,10 +1,13 @@
 package net.rodmjorgeh.renovay.world.item;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,15 +18,11 @@ import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.entity.EntityRegistry;
 import net.rodmjorgeh.renovay.world.item.food.FoodRegistry;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RenovayMod.MOD_ID);
-    private static Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>> itemsInTab = new HashMap<>();
 
     public static final RegistryObject<Item> PALM_SIGN = register("palm_sign",
             () -> new SignItem(BlockRegistry.PALM_SIGN.get(), BlockRegistry.PALM_WALL_SIGN.get(), new Item.Properties().setId(createId("palm_sign")).stacksTo(16)),
@@ -47,7 +46,7 @@ public class ItemRegistry {
             () -> new Item(new Item.Properties()
                     .food(FoodRegistry.COCONUT_BOWL)
                     .setId(createId("coconut_bowl"))),
-            CreativeModeTabs.FOOD_AND_DRINKS);
+            CreativeModeTabs.FOOD_AND_DRINKS, CreativeModeTabs.INGREDIENTS);
     public static final RegistryObject<Item> COCONUT_MUSHROOM_STEW = register("coconut_mushroom_stew",
             () -> new Item(new Item.Properties()
                     .food(FoodRegistry.COCONUT_MUSHROOM_STEW)
@@ -69,6 +68,13 @@ public class ItemRegistry {
                     .stacksTo(1)
                     .setId(createId("coconut_beetroot_soup"))),
             CreativeModeTabs.FOOD_AND_DRINKS);
+    public static final RegistryObject<Item> COCONUT_SUSPICIOUS_STEW = register("coconut_suspicious_stew",
+            () -> new Item(new Item.Properties()
+                    .food(FoodRegistry.COCONUT_SUSPICIOUS_STEW)
+                    .component(DataComponents.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffects.EMPTY)
+                    .usingConvertsTo(COCONUT_BOWL.get())
+                    .stacksTo(1)
+                    .setId(createId("coconut_suspicious_stew"))));
 
     public static void register(IEventBus event) {
         ITEMS.register(event);
@@ -76,34 +82,9 @@ public class ItemRegistry {
 
     private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item, ResourceKey<CreativeModeTab>... creativeTabs) {
         RegistryObject<T> registry = ITEMS.register(name, item);
-        registerInTab(registry, creativeTabs);
+        CreativeModeTabRegistry.registerInTab(registry, creativeTabs);
 
         return registry;
-    }
-
-    public static void registerInTab(Supplier<? extends ItemLike> item, ResourceKey<CreativeModeTab>[] creativeTabs) {
-        for (ResourceKey<CreativeModeTab> tab : creativeTabs) {
-            if (!itemsInTab.containsKey(tab)) {
-                itemsInTab.put(tab, new ArrayList<>());
-            }
-
-            itemsInTab.get(tab).add(item);
-        }
-    }
-
-    /**
-     * After being called from the {@code event}, knowing the {@link CreativeModeTab}, it adds all the
-     * items inside the map {@code Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>>} with
-     * the same key.
-     */
-    public static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        ResourceKey<CreativeModeTab> x = event.getTabKey();
-
-        if (itemsInTab.containsKey(x)) {
-            for (Supplier<? extends ItemLike> item : itemsInTab.get(x)) {
-                event.accept(item);
-            }
-        }
     }
 
     public static ResourceKey createId(String name) {

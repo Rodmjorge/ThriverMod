@@ -9,6 +9,7 @@ namespace MinecraftModGenerator.JSON_Classes.Recipe
     public enum RecipeType
     {
         Crafting,
+        CraftingSuspiciousStew,
         Smelting,
         Stonecutting
     }

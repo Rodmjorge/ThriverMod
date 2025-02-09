@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "coconut_suspicious_stew",
+  "ingredients": [
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "renovay:coconut_bowl",
+    "minecraft:orange_tulip"
+  ],
+  "result": {
+    "components": {
+      "minecraft:suspicious_stew_effects": [
+        {
+          "duration": 420,
+          "id": "minecraft:weakness"
+        }
+      ]
+    },
+    "count": 1,
+    "id": "renovay:coconut_suspicious_stew"
+  }
+}

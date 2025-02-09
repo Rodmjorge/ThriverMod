@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MinecraftModGenerator.JSON_Classes.Items;
+using MinecraftModGenerator.JSON_Classes.Loot_Table.Conditions_and_Predicates;
 
 namespace MinecraftModGenerator
 {
@@ -21,6 +22,9 @@ namespace MinecraftModGenerator
             var i = new int[] { 1 };
 
             #region palm tree
+            const string stew = "coconut_suspicious_stew";
+            const string bowl = "coconut_bowl";
+
             CreateRecipe("palm_wood", "#palm_log", "##/##", 3, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "bark");
             CreateRecipe("stripped_palm_wood", "#stripped_palm_log", "##/##", 3, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "bark");
             CreateRecipe("palm_planks", "#palm_logs", "", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "planks");
@@ -42,6 +46,22 @@ namespace MinecraftModGenerator
             CreateRecipe("coconut_rabbit_stew_from_brown_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:brown_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
             CreateRecipe("coconut_rabbit_stew_from_red_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:red_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
             CreateRecipe("coconut_beetroot_soup", "coconut_bowl;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+            CreateSuspiciousStewRecipe(":allium", ":fire_resistance", 60);
+            CreateSuspiciousStewRecipe(":azure_bluet", ":blindness", 220);
+            CreateSuspiciousStewRecipe(":open_eyeblossom", ":blindness", 220);
+            CreateSuspiciousStewRecipe(":blue_orchid", ":saturation", 7);
+            CreateSuspiciousStewRecipe(":dandelion", ":saturation", 7);
+            CreateSuspiciousStewRecipe(":closed_eyeblossom", ":nausea", 140);
+            CreateSuspiciousStewRecipe(":cornflower", ":jump_boost", 100);
+            CreateSuspiciousStewRecipe(":lily_of_the_valley", ":poison", 220);
+            CreateSuspiciousStewRecipe(":oxeye_daisy", ":regeneration", 140);
+            CreateSuspiciousStewRecipe(":poppy", ":night_vision", 100);
+            CreateSuspiciousStewRecipe(":torchflower", ":night_vision", 100);
+            CreateSuspiciousStewRecipe(":red_tulip", ":weakness", 140);
+            CreateSuspiciousStewRecipe(":orange_tulip", ":weakness", 140);
+            CreateSuspiciousStewRecipe(":pink_tulip", ":weakness", 140);
+            CreateSuspiciousStewRecipe(":white_tulip", ":weakness", 140);
+            CreateSuspiciousStewRecipe(":wither_rose", ":wither", 140);
             #endregion
             #region sandstone
             CreateRecipe("sandstone_bricks", "#:cut_sandstone", "##/##", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);
@@ -154,7 +174,7 @@ namespace MinecraftModGenerator
 
         public void CreateRecipe(string name, string ingredients, string pattern, int count, RecipeCategory category, RecipeAdvancementCategory advancementCategory,
             RecipeType type = RecipeType.Crafting, string group = null, string resultNew = null, RecipeAdvancementType advancementType = RecipeAdvancementType.Classic, 
-            Dictionary<string, Criteria> customCriteria = null, int[] ignoreInAdvancement = null)
+            Dictionary<string, Criteria> customCriteria = null, int[] ignoreInAdvancement = null, string[] additionalInfo = null)
         {
             string result = (string.IsNullOrEmpty(resultNew)) ? name : resultNew;
             result = FuncTex(result);
@@ -187,7 +207,7 @@ namespace MinecraftModGenerator
 
                 default:
                 case RecipeType.Crafting:
-                    root = new RecipeRoot(isShapeless ? "minecraft:crafting_shapeless" : "minecraft:crafting_shaped",
+                    root = new(isShapeless ? "minecraft:crafting_shapeless" : "minecraft:crafting_shaped",
                         categoryS,
                         isShapeless ? null : keys.ToDictionary(x => x.Key, y => y.Value.ToArray()),
                         isShapeless ? ingredientArr.ToList() : patternArr.ToList(),
@@ -196,7 +216,7 @@ namespace MinecraftModGenerator
 
                 case RecipeType.Smelting:
                     name += fromName + "smelting";
-                    root = new RecipeRoot("minecraft:smelting", categoryS, ing, recipeResult);
+                    root = new("minecraft:smelting", categoryS, ing, recipeResult);
                     root.cookingTime = 200;
                     root.experience = 0.1d;
 
@@ -204,9 +224,18 @@ namespace MinecraftModGenerator
 
                 case RecipeType.Stonecutting:
                     name += fromName + "stonecutting";
-                    root = new RecipeRoot("minecraft:stonecutting", null, ing, recipeResult);
+                    root = new("minecraft:stonecutting", null, ing, recipeResult);
 
                     break;
+
+                case RecipeType.CraftingSuspiciousStew:
+                    root = new("minecraft:crafting_shapeless", categoryS, null, ingredientArr.ToList(), new RecipeResult(
+                        new Dictionary<string, object>() {
+                            { "minecraft:suspicious_stew_effects", new List<Effect>() { new Effect(FuncTex(additionalInfo[0]), int.Parse(additionalInfo[1])) } }
+                        }, result, count)
+                    );
+                    break;
+
             }
             root.group = group;
 
@@ -264,6 +293,10 @@ namespace MinecraftModGenerator
             CreateFile(GetPath($@"advancement\recipes\{ advancementCategory.ToString().ToLower() }"), name, Serialize(root));
         }
 
+        public void CreateSuspiciousStewRecipe(string flowerName, string effectName, int duration) => 
+            CreateRecipe($"coconut_suspicious_stew_from_{ CleanIng(flowerName) }", $":brown_mushroom;:red_mushroom;coconut_bowl;{ FuncTex(flowerName) }", 
+                "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, RecipeType.CraftingSuspiciousStew, "coconut_suspicious_stew", "coconut_suspicious_stew", additionalInfo: new string[] { effectName, (duration * 3).ToString() });
+
         public void CreateTag(string filename, TagType type, bool copyToItem, params string[] values)
         {
             bool isMinecraft = filename.StartsWith(':');
@@ -289,6 +322,10 @@ namespace MinecraftModGenerator
             return base.FuncTex(name, addCardinal + (hasMinecraft ? "minecraft" : modId));
         }
 
-        private static string CleanIng(string ing) => ing.Split(':')[1];
+        private static string CleanIng(string ing) 
+        {
+            var split = ing.Split(':');
+            return (split.Length == 1) ? ing : split[1];
+        }
     }
 }

@@ -16,6 +16,7 @@ import net.rodmjorgeh.renovay.world.area.block.entity.BlockEntityRegistry;
 import net.rodmjorgeh.renovay.world.area.entity.EntityRegistry;
 import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.FoliagePlacerRegistry;
 import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.TrunkPlacerRegistry;
+import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import org.slf4j.Logger;
 
@@ -36,7 +37,7 @@ public class RenovayMod {
         TrunkPlacerRegistry.register(bus);
         FoliagePlacerRegistry.register(bus);
 
-        bus.addListener(ItemRegistry::addToCreativeTab);
+        bus.addListener(CreativeModeTabRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);
         bus.addListener(BusEvents::onClientSetup);
         bus.addListener(ModelLayersR::registerLayers);

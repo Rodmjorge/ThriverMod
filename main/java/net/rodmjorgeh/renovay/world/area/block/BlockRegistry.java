@@ -17,6 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.world.area.block.state.TreeGrowerR;
 import net.rodmjorgeh.renovay.world.area.block.state.WoodTypeR;
+import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import net.rodmjorgeh.renovay.world.material.MapColorR;
 
@@ -203,7 +204,7 @@ public class BlockRegistry {
      */
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block, ResourceKey<CreativeModeTab>... creativeModeTabs) {
         RegistryObject<T> registry = register(name, block, true);
-        ItemRegistry.registerInTab(registry, creativeModeTabs);
+        CreativeModeTabRegistry.registerInTab(registry, creativeModeTabs);
 
         return registry;
     }
