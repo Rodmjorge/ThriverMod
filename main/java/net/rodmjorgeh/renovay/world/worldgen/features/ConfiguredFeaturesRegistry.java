@@ -11,9 +11,12 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.rodmjorgeh.renovay.RenovayMod;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.decorators.CoconutDecorator;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
-import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.PalmTreeFoliagePlacer;
-import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.PalmTreeTrunkPlacer;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.PalmTreeFoliagePlacer;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.PalmTreeTrunkPlacer;
+
+import java.util.List;
 
 public class ConfiguredFeaturesRegistry {
 
@@ -27,7 +30,7 @@ public class ConfiguredFeaturesRegistry {
                         BlockStateProvider.simple(BlockRegistry.PALM_LEAVES.get()),
                         new PalmTreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
                         new TwoLayersFeatureSize(1, 0, 3)
-                ).build());
+                ).decorators(List.of(new CoconutDecorator(0.95F))).build());
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> register(String name) {

@@ -31,9 +31,11 @@ Desert Ideas:
       : On a Suspicious Stew, the effect would be Water Breathing for 8s.
     - Reeds
       : Underwater plant, spawning in oasis;
+      : Comes in two sizes, one in 1.5 height and the other in 3;
       : Can be used to craft Paper, like Sugar Cane;
       : Can be used as fuel;
       : Can be used as food for Camels.
+    - Tall Reeds
     - Reed Mat
       : 2 Reeds in a row horizontally;
       : Works like a doormat, occupying 2 blocks in a row horizontally, though not all of it (leaving 3 pixels off);
@@ -47,21 +49,22 @@ Desert Ideas:
       : Can also be used to craft Target, like the Hay Block;
       : Can be used as food for Horses and Llamas, just like the Hay Block.
     - Overgrown Sand
-      : Mix between Grass Block and Sand;
+      : Mix between Grass Block and Sand (and that's how you craft it);
       : Spawns as the soil in the oasis;
-      : Foliage can be placed on top.
+      : Foliage can be placed on top;
+      : Bone mealing it spawns just Short Grass, although if a water source is nearby, it has a chance of spawning Reeds.
 
   - New items:
     - Coconut Bowl
       : Crafted with 3 coconuts in the same form as a normal Bowl;
       : You can craft every type of food you can normally craft with the Wooden Bowl, except with the Coconut Bowl, every item has an increase of 4 on hunger;
-      : On Suspicious Stews with the Coconut Bowl, the duration of the effect is triple of that from a normal Bowl.
+      : On Suspicious Stews with the Coconut Bowl, the duration of the effect is 5x of that from a normal Bowl.
     - Coconut Beetroot Soup
     - Coconut Mushroom Stew
     - Coconut Rabbit Stew
     - Coconut Suspicious Stew
     - Coconut Milk
-      : Coconut Bowl + Milk Bucket;
+      : Coconut Bowl + Coconut;
       : Restores 4 hunger;
       : Clears effects just like the Milk Bucket.
 

@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.world.area.block.state;
+package net.rodmjorgeh.renovay.world.area.block.state.properties;
 
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;

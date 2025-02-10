@@ -44,7 +44,7 @@ public abstract class LeavesBlockP {
     }
 
     @ModifyVariable(method = "updateShape", at = @At("STORE"))
-    private int distanceAt(int i, BlockState state, LevelReader levelReader, ScheduledTickAccess scheduledTick, BlockPos pos, Direction direction,
+    private int distanceAt(int i, BlockState state, LevelReader levelReader, ScheduledTickAccess scheduledTick, BlockPos pos, Direction neighborDir,
                            BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         LeavesBlock block = (LeavesBlock)(Object)this;
 

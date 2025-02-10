@@ -11,11 +11,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.rodmjorgeh.renovay.client.model.ModelLayersR;
 import net.rodmjorgeh.renovay.util.events.BusEvents;
 import net.rodmjorgeh.renovay.util.events.DatagenEvents;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.decorators.TreeDecoratorsRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.entity.BlockEntityRegistry;
 import net.rodmjorgeh.renovay.world.area.entity.EntityRegistry;
-import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.FoliagePlacerRegistry;
-import net.rodmjorgeh.renovay.world.area.levelgen.feature.placers.TrunkPlacerRegistry;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.FoliagePlacerRegistry;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.TrunkPlacerRegistry;
 import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ public class RenovayMod {
         BlockEntityRegistry.register(bus);
         TrunkPlacerRegistry.register(bus);
         FoliagePlacerRegistry.register(bus);
+        TreeDecoratorsRegistry.register(bus);
 
         bus.addListener(CreativeModeTabRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);

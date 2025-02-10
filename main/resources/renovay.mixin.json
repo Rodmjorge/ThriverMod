@@ -5,7 +5,8 @@
   "mixins": [
     "block.LeavesBlockP",
     "block.entity.BlockEntityTypeP",
-    "block.state.properties.BlockStatePropertiesP"
+    "block.state.properties.BlockStatePropertiesP",
+    "entity.MushroomCowP"
   ],
   "client": [],
   "injectors": {

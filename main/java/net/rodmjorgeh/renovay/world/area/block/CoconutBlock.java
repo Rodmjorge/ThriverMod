@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
-import net.rodmjorgeh.renovay.world.entity.damage.DamageSourcesR;
+import net.rodmjorgeh.renovay.world.area.entity.damage.DamageSourcesR;
 
 public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     public static final MapCodec<CoconutBlock> CODEC = simpleCodec(CoconutBlock::new);
@@ -100,11 +100,11 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTick, BlockPos pos, Direction direction,
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTick, BlockPos pos, Direction neighborDir,
                                      BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         return !state.canSurvive(level, pos) ?
                 Blocks.AIR.defaultBlockState() :
-                super.updateShape(state, level, scheduledTick, pos, direction, neighborPos, neighborState, random);
+                super.updateShape(state, level, scheduledTick, pos, neighborDir, neighborPos, neighborState, random);
     }
 
     @Override

@@ -3,8 +3,11 @@ package net.rodmjorgeh.renovay.world.item;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
@@ -39,14 +42,12 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> COCONUT = register("coconut",
             () -> new BlockItem(BlockRegistry.COCONUT.get(), new Item.Properties()
-                    .food(FoodRegistry.COCONUT)
                     .setId(createId("coconut"))),
-            CreativeModeTabs.NATURAL_BLOCKS, CreativeModeTabs.FOOD_AND_DRINKS);
+            CreativeModeTabs.NATURAL_BLOCKS);
     public static final RegistryObject<Item> COCONUT_BOWL = register("coconut_bowl",
             () -> new Item(new Item.Properties()
-                    .food(FoodRegistry.COCONUT_BOWL)
                     .setId(createId("coconut_bowl"))),
-            CreativeModeTabs.FOOD_AND_DRINKS, CreativeModeTabs.INGREDIENTS);
+            CreativeModeTabs.INGREDIENTS);
     public static final RegistryObject<Item> COCONUT_MUSHROOM_STEW = register("coconut_mushroom_stew",
             () -> new Item(new Item.Properties()
                     .food(FoodRegistry.COCONUT_MUSHROOM_STEW)
@@ -75,6 +76,15 @@ public class ItemRegistry {
                     .usingConvertsTo(COCONUT_BOWL.get())
                     .stacksTo(1)
                     .setId(createId("coconut_suspicious_stew"))));
+    public static final RegistryObject<Item> COCONUT_MILK = register("coconut_milk",
+            () -> new Item(new Item.Properties()
+                    .craftRemainder(COCONUT_BOWL.get())
+                    .food(FoodRegistry.COCONUT_MILK)
+                    .component(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET)
+                    .usingConvertsTo(COCONUT_BOWL.get())
+                    .stacksTo(1)
+                    .setId(createId("coconut_milk"))),
+            CreativeModeTabs.TOOLS_AND_UTILITIES, CreativeModeTabs.FOOD_AND_DRINKS);
 
     public static void register(IEventBus event) {
         ITEMS.register(event);

@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.world.area.levelgen.feature.placers;
+package net.rodmjorgeh.renovay.world.area.areagen.feature.placers;
 
 import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
@@ -10,9 +10,7 @@ import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.DarkOakFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
@@ -32,6 +30,12 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
     @Override
     protected TrunkPlacerType<?> type() { return TrunkPlacerRegistry.PALM_TREE_TRUNK_PLACER.get(); }
 
+    /**
+     * Method that places the log structure, simple as that. The parameter {@code pos} is the position of the sapling
+     * block.
+     * <p>Inside the function, the variable {@code k} tells the amount of blocks the palm tree will shift along a
+     * random direction, given by {@code randomDir}, and the shifting is stored in {@code shiftX, shiftZ}.
+     */
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter,
                                                             RandomSource random, int freeTreeHeight, BlockPos pos, TreeConfiguration treeConfig) {

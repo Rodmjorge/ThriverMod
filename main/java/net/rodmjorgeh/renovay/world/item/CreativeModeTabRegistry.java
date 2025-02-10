@@ -45,6 +45,11 @@ public class CreativeModeTabRegistry {
             addCoconutSuspiciousStewToCreativeTab(event);
         }
     }
+
+    /**
+     * Just like the normal Suspicious Stew, this method will add every effect as a separate Coconut Suspicious Stew
+     * item.
+     */
     private static void addCoconutSuspiciousStewToCreativeTab(BuildCreativeModeTabContentsEvent event) {
         List<SuspiciousEffectHolder> list = SuspiciousEffectHolder.getAllEffectHolders();
         Set<ItemStack> set = ItemStackLinkedSet.createTypeAndComponentsSet();
@@ -56,7 +61,7 @@ public class CreativeModeTabRegistry {
             if (!effects.isEmpty()) {
                 SuspiciousStewEffects.Entry entry = effects.getFirst();
                 stack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS,
-                        new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(entry.effect(), entry.duration() * 3))));
+                        new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(entry.effect(), entry.duration() * 5))));
                 set.add(stack);
             }
         }

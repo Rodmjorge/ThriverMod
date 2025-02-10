@@ -56,6 +56,10 @@ namespace MinecraftModGenerator
             CreateItem("coconut_rabbit_stew");
             CreateItem("coconut_beetroot_soup");
             CreateItem("coconut_suspicious_stew");
+            CreateItem("coconut_milk");
+
+            CreateDoubleGrass("reeds");
+            CreateTripleGrass("tall_reeds");
             #endregion
 
             #region sandstone
@@ -129,16 +133,18 @@ namespace MinecraftModGenerator
             }
         }
         public void CreateItem(string itemName) => FileModel(itemName, null, ModelsRoot.ClassicItemRoot(FuncItemTex(itemName)), true);
-        public void CreateCrossBlock(string crossBlockName)
+        public void CreateAdvancedBlock(string advancedBlockName, string parentName, string textureName, string texBlockNameNew = null, 
+            bool createClassicItemRoot = false, bool isAnItem = true, bool addItem = true, bool cutout = false)
         {
-            string texCrossBlockName = FuncBlockTex(crossBlockName);
+            string bsAdvancedBlockName = FuncBlockTex(advancedBlockName);
+            string texAdvancedBlockName = (string.IsNullOrEmpty(texBlockNameNew)) ? bsAdvancedBlockName : texBlockNameNew;
 
-            FileBlockstate(crossBlockName, new Dictionary<string, VariantModel>() {
-                { "", new(texCrossBlockName) }
+            FileBlockstate(advancedBlockName, new Dictionary<string, VariantModel>() {
+                { "", new(bsAdvancedBlockName) }
             });
-            FileModel(crossBlockName, new() {
-                { crossBlockName, ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texCrossBlockName, "cross"), true) }
-            }, ModelsRoot.ClassicItemRoot(texCrossBlockName), true);
+            FileModel(advancedBlockName, new() {
+                { advancedBlockName, ModelsRoot.Parented(this, parentName, ModelsRoot.DictSingle(texAdvancedBlockName, textureName), cutout) }
+            }, createClassicItemRoot ? ModelsRoot.ClassicItemRoot(texAdvancedBlockName) : null, isAnItem, addItem: addItem);
         }
         public void CreateSlab(string blockName, string slabName, string texBlockNameTop = null, string texBlockNameBottom = null, string texBlockNameNew = null, bool cutout = false)
         {
@@ -392,6 +398,34 @@ namespace MinecraftModGenerator
                 { pressurePlateName + "_down", ModelsRoot.Parented(this, "pressure_plate_down", pressurePlateModelDict, false) }
             });
         }
+        public void CreateDoubleGrass(string doubleGrassName)
+        {
+            string texDoubleGrassName = FuncBlockTex(doubleGrassName);
+
+            FileBlockstate(doubleGrassName, new Dictionary<string, VariantModel>() {
+                { "half=lower", new(texDoubleGrassName + "_bottom") },
+                { "half=upper", new(texDoubleGrassName + "_top") }
+            });
+            FileModel(doubleGrassName, new() {
+                { doubleGrassName + "_bottom", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texDoubleGrassName + "_bottom", "cross"), true) },
+                { doubleGrassName + "_top", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texDoubleGrassName + "_top", "cross"), true) }
+            }, ModelsRoot.ClassicItemRoot(texDoubleGrassName + "_top"), true);
+        }
+        public void CreateTripleGrass(string tripleGrassName)
+        {
+            string texTripleGrassName = FuncBlockTex(tripleGrassName);
+
+            FileBlockstate(tripleGrassName, new Dictionary<string, VariantModel>() {
+                { "step=bottom", new(texTripleGrassName + "_bottom") },
+                { "step=middle", new(texTripleGrassName + "_middle") },
+                { "step=top", new(texTripleGrassName + "_top") }
+            });
+            FileModel(tripleGrassName, new() {
+                { tripleGrassName + "_bottom", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_bottom", "cross"), true) },
+                { tripleGrassName + "_middle", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_middle", "cross"), true) },
+                { tripleGrassName + "_top", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_top", "cross"), true) }
+            }, ModelsRoot.ClassicItemRoot(texTripleGrassName + "_top"), true);
+        }
         public void CreateLog(string blockName) => CreateBlock(blockName, FuncBlockTex(blockName + "_top"), type: BlockType.RotatedPillar);
         public void CreateWood(string blockName)
         {
@@ -482,7 +516,8 @@ namespace MinecraftModGenerator
             FamilySign(woodTypeName, plank);
             CreateItem($"{woodTypeName}_boat");
             CreateItem($"{woodTypeName}_chest_boat");
-            CreateCrossBlock(saplingName);
+            CreateAdvancedBlock($"potted_{saplingName}", "flower_pot_cross", "plant", FuncBlockTex(saplingName), addItem: false, cutout: true);
+            CreateAdvancedBlock(saplingName, "cross", "cross", createClassicItemRoot: true, cutout: true);
         }
 
         public enum BlockType

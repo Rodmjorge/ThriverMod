@@ -12,7 +12,7 @@
     "components": {
       "minecraft:suspicious_stew_effects": [
         {
-          "duration": 660,
+          "duration": 1100,
           "id": "minecraft:blindness"
         }
       ]

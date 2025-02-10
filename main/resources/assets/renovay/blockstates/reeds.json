@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "renovay:block/reeds_bottom"
+    },
+    "half=upper": {
+      "model": "renovay:block/reeds_top"
+    }
+  }
+}

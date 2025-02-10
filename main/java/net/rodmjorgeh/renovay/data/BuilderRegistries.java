@@ -1,13 +1,12 @@
 package net.rodmjorgeh.renovay.data;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.rodmjorgeh.renovay.RenovayMod;
-import net.rodmjorgeh.renovay.world.entity.damage.DamageTypeRegistry;
+import net.rodmjorgeh.renovay.world.area.entity.damage.DamageTypeRegistry;
 import net.rodmjorgeh.renovay.world.worldgen.features.ConfiguredFeaturesRegistry;
 
 import java.util.Set;

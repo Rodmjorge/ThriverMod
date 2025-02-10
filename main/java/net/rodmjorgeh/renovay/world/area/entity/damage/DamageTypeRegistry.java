@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.world.entity.damage;
+package net.rodmjorgeh.renovay.world.area.entity.damage;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

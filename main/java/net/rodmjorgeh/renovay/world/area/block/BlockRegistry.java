@@ -10,13 +10,13 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.rodmjorgeh.renovay.RenovayMod;
-import net.rodmjorgeh.renovay.world.area.block.state.TreeGrowerR;
-import net.rodmjorgeh.renovay.world.area.block.state.WoodTypeR;
+import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
 import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 import net.rodmjorgeh.renovay.world.material.MapColorR;
@@ -73,6 +73,9 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PALM_SPROUT = register("palm_sprout",
             () -> new PalmSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),
             CreativeModeTabs.NATURAL_BLOCKS);
+    public static final RegistryObject<Block> POTTED_PALM_SPROUT = register("potted_palm_sprout",
+            () -> new FlowerPotBlock(PALM_SPROUT.get(), Blocks.flowerPotProperties().setId(createId("potted_palm_sprout"))),
+            false);
     public static final RegistryObject<Block> PALM_SIGN = register("palm_sign",
             () -> new StandingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_sign"))),
             false);
@@ -95,6 +98,21 @@ public class BlockRegistry {
                     .noOcclusion()
                     .setId(createId("coconut"))),
             false);
+
+    public static final RegistryObject<Block> REEDS = register("reeds",
+            () -> new ReedBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.WET_GRASS)
+                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    .ignitedByLava()
+                    .pushReaction(PushReaction.DESTROY)
+                    .setId(createId("reeds"))),
+            CreativeModeTabs.NATURAL_BLOCKS);
+    public static final RegistryObject<Block> TALL_REEDS = register("tall_reeds",
+            () -> new TallReedBlock(BlockBehaviour.Properties.ofFullCopy(REEDS.get()).setId(createId("tall_reeds"))),
+            CreativeModeTabs.NATURAL_BLOCKS);
 
 
     public static final RegistryObject<Block> SANDSTONE_BRICKS = register("sandstone_bricks",

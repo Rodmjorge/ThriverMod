@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.world.area.levelgen.feature.placers;
+package net.rodmjorgeh.renovay.world.area.areagen.feature.placers;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -37,6 +37,11 @@ public class PalmTreeFoliagePlacer extends FoliagePlacer {
     @Override
     public int foliageHeight(RandomSource random, int height, TreeConfiguration treeConfig) { return 3; }
 
+    /**
+     * {@link FoliagePlacer}{@code .shouldSkipLocation()} is a method that, when returned {@code true}, it doesn't add
+     * the leaves in that location ({@code x, y, z}). Here is just a bunch of math to make sure it correctly follows the
+     * pattern of a palm tree. I did this at 2am and don't remember anything.
+     */
     @Override
     protected boolean shouldSkipLocation(RandomSource random, int x, int y, int z, int range, boolean isLarge) {
         if (y > 0) {

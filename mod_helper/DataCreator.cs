@@ -43,8 +43,8 @@ namespace MinecraftModGenerator
 
             CreateRecipe("coconut_bowl", "#coconut", "# #/ # ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             CreateRecipe("coconut_mushroom_stew", ":brown_mushroom;:red_mushroom;coconut_bowl", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
-            CreateRecipe("coconut_rabbit_stew_from_brown_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:brown_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
-            CreateRecipe("coconut_rabbit_stew_from_red_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:red_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew");
+            CreateRecipe("coconut_rabbit_stew_from_brown_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:brown_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew", resultNew: "coconut_rabbit_stew");
+            CreateRecipe("coconut_rabbit_stew_from_red_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:red_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew", resultNew: "coconut_rabbit_stew");
             CreateRecipe("coconut_beetroot_soup", "coconut_bowl;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot;:beetroot", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             CreateSuspiciousStewRecipe(":allium", ":fire_resistance", 60);
             CreateSuspiciousStewRecipe(":azure_bluet", ":blindness", 220);
@@ -62,6 +62,9 @@ namespace MinecraftModGenerator
             CreateSuspiciousStewRecipe(":pink_tulip", ":weakness", 140);
             CreateSuspiciousStewRecipe(":white_tulip", ":weakness", 140);
             CreateSuspiciousStewRecipe(":wither_rose", ":wither", 140);
+            CreateRecipe("coconut_milk", "coconut_bowl;coconut", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+
+            CreateRecipe(":cake", "A#milks;B:sugar;C:wheat;E:egg", "AAA/BEB/CCC", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             #endregion
             #region sandstone
             CreateRecipe("sandstone_bricks", "#:cut_sandstone", "##/##", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);
@@ -140,6 +143,7 @@ namespace MinecraftModGenerator
             #endregion
 
             #region tags
+            CreateTag("milks", TagType.Item, false, "coconut_milk", ":milk_bucket");
             CreateTag("palm_logs", TagType.Block, true, "palm_log", "palm_wood", "stripped_palm_log", "stripped_palm_wood");
             CreateTag(":ceiling_hanging_signs", TagType.Block, false, "palm_hanging_sign");
             CreateTag(":fence_gates", TagType.Block, true, "palm_fence_gate");
@@ -178,6 +182,10 @@ namespace MinecraftModGenerator
         {
             string result = (string.IsNullOrEmpty(resultNew)) ? name : resultNew;
             result = FuncTex(result);
+
+            bool isMinecraft = name.StartsWith(':');
+            name = isMinecraft ? name.Remove(0, 1) : name;
+            string namePrefix = isMinecraft ? "minecraft" : null;
 
             var keys = new Dictionary<string, List<string>>();
             var ingredientArr = ingredients.Split(';');
@@ -245,16 +253,18 @@ namespace MinecraftModGenerator
                     keyValues.Add(valueList);
             }
 
-            CreateRecipeAdvancement(name, isShapeless ? ingredientArr : keyValues.ToArray(), advancementCategory, advancementType, customCriteria, ignoreInAdvancement);
-            CreateFile(GetPath("recipe"), name, Serialize(root));
+            if (advancementCategory != RecipeAdvancementCategory.None)
+                CreateRecipeAdvancement(name, isShapeless ? ingredientArr : keyValues.ToArray(), advancementCategory, advancementType, customCriteria, ignoreInAdvancement, namePrefix);
+            CreateFile(GetPath("recipe", namePrefix), name, Serialize(root));
         }
 
         public void CreateRecipeAdvancement(string name, string[] ingredients, RecipeAdvancementCategory advancementCategory, 
-            RecipeAdvancementType advancementType = RecipeAdvancementType.Classic, Dictionary<string, Criteria> customCriteria = null, int[] ignoreInAdvancement = null)
+            RecipeAdvancementType advancementType = RecipeAdvancementType.Classic, Dictionary<string, Criteria> customCriteria = null, 
+            int[] ignoreInAdvancement = null, string prefix = null)
         {
             RecipeAdvancementRoot root;
 
-            string nameTex = FuncTex(name);
+            string nameTex = FuncTex(name, prefix);
             var criteriaDict = new Dictionary<string, Criteria>();
 
             if (ignoreInAdvancement is not null)
@@ -290,17 +300,17 @@ namespace MinecraftModGenerator
             var reward = new Rewards() { recipes = new() { nameTex } };
             root = new RecipeAdvancementRoot("minecraft:recipes/root", criteriaDict, new() { req }, reward);
 
-            CreateFile(GetPath($@"advancement\recipes\{ advancementCategory.ToString().ToLower() }"), name, Serialize(root));
+            CreateFile(GetPath($@"advancement\recipes\{ advancementCategory.ToString().ToLower() }", prefix), name, Serialize(root));
         }
 
         public void CreateSuspiciousStewRecipe(string flowerName, string effectName, int duration) => 
             CreateRecipe($"coconut_suspicious_stew_from_{ CleanIng(flowerName) }", $":brown_mushroom;:red_mushroom;coconut_bowl;{ FuncTex(flowerName) }", 
-                "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, RecipeType.CraftingSuspiciousStew, "coconut_suspicious_stew", "coconut_suspicious_stew", additionalInfo: new string[] { effectName, (duration * 3).ToString() });
+                "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, RecipeType.CraftingSuspiciousStew, "coconut_suspicious_stew", "coconut_suspicious_stew", additionalInfo: new string[] { effectName, (duration * 5).ToString() });
 
         public void CreateTag(string filename, TagType type, bool copyToItem, params string[] values)
         {
             bool isMinecraft = filename.StartsWith(':');
-            filename = (isMinecraft) ? filename.Remove(0, 1) : filename;
+            filename = isMinecraft ? filename.Remove(0, 1) : filename;
 
             var root = new TagRoot(values.Select(x => FuncTex(x)).ToArray());
             var serialized = Serialize(root);
@@ -319,7 +329,7 @@ namespace MinecraftModGenerator
             string addCardinal = (name.Contains("#")) ? "#" : string.Empty;
             name = name.Replace("#", "");
 
-            return base.FuncTex(name, addCardinal + (hasMinecraft ? "minecraft" : modId));
+            return base.FuncTex(name, addCardinal + ((prefix is null) ? (hasMinecraft ? "minecraft" : modId) : prefix));
         }
 
         private static string CleanIng(string ing) 

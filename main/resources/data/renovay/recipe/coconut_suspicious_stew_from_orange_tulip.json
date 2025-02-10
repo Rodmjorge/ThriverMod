@@ -12,7 +12,7 @@
     "components": {
       "minecraft:suspicious_stew_effects": [
         {
-          "duration": 420,
+          "duration": 700,
           "id": "minecraft:weakness"
         }
       ]

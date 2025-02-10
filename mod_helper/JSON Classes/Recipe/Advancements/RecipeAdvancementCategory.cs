@@ -14,6 +14,7 @@ namespace MinecraftModGenerator.JSON_Classes.Recipe.Advancements
         Decorations,
         Food,
         Misc,
+        None,
         Redstone,
         Tools,
         Transportation

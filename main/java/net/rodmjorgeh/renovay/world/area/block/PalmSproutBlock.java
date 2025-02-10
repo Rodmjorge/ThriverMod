@@ -19,7 +19,4 @@ public class PalmSproutBlock extends SaplingBlock {
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return state.is(BlockTags.SAND) || super.mayPlaceOn(state, level, pos);
     }
-
-    @Override
-    public PlantType getPlantType(BlockGetter level, BlockPos pos) { return PlantType.BEACH; }
 }
