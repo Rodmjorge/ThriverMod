@@ -35,7 +35,8 @@ namespace MinecraftModGenerator
             CreateLootTable("palm_sprout");
             CreateLootTable("palm_sign");
             CreateLootTable("palm_hanging_sign");
-
+            #endregion
+            #region coconut
             CreateLootTable("coconut", LootTableType.Custom, new() {
                 new(SetFunctions(ClassicEntry(FuncTex("coconut")),
                     SetCount(
@@ -45,6 +46,7 @@ namespace MinecraftModGenerator
                     new("minecraft:explosion_decay")
                 ))
             });
+            CreateLootTable("coir_mat");
             #endregion
 
             #region sandstone

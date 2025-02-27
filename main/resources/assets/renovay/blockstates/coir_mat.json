@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "renovay:block/coir_mat",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "renovay:block/coir_mat",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "renovay:block/coir_mat"
+    },
+    "facing=west": {
+      "model": "renovay:block/coir_mat",
+      "y": 90
+    }
+  }
+}

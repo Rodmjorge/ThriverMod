@@ -9,6 +9,6 @@ public class BlockTagRegistry {
     public static final TagKey<Block> PALM_LOGS = register("palm_logs");
 
     private static TagKey<Block> register(String name) {
-        return BlockTags.create(name, RenovayMod.MOD_ID);
+        return BlockTags.create(RenovayMod.createLoc(name));
     }
 }

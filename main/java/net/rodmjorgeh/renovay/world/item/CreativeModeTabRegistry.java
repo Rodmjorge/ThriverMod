@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStackLinkedSet;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -37,7 +37,7 @@ public class CreativeModeTabRegistry {
 
         if (itemsInTab.containsKey(x)) {
             for (Supplier<? extends ItemLike> item : itemsInTab.get(x)) {
-                event.accept(item);
+                event.accept(item.get());
             }
         }
 

@@ -10,7 +10,5 @@ public class EntityRendererRegistry {
     public static void registerAll() {
         EntityRenderers.register(EntityRegistry.PALM_BOAT.get(), (x) -> new BoatRenderer(x, ModelLayersR.PALM_BOAT));
         EntityRenderers.register(EntityRegistry.PALM_CHEST_BOAT.get(), (x) -> new BoatRenderer(x, ModelLayersR.PALM_CHEST_BOAT));
-
-
     }
 }

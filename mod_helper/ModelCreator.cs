@@ -49,7 +49,8 @@ namespace MinecraftModGenerator
         {
             #region palm tree
             FamilyWoodType("palm", "palm_sprout");
-
+            #endregion
+            #region coconut
             CreateItem("coconut");
             CreateItem("coconut_bowl");
             CreateItem("coconut_mushroom_stew");
@@ -58,6 +59,10 @@ namespace MinecraftModGenerator
             CreateItem("coconut_suspicious_stew");
             CreateItem("coconut_milk");
 
+            CreateItem("coir_mat", false, false);
+            CreateItem("coir");
+            #endregion
+            #region reed
             CreateDoubleGrass("reeds");
             CreateTripleGrass("tall_reeds");
             #endregion
@@ -132,7 +137,7 @@ namespace MinecraftModGenerator
                     break;
             }
         }
-        public void CreateItem(string itemName) => FileModel(itemName, null, ModelsRoot.ClassicItemRoot(FuncItemTex(itemName)), true);
+        public void CreateItem(string itemName, bool classicItemRoot = true, bool asAnItem = true) => FileModel(itemName, null, classicItemRoot ? ModelsRoot.ClassicItemRoot(FuncItemTex(itemName)) : null, asAnItem);
         public void CreateAdvancedBlock(string advancedBlockName, string parentName, string textureName, string texBlockNameNew = null, 
             bool createClassicItemRoot = false, bool isAnItem = true, bool addItem = true, bool cutout = false)
         {

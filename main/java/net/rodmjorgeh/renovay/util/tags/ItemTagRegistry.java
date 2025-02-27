@@ -1,10 +1,8 @@
 package net.rodmjorgeh.renovay.util.tags;
 
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.rodmjorgeh.renovay.RenovayMod;
 
 public class ItemTagRegistry {
@@ -12,6 +10,6 @@ public class ItemTagRegistry {
     public static final TagKey<Item> MILKS = register("milks");
 
     private static TagKey<Item> register(String name) {
-        return ItemTags.create(name, RenovayMod.MOD_ID);
+        return ItemTags.create(RenovayMod.createLoc(name));
     }
 }

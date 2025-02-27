@@ -6,7 +6,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.PlantType;
 import net.rodmjorgeh.renovay.world.area.block.state.TreeGrowerR;
 
 public class PalmSproutBlock extends SaplingBlock {

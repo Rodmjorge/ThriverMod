@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.block;
+package net.rodmjorgeh.renovay.plus.world.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -65,6 +65,10 @@ public class TallReedBlock extends BushBlock {
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTick, BlockPos pos, Direction neighborDir,
                                      BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        if (state.getValue(WATERLOGGED)) {
+            scheduledTick.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
         boolean check = neighborDir.getAxis() != Direction.Axis.Y;
         boolean flag = true;
 
@@ -107,8 +111,14 @@ public class TallReedBlock extends BushBlock {
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
-        level.setBlock(pos.above(1), this.defaultBlockState().setValue(STEP, TripleBlockStep.MIDDLE), 3);
-        level.setBlock(pos.above(2), this.defaultBlockState().setValue(STEP, TripleBlockStep.TOP), 3);
+        place(level, pos, this.defaultBlockState(), 3, false);
+    }
+
+    protected static void place(Level level, BlockPos pos, BlockState state, int flags, boolean placeOrigin) {
+        TripleBlockStep[] arr = TripleBlockStep.values();
+        for (int i = placeOrigin ? 0 : 1; i < 3; i++) {
+            level.setBlock(pos.above(i), state.setValue(STEP, arr[i]), flags);
+        }
     }
 
     /**
@@ -127,17 +137,11 @@ public class TallReedBlock extends BushBlock {
 
         BlockState stateBelow = level.getBlockState(pos.below());
         boolean check = stateBelow.is(this);
-        switch (stepProperty) {
-            default:
-            case TripleBlockStep.BOTTOM:
-                return super.canSurvive(state, level, pos);
-
-            case TripleBlockStep.MIDDLE:
-                return check && stateBelow.getValue(STEP) == TripleBlockStep.BOTTOM;
-
-            case TripleBlockStep.TOP:
-                return check && stateBelow.getValue(STEP) == TripleBlockStep.MIDDLE;
-        }
+        return switch (stepProperty) {
+            case TripleBlockStep.BOTTOM -> super.canSurvive(state, level, pos);
+            case TripleBlockStep.MIDDLE -> check && stateBelow.getValue(STEP) == TripleBlockStep.BOTTOM;
+            default -> check && stateBelow.getValue(STEP) == TripleBlockStep.MIDDLE;
+        };
     }
 
     @Override
@@ -147,8 +151,7 @@ public class TallReedBlock extends BushBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(STEP);
-        builder.add(WATERLOGGED);
+        builder.add(STEP, WATERLOGGED);
     }
 
     @Override

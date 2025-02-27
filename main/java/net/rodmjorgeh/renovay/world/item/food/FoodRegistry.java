@@ -14,9 +14,8 @@ public class FoodRegistry {
         return register(nutrition, saturationMod, false);
     }
     private static FoodProperties register(int nutrition, float saturationMod, boolean canAlwaysEat) {
-        return (canAlwaysEat ?
-                new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationMod).alwaysEdible() :
-                new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationMod)).build();
+        FoodProperties.Builder builder = new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationMod);
+        return (canAlwaysEat ? builder.alwaysEdible() : builder).build();
     }
 
     private static FoodProperties registerStew(int nutrition, boolean canAlwaysEat) {

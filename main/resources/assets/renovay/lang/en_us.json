@@ -1,6 +1,7 @@
 {
   "item.renovay.chiseled_weathered_sandstone": "Chiseled Weathered Sandstone",
   "item.renovay.coconut": "Coconut",
+  "item.renovay.coir_mat": "Coir Mat",
   "item.renovay.cracked_red_sandstone_bricks": "Cracked Red Sandstone Bricks",
   "item.renovay.cracked_sandstone_bricks": "Cracked Sandstone Bricks",
   "item.renovay.cracked_weathered_sandstone_bricks": "Cracked Weathered Sandstone Bricks",
@@ -47,6 +48,7 @@
   "item.renovay.weathered_sandstone_slab": "Weathered Sandstone Slab",
   "item.renovay.weathered_sandstone_stairs": "Weathered Sandstone Stairs",
   "item.renovay.weathered_sandstone_wall": "Weathered Sandstone Wall",
+  "coir_mat.edit": "Edit Coir Mat Message",
   "death.attack.coconut": "%1$s was hit in the head way too hard by a falling coconut",
   "death.attack.coconut.player": "%1$s was hit in the head way too hard by a falling coconut while fighting %2$s",
   "entity.renovay.palm_boat": "Palm Boat",
@@ -57,6 +59,7 @@
   "item.renovay.coconut_mushroom_stew": "Coconut Mushroom Stew",
   "item.renovay.coconut_rabbit_stew": "Coconut Rabbit Stew",
   "item.renovay.coconut_suspicious_stew": "Coconut Suspicious Stew",
+  "item.renovay.coir": "Coir",
   "item.renovay.palm_boat": "Palm Boat",
   "item.renovay.palm_chest_boat": "Palm Boat with Chest"
 }

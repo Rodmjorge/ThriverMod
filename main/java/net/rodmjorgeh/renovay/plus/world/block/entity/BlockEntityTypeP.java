@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.block.entity;
+package net.rodmjorgeh.renovay.plus.world.block.entity;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.Block;

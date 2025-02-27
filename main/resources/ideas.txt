@@ -36,10 +36,7 @@ Desert Ideas:
       : Can be used as fuel;
       : Can be used as food for Camels.
     - Tall Reeds
-    - Reed Mat
-      : 2 Reeds in a row horizontally;
-      : Works like a doormat, occupying 2 blocks in a row horizontally, though not all of it (leaving 3 pixels off);
-      : Like a Sign, you can write something on it.
+      : Just like Tall Grass, it does spawn naturally, but it's impossible to get this block in Survival.
     - Thatch Block
       : 4 Reeds to create 1 Thatch Block;
       : Has a similar texture to a Hay Block, although more desaturated and without the red wire;
@@ -48,11 +45,22 @@ Desert Ideas:
       : Just like Hay Blocks, it also reduces fall damage, though by 60% instead of the Hay Block's 80%;
       : Can also be used to craft Target, like the Hay Block;
       : Can be used as food for Horses and Llamas, just like the Hay Block.
+    - Coir Mat
+      : 2 Coir in a row horizontally;
+      : Like a Sign, you can write something on it.
     - Overgrown Sand
       : Mix between Grass Block and Sand (and that's how you craft it);
       : Spawns as the soil in the oasis;
       : Foliage can be placed on top;
       : Bone mealing it spawns just Short Grass, although if a water source is nearby, it has a chance of spawning Reeds.
+    - Silt Mud
+      : Sandy-brownish texture of normal Mud;
+      : Can also be crafted to Packed Mud;
+      : Using a Water Bottle on Sand / Red Sand converts it into this Silt Mud;
+      : Appears in the oasis area, underwater mixed with sand and on land, near the water;
+      : While Reeds / Tall Reeds can be placed on Grass Blocks and Sand, they just generate if they're on top of this Silt Mud;
+      : If placed below of Farmland blocks, the moisture of these blocks rises even more, making crops grow faster.
+    - Cracked Mud Bricks
 
   - New items:
     - Coconut Bowl
@@ -67,6 +75,8 @@ Desert Ideas:
       : Coconut Bowl + Coconut;
       : Restores 4 hunger;
       : Clears effects just like the Milk Bucket.
+    - Coir
+      : 3 Reeds in Bucket form + Coconut in the middle.
 
   - New generation:
     - Palm trees

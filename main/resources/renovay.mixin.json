@@ -3,10 +3,11 @@
   "package": "net.rodmjorgeh.renovay.plus",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "block.LeavesBlockP",
-    "block.entity.BlockEntityTypeP",
-    "block.state.properties.BlockStatePropertiesP",
-    "entity.MushroomCowP"
+    "client.LocalPlayerP",
+    "world.block.LeavesBlockP",
+    "world.block.entity.BlockEntityTypeP",
+    "world.block.state.properties.BlockStatePropertiesP",
+    "world.entity.MushroomCowP"
   ],
   "client": [],
   "injectors": {

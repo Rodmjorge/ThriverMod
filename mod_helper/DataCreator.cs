@@ -40,7 +40,8 @@ namespace MinecraftModGenerator
             CreateRecipe("palm_slab", "#palm_planks", "###", 6, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "wooden_slab");
             CreateRecipe("palm_stairs", "#palm_planks", "#  /## /###", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, group: "wooden_stairs");
             CreateRecipe("palm_trapdoor", "#palm_planks", "###/###", 2, RecipeCategory.Redstone, RecipeAdvancementCategory.Redstone, group: "wooden_trapdoor");
-
+            #endregion
+            #region coconut
             CreateRecipe("coconut_bowl", "#coconut", "# #/ # ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             CreateRecipe("coconut_mushroom_stew", ":brown_mushroom;:red_mushroom;coconut_bowl", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
             CreateRecipe("coconut_rabbit_stew_from_brown_mushroom", ":baked_potato;:cooked_rabbit;coconut_bowl;:carrot;:brown_mushroom", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food, group: "coconut_rabbit_stew", resultNew: "coconut_rabbit_stew");
@@ -65,6 +66,9 @@ namespace MinecraftModGenerator
             CreateRecipe("coconut_milk", "coconut_bowl;coconut", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
 
             CreateRecipe(":cake", "A#milks;B:sugar;C:wheat;E:egg", "AAA/BEB/CCC", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+
+            CreateRecipe("coir", "Ccoconut;Rreeds", "RCR/ R ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Misc);
+            CreateRecipe("coir_mat", "#coir", "##", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Decorations);
             #endregion
             #region sandstone
             CreateRecipe("sandstone_bricks", "#:cut_sandstone", "##/##", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);

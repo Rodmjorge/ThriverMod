@@ -7,16 +7,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
+import net.rodmjorgeh.renovay.client.renderer.blockentity.BlockEntityRendererRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
 
-@Mod.EventBusSubscriber(modid = RenovayMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class BusEvents {
 
     public static void commonSetup(final FMLCommonSetupEvent event) {
@@ -47,6 +47,7 @@ public class BusEvents {
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             EntityRendererRegistry.registerAll();
+            BlockEntityRendererRegistry.registerAll();
 
             Sheets.addWoodType(WoodTypeR.PALM);
         });
