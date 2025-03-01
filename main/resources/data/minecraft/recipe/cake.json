@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": "#renovay:milks",
+    "A": "#renovay:milk",
     "B": "minecraft:sugar",
     "C": "minecraft:wheat",
     "E": "minecraft:egg"

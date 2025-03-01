@@ -1,0 +1,10 @@
+{
+  "values": {
+    "renovay:coir": {
+      "burn_time": 40
+    },
+    "renovay:coir_mat": {
+      "burn_time": 240
+    }
+  }
+}

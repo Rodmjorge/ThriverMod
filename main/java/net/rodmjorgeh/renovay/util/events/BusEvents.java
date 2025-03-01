@@ -11,11 +11,13 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.renovay.client.renderer.blockentity.BlockEntityRendererRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
+import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 
 public class BusEvents {
 
@@ -37,10 +39,6 @@ public class BusEvents {
             fb.setFlammable(BlockRegistry.PALM_FENCE.get(), 5, 20);
             fb.setFlammable(BlockRegistry.PALM_FENCE_GATE.get(), 5, 20);
             fb.setFlammable(BlockRegistry.PALM_LEAVES.get(), 30, 60);
-
-            ComposterBlock.add(0.3F, BlockRegistry.PALM_LEAVES.get().asItem());
-            ComposterBlock.add(0.3F, BlockRegistry.PALM_SPROUT.get().asItem());
-            ComposterBlock.add(0.65F, BlockRegistry.COCONUT.get().asItem());
         });
     }
 

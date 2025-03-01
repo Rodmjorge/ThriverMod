@@ -62,9 +62,12 @@ namespace MinecraftModGenerator
             CreateItem("coir_mat", false, false);
             CreateItem("coir");
             #endregion
-            #region reed
+            #region reed & mud
             CreateDoubleGrass("reeds");
             CreateTripleGrass("tall_reeds");
+
+            CreateBlock("silt_mud");
+            CreateBlock("cracked_mud_bricks");
             #endregion
 
             #region sandstone
@@ -429,7 +432,7 @@ namespace MinecraftModGenerator
                 { tripleGrassName + "_bottom", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_bottom", "cross"), true) },
                 { tripleGrassName + "_middle", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_middle", "cross"), true) },
                 { tripleGrassName + "_top", ModelsRoot.Parented(this, "cross", ModelsRoot.DictSingle(texTripleGrassName + "_top", "cross"), true) }
-            }, ModelsRoot.ClassicItemRoot(texTripleGrassName + "_top"), true);
+            });
         }
         public void CreateLog(string blockName) => CreateBlock(blockName, FuncBlockTex(blockName + "_top"), type: BlockType.RotatedPillar);
         public void CreateWood(string blockName)

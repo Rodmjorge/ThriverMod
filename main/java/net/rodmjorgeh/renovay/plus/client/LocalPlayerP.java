@@ -3,7 +3,7 @@ package net.rodmjorgeh.renovay.plus.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
-import net.rodmjorgeh.renovay.client.gui.screens.inventory.CoirMatEditScreen;
+import net.rodmjorgeh.renovay.client.gui.CoirMatEditScreen;
 import net.rodmjorgeh.renovay.world.area.block.entity.CoirMatBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -48,6 +48,10 @@ namespace MinecraftModGenerator
             });
             CreateLootTable("coir_mat");
             #endregion
+            #region reed & mud
+            CreateLootTable("silt_mud");
+            CreateLootTable("cracked_mud_bricks");
+            #endregion
 
             #region sandstone
             CreateLootTable("sandstone_bricks");

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_milks": {
+    "has_milk": {
       "conditions": {
         "items": [
           {
-            "items": "#renovay:milks"
+            "items": "#renovay:milk"
           }
         ]
       },
@@ -50,7 +50,7 @@
   },
   "requirements": [
     [
-      "has_milks",
+      "has_milk",
       "has_sugar",
       "has_wheat",
       "has_egg",

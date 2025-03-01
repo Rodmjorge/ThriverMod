@@ -1,0 +1,16 @@
+{
+  "values": {
+    "renovay:palm_leaves": {
+      "chance": 0.3
+    },
+    "renovay:palm_sprout": {
+      "chance": 0.3
+    },
+    "renovay:coconut": {
+      "chance": 0.65
+    },
+    "renovay:coir": {
+      "chance": 1
+    }
+  }
+}

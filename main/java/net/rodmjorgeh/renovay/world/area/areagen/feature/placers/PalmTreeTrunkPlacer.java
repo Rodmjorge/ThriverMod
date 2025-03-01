@@ -7,6 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -66,15 +68,21 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
                 continue;
             }
 
+            boolean firstItem = i == 0;
             boolean lastItem = (i + 1 >= freeTreeHeight);
-            if (i == 0 || lastItem) {
+            if (firstItem || lastItem) {
                 ArrayList<BlockPos> logBase = Lists.newArrayList(addedPos.east(), addedPos.north(), addedPos.south(), addedPos.west());
                 if (random.nextDouble() > 0.2 * (lastItem ? 2.5 : 1)) {
                     logBase.remove(random.nextInt(logBase.size()));
                 }
 
                 for (int j = 0; j < logBase.size(); j++) {
-                    this.placeLog(level, blockSetter, random, logBase.get(j), treeConfig);
+                    BlockPos logBasePos = logBase.get(j);
+
+                    this.placeLog(level, blockSetter, random, logBasePos, treeConfig);
+                    if (firstItem) {
+                        this.shouldPlaceBlock(level, logBasePos, blockSetter);
+                    }
                 }
 
                 if (lastItem) {
@@ -87,5 +95,12 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
         }
 
         return list;
+    }
+
+    private static void shouldPlaceBlock(LevelSimulatedReader level, BlockPos logBasePos, BiConsumer<BlockPos, BlockState> blockSetter) {
+        BlockPos logRoot = logBasePos.below();
+        if (level.isStateAtPosition(logRoot, BlockBehaviour.BlockStateBase::isAir)) {
+            blockSetter.accept(logRoot, Blocks.SANDSTONE.defaultBlockState());
+        }
     }
 }

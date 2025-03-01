@@ -115,12 +115,24 @@ public class BlockRegistry {
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> TALL_REEDS = register("tall_reeds",
             () -> new TallReedBlock(BlockBehaviour.Properties.ofFullCopy(REEDS.get()).setId(createId("tall_reeds"))),
-            CreativeModeTabs.NATURAL_BLOCKS);
+            false);
     public static final Supplier<Block> COIR_MAT = register("coir_mat",
             () -> new CoirMatBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.RAW_IRON)
+                    .strength(0.75F, 2.0F)
+                    .sound(SoundType.MOSS_CARPET)
                     .setId(createId("coir_mat"))),
             false);
 
+    public static final Supplier<Block> SILT_MUD = register("silt_mud",
+            () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)
+                    .mapColor(MapColor.SAND)
+                    .setId(createId("silt_mud"))),
+            CreativeModeTabs.NATURAL_BLOCKS);
+    public static final Supplier<Block> CRACKED_MUD_BRICKS = register("cracked_mud_bricks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS)
+                    .setId(createId("cracked_mud_bricks"))),
+            CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final Supplier<Block> SANDSTONE_BRICKS = register("sandstone_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE).setId(createId("sandstone_bricks"))),

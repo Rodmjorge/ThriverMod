@@ -1,16 +1,14 @@
 package net.rodmjorgeh.renovay.world.worldgen.features;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.world.area.areagen.feature.decorators.CoconutDecorator;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.PalmTreeFoliagePlacer;
@@ -18,12 +16,11 @@ import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.PalmTreeTrunkPl
 
 import java.util.List;
 
-public class ConfiguredFeaturesRegistry {
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_TREE = register("palm_tree");
+public class TreeFeaturesRegistry {
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_TREE = FeaturesRegistry.register("palm_tree");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        register(context, PALM_TREE, Feature.TREE,
+        FeatureUtils.register(context, PALM_TREE, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(BlockRegistry.PALM_LOG.get()),
                         new PalmTreeTrunkPlacer(6, 1, 4),
@@ -31,14 +28,5 @@ public class ConfiguredFeaturesRegistry {
                         new PalmTreeFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
                         new TwoLayersFeatureSize(1, 0, 3)
                 ).decorators(List.of(new CoconutDecorator(0.95F))).build());
-    }
-
-    private static ResourceKey<ConfiguredFeature<?, ?>> register(String name) {
-        return RenovayMod.createId(name, Registries.CONFIGURED_FEATURE);
-    }
-
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context,
-                                                                                      ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC featureConfig) {
-        context.register(key, new ConfiguredFeature<>(feature, featureConfig));
     }
 }

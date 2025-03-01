@@ -31,9 +31,9 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
-            Block.box(6.0, 9.0, 6.0, 10.0, 14.0, 10.0),
-            Block.box(5.5, 7.0, 5.5, 10.5, 14.0, 10.5),
-            Block.box(4.5, 5.0, 4.5, 11.5, 14.0, 11.5),
+            Block.box(6.0, 10.0, 6.0, 10.0, 14.0, 10.0),
+            Block.box(5.5, 9.0, 5.5, 10.5, 14.0, 10.5),
+            Block.box(4.5, 6.0, 4.5, 11.5, 14.0, 11.5),
             Block.box(4.0, 0.0, 4.0, 12.0, 10.0, 12.0)
     };
 
@@ -45,7 +45,7 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     }
 
     @Override
-    protected MapCodec<? extends FallingBlock> codec() { return CODEC; }
+    protected MapCodec<? extends CoconutBlock> codec() { return CODEC; }
 
     /**
      * This overrides {@code tick()} from {@link FallingBlock}. Checks when the coconut has reached the maximum age,

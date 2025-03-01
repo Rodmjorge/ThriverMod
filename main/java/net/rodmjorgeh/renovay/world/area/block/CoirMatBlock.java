@@ -39,7 +39,7 @@ public class CoirMatBlock extends SignBlock {
     }
 
     @Override
-    protected MapCodec<? extends SignBlock> codec() { return CODEC; }
+    protected MapCodec<? extends CoirMatBlock> codec() { return CODEC; }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

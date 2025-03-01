@@ -24,6 +24,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.rodmjorgeh.renovay.util.tags.BlockTagRegistry;
 import org.jetbrains.annotations.Nullable;
 
 public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, SimpleWaterloggedBlock {
@@ -37,7 +38,7 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
     };
 
     @Override
-    public MapCodec<? extends DoublePlantBlock> codec() { return CODEC; }
+    public MapCodec<? extends ReedBlock> codec() { return CODEC; }
 
     public ReedBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -63,7 +64,7 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(BlockTags.SAND) || state.is(BlockTags.DIRT) || state.is(Blocks.MUD);
+        return state.is(BlockTagRegistry.MUD);
     }
 
     @Override

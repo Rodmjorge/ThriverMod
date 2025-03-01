@@ -25,10 +25,6 @@ Desert Ideas:
       : As an item, it can only be placed on the palm tree logs to grow new ones;
       : When it drops after the third stage, it stays on the ground until broken, where it drops 2-4 coconuts;
       : Can be used in compositing.
-    - Lotus Flower
-      : Spawns in the oasis, on top of Lily Pads;
-      : As an item, it can be placed solely on a Crafting Table to give 2 Pink Dye;
-      : On a Suspicious Stew, the effect would be Water Breathing for 8s.
     - Reeds
       : Underwater plant, spawning in oasis;
       : Comes in two sizes, one in 1.5 height and the other in 3;
@@ -46,19 +42,13 @@ Desert Ideas:
       : Can also be used to craft Target, like the Hay Block;
       : Can be used as food for Horses and Llamas, just like the Hay Block.
     - Coir Mat
-      : 2 Coir in a row horizontally;
+      : 6 Coir in a Trapdoor formation;
       : Like a Sign, you can write something on it.
-    - Overgrown Sand
-      : Mix between Grass Block and Sand (and that's how you craft it);
-      : Spawns as the soil in the oasis;
-      : Foliage can be placed on top;
-      : Bone mealing it spawns just Short Grass, although if a water source is nearby, it has a chance of spawning Reeds.
     - Silt Mud
       : Sandy-brownish texture of normal Mud;
+      : Can be crafted by Mud + Sand / Red Sand;
       : Can also be crafted to Packed Mud;
-      : Using a Water Bottle on Sand / Red Sand converts it into this Silt Mud;
       : Appears in the oasis area, underwater mixed with sand and on land, near the water;
-      : While Reeds / Tall Reeds can be placed on Grass Blocks and Sand, they just generate if they're on top of this Silt Mud;
       : If placed below of Farmland blocks, the moisture of these blocks rises even more, making crops grow faster.
     - Cracked Mud Bricks
 
@@ -76,12 +66,17 @@ Desert Ideas:
       : Restores 4 hunger;
       : Clears effects just like the Milk Bucket.
     - Coir
-      : 3 Reeds in Bucket form + Coconut in the middle.
+      : 3 String in Bucket form + Coconut in the middle;
+      : Is a very good compostable resource, having an 100% chance for composting.
 
   - New generation:
     - Palm trees
       : The log top will not feature normal tree rings since palm trees do not contain annual ones, instead it will feature a smooth surface on top;
       : Spawns coconuts.
+
+  - Features:
+    - Axolotl
+      : Spawns on oases with a 60% chance.
 
 2. SANDSTONE ADDITIONS -------------------------------------------------------------------------------------------------
   - New blocks:

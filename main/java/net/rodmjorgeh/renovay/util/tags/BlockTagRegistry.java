@@ -7,6 +7,7 @@ import net.rodmjorgeh.renovay.RenovayMod;
 
 public class BlockTagRegistry {
     public static final TagKey<Block> PALM_LOGS = register("palm_logs");
+    public static final TagKey<Block> MUD = register("mud");
 
     private static TagKey<Block> register(String name) {
         return BlockTags.create(RenovayMod.createLoc(name));

@@ -65,11 +65,18 @@ namespace MinecraftModGenerator
             CreateSuspiciousStewRecipe(":wither_rose", ":wither", 140);
             CreateRecipe("coconut_milk", "coconut_bowl;coconut", "", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
 
-            CreateRecipe(":cake", "A#milks;B:sugar;C:wheat;E:egg", "AAA/BEB/CCC", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
+            CreateRecipe(":cake", "A#milk;B:sugar;C:wheat;E:egg", "AAA/BEB/CCC", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Food);
 
-            CreateRecipe("coir", "Ccoconut;Rreeds", "RCR/ R ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Misc);
-            CreateRecipe("coir_mat", "#coir", "##", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Decorations);
+            CreateRecipe("coir", "Ccoconut;S:string", "SCS/ S ", 3, RecipeCategory.Misc, RecipeAdvancementCategory.Misc);
+            CreateRecipe("coir_mat", "#coir", "###/###", 1, RecipeCategory.Misc, RecipeAdvancementCategory.Decorations);
+
+            CreateRecipe(":packed_mud", "#mud;:wheat", "", 1, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);
             #endregion
+            #region reed & mud
+            CreateRecipe("silt_mud", ":mud;:sand", "", 2, RecipeCategory.Blocks, RecipeAdvancementCategory.Building_Blocks);
+            CreateRecipe("cracked_mud_bricks", ":mud_bricks", "", 1, RecipeCategory.Blocks, RecipeAdvancementCategory.Building_Blocks, RecipeType.Smelting);
+            #endregion
+
             #region sandstone
             CreateRecipe("sandstone_bricks", "#:cut_sandstone", "##/##", 4, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks);
             CreateRecipe("sandstone_bricks", ":sandstone", "", 1, RecipeCategory.Building, RecipeAdvancementCategory.Building_Blocks, RecipeType.Stonecutting);
@@ -148,8 +155,10 @@ namespace MinecraftModGenerator
 
             #region tags
             CreateTag("milks", TagType.Item, false, "coconut_milk", ":milk_bucket");
+            CreateTag("mud", TagType.Block, true, ":mud", "silt_mud");
             CreateTag("palm_logs", TagType.Block, true, "palm_log", "palm_wood", "stripped_palm_log", "stripped_palm_wood");
             CreateTag(":ceiling_hanging_signs", TagType.Block, false, "palm_hanging_sign");
+            CreateTag(":enderman_holdable", TagType.Block, false, "silt_mud");
             CreateTag(":fence_gates", TagType.Block, true, "palm_fence_gate");
             CreateTag(":leaves", TagType.Block, true, "palm_leaves");
             CreateTag(":logs_that_burn", TagType.Block, true, "#palm_logs");
@@ -177,6 +186,14 @@ namespace MinecraftModGenerator
             CreateTag(":chest_boats", TagType.Item, false, "palm_chest_boat");
             CreateTag(":hanging_signs", TagType.Item, false, "palm_hanging_sign");
             CreateTag(":signs", TagType.Item, false, "palm_sign");
+
+            CreateTag(":mineable/axe", TagType.Block, false, "coconut");
+            CreateTag(":mineable/pickaxe", TagType.Block, false, "sandstone_bricks", "sandstone_brick_slab", "sandstone_brick_stairs", "cracked_sandstone_bricks", 
+                "red_sandstone_bricks", "red_sandstone_brick_slab", "red_sandstone_brick_stairs", "cracked_red_sandstone_bricks", "weathered_sandstone", 
+                "weathered_sandstone", "cut_weathered_sandstone", "chiseled_weathered_sandstone", "smooth_weathered_sandstone", "weathered_sandstone_slab", 
+                "weathered_sandstone_stairs", "cut_weathered_sandstone_slab", "smooth_weathered_sandstone_slab", "smooth_weathered_sandstone_stairs",
+                "weathered_sandstone_bricks", "weathered_sandstone_brick_slab", "weathered_sandstone_brick_stairs", "cracked_weathered_sandstone_bricks");
+            CreateTag(":mineable/shovel", TagType.Block, false, "coir_mat", "silt_mud");
             #endregion
         }
 

@@ -1,11 +1,13 @@
 package net.rodmjorgeh.renovay.world.area.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PalmLeavesBlock extends LeavesBlock {
 
+    public static final MapCodec<PalmLeavesBlock> CODEC = simpleCodec(PalmLeavesBlock::new);
     /**
      * Assigns a new {@code DECAY_DISTANCE} of 12 to accommodate the palm tree leaves.
      */
@@ -19,6 +21,9 @@ public class PalmLeavesBlock extends LeavesBlock {
                 .setValue(PERSISTENT, Boolean.valueOf(false))
                 .setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
+
+    @Override
+    public MapCodec<? extends PalmLeavesBlock> codec() { return CODEC; }
 
     @Override
     protected boolean decaying(BlockState state) {

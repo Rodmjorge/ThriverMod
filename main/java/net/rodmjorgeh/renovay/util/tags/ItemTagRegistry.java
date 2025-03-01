@@ -7,7 +7,8 @@ import net.rodmjorgeh.renovay.RenovayMod;
 
 public class ItemTagRegistry {
     public static final TagKey<Item> PALM_LOGS = register("palm_logs");
-    public static final TagKey<Item> MILKS = register("milks");
+    public static final TagKey<Item> MILK = register("milk");
+    public static final TagKey<Item> MUD = register("mud");
 
     private static TagKey<Item> register(String name) {
         return ItemTags.create(RenovayMod.createLoc(name));

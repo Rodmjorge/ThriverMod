@@ -3,11 +3,11 @@
   "category": "misc",
   "key": {
     "C": "renovay:coconut",
-    "R": "renovay:reeds"
+    "S": "minecraft:string"
   },
   "pattern": [
-    "RCR",
-    " R "
+    "SCS",
+    " S "
   ],
   "result": {
     "count": 3,

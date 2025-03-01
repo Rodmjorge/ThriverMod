@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "client.LocalPlayerP",
+    "world.block.CropBlockP",
+    "world.block.FarmBlockP",
     "world.block.LeavesBlockP",
     "world.block.entity.BlockEntityTypeP",
     "world.block.state.properties.BlockStatePropertiesP",
