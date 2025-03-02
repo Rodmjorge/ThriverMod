@@ -1,53 +1,43 @@
 package net.rodmjorgeh.renovay.world.area.areagen.feature;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.synth.PerlinNoise;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class OasisFeature extends Feature<OasisFeature.Configuration> {
+public class OasisFeature extends BigFeature<OasisFeatureConfiguration> {
 
-    public OasisFeature(Codec<OasisFeature.Configuration> codec) {
+    public OasisFeature(Codec<OasisFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<OasisFeature.Configuration> context) {
+    public boolean place(FeaturePlaceContext<OasisFeatureConfiguration> context) {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
         RandomSource random = context.random();
-        OasisFeature.Configuration config = context.config();
+        OasisFeatureConfiguration config = context.config();
 
         if (origin.getY() <= level.getMinY() + 6) {
             return false;
         }
 
-        origin = origin.below(6);
+        origin = origin.below(1);
         BlockState originState = level.getBlockState(origin);
 
-        /*if (!isValidBlocks(originState)) {
+        if (!config.isValidBlock(originState, random, origin)) {
             return false;
-        }*/
+        }
 
-        final int maxWidth = 36;
-        final int maxLength = 36;
+        final int maxWidth = 32;
+        final int maxLength = 32;
         final int maxHeight = 8;
         boolean[] blocks = new boolean[maxWidth * maxLength * maxHeight];
         int iters = random.nextInt(3) + 2;
@@ -77,19 +67,20 @@ public class OasisFeature extends Feature<OasisFeature.Configuration> {
                             blocks[this.getPosIndex(xBool, yBool, zBool, maxWidth, maxHeight)] = true;
                         }
                     }
-
-                    highestY = Math.max(highestY, newHeight);
                 }
             }
+
+            highestY = Math.max(highestY, newHeight);
         }
+
+        origin = origin.below(highestY - 1);
 
         for (int xPlace = 0; xPlace < maxWidth - 1; xPlace++) {
             for (int zPlace = 0; zPlace < maxLength - 1; zPlace++) {
                 for (int yPlace = 0; yPlace < maxHeight - 1; yPlace++) {
                     if (blocks[this.getPosIndex(xPlace, yPlace, zPlace, maxWidth, maxHeight)]) {
                         BlockPos offset = origin.offset(xPlace, yPlace, zPlace);
-                        Block placeBlock = (yPlace == highestY) ? Blocks.GRASS_BLOCK : Blocks.DIRT;
-
+                        Block placeBlock = (yPlace + 1 == highestY) ? Blocks.GRASS_BLOCK : Blocks.DIRT;
                         this.setBlock(level, offset, placeBlock.defaultBlockState());
                     }
                 }
@@ -99,21 +90,7 @@ public class OasisFeature extends Feature<OasisFeature.Configuration> {
         return true;
     }
 
-    private static boolean isValidBlocks(BlockState originState) {
-        return originState.is(Blocks.SAND) || originState.is(Blocks.RED_SAND);
-    }
-
     private static int getPosIndex(int x, int y, int z, int maxWidth, int maxHeight) {
         return (x * maxWidth + z) * maxHeight + y;
-    }
-
-    public static record Configuration(BlockStateProvider mud, Holder<PlacedFeature> treeFeature) implements FeatureConfiguration {
-        public static final Codec<OasisFeature.Configuration> CODEC = RecordCodecBuilder.create(
-                config -> config.group(
-                                BlockStateProvider.CODEC.fieldOf("mud").forGetter(OasisFeature.Configuration::mud),
-                                PlacedFeature.CODEC.fieldOf("tree").forGetter(OasisFeature.Configuration::treeFeature)
-                        )
-                        .apply(config, OasisFeature.Configuration::new)
-        );
     }
 }

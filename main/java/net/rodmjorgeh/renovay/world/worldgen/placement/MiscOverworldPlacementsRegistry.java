@@ -14,12 +14,18 @@ import net.rodmjorgeh.renovay.world.worldgen.features.MiscOverworldFeaturesRegis
 
 public class MiscOverworldPlacementsRegistry {
     public static final ResourceKey<PlacedFeature> OASIS_DESERT = PlacementsRegistry.register("oasis_desert");
+    public static final ResourceKey<PlacedFeature> OASIS_BADLANDS = PlacementsRegistry.register("oasis_badlands");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> config = context.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(context, OASIS_DESERT, config.getOrThrow(MiscOverworldFeaturesRegistry.OASIS_DESERT),
                 RarityFilter.onAverageOnceEvery(50),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
+        PlacementUtils.register(context, OASIS_BADLANDS, config.getOrThrow(MiscOverworldFeaturesRegistry.OASIS_BADLANDS),
+                RarityFilter.onAverageOnceEvery(85),
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());

@@ -19,6 +19,7 @@ import net.rodmjorgeh.renovay.world.worldgen.placement.VegetationPlacementsRegis
 public class BiomeModifierRegistry {
     public static final ResourceKey<BiomeModifier> TREES_BEACH = register("trees_beach");
     public static final ResourceKey<BiomeModifier> OASIS_DESERT = register("oasis_desert");
+    public static final ResourceKey<BiomeModifier> OASIS_BADLANDS = register("oasis_badlands");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         HolderGetter<PlacedFeature> feature = context.lookup(Registries.PLACED_FEATURE);
@@ -33,6 +34,11 @@ public class BiomeModifierRegistry {
         context.register(OASIS_DESERT, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.DESERT)),
                 HolderSet.direct(feature.getOrThrow(MiscOverworldPlacementsRegistry.OASIS_DESERT)),
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION
+        ));
+        context.register(OASIS_BADLANDS, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.BADLANDS)),
+                HolderSet.direct(feature.getOrThrow(MiscOverworldPlacementsRegistry.OASIS_BADLANDS)),
                 GenerationStep.Decoration.TOP_LAYER_MODIFICATION
         ));
     }
