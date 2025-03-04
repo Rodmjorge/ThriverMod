@@ -4,20 +4,19 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.data.BlockFamilies;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.FarmBlock;
 import net.rodmjorgeh.renovay.data.BlockFamilyRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.CoconutBlock;
 import net.rodmjorgeh.renovay.world.area.block.TallReedBlock;
+import net.rodmjorgeh.renovay.world.area.block.state.properties.BlockStatePropertyRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.TripleBlockStep;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -55,6 +54,8 @@ public class BlockModelDataGenerator {
         this.generator.createDoublePlantWithDefaultItem(BlockRegistry.REEDS.get(), BlockModelGenerators.PlantType.NOT_TINTED);
         this.generator.createTrivialCube(BlockRegistry.SILT_MUD.get());
         this.createTallReeds();
+
+        this.updateFarmland();
     }
 
     private void createNewTexturedModels() {
@@ -161,6 +162,32 @@ public class BlockModelDataGenerator {
                                         .select(TripleBlockStep.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middle))
                                         .select(TripleBlockStep.TOP, Variant.variant().with(VariantProperties.MODEL, top))
                         )
+        );
+    }
+
+
+    private void updateFarmland() {
+        Block block = Blocks.FARMLAND;
+        ResourceLocation notMoistured = ModelLocationUtils.getModelLocation(block);
+        ResourceLocation moistured = ModelLocationUtils.getModelLocation(block, "_moist");
+
+        ResourceLocation siltyTextureName = ModelDataGenerator.useVanillaTextureWithNamespace(block, "_moist_silt");
+        TextureMapping siltyTextureMap = new TextureMapping()
+                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(Blocks.DIRT))
+                .put(TextureSlot.TOP, siltyTextureName);
+        ResourceLocation silty = ModelTemplates.FARMLAND.create(siltyTextureName, siltyTextureMap, this.modelOutput);
+
+        this.stateProvider.accept(
+                MultiVariantGenerator.multiVariant(Blocks.FARMLAND)
+                        .with(
+                                PropertyDispatch.properties(FarmBlock.MOISTURE, BlockStatePropertyRegistry.SILTY)
+                                        .generate(
+                                                (moisture, isSilty) -> (moisture == 7)
+                                                        ? Variant.variant().with(VariantProperties.MODEL, isSilty ? silty : moistured)
+                                                        : Variant.variant().with(VariantProperties.MODEL, notMoistured)
+                                        )
+                        )
+
         );
     }
 }

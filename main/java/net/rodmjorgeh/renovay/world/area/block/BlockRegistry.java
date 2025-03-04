@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -83,13 +84,27 @@ public class BlockRegistry {
             () -> new StandingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_SIGN = register("palm_wall_sign",
-            () -> new WallSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_SIGN.get(), true).ofFullCopy(Blocks.JUNGLE_WALL_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_sign"))),
+            () -> new WallSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_SIGN.get(), true)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .forceSolidOn()
+                    .instrument(NoteBlockInstrument.BASS)
+                    .noCollission()
+                    .strength(1.0F)
+                    .ignitedByLava()
+                    .setId(createId("palm_sign"))),
             false);
     public static final Supplier<Block> PALM_HANGING_SIGN = register("palm_hanging_sign",
             () -> new CeilingHangingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_HANGING_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_hanging_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign",
-            () -> new WallHangingSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_HANGING_SIGN.get(), true).ofFullCopy(Blocks.JUNGLE_WALL_HANGING_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_wall_hanging_sign"))),
+            () -> new WallHangingSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_HANGING_SIGN.get(), true)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .forceSolidOn()
+                    .instrument(NoteBlockInstrument.BASS)
+                    .noCollission()
+                    .strength(1.0F)
+                    .ignitedByLava()
+                    .setId(createId("palm_wall_hanging_sign"))),
             false);
 
     public static final Supplier<Block> COCONUT = register("coconut",

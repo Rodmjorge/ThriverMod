@@ -34,7 +34,7 @@ public class MushroomCowP {
      * information into {@code mobInteract()} so it works with my Coconut Bowl.
      */
     @Inject(method = "mobInteract", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", shift = At.Shift.BEFORE),
+            target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", shift = At.Shift.BEFORE, ordinal = 0),
             locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     public void mobInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir, ItemStack stack) {
         MushroomCow cow = (MushroomCow)(Object)this;

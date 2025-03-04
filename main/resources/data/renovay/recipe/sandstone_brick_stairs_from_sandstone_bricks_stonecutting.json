@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "renovay:sandstone_bricks",
-  "result": {
-    "count": 1,
-    "id": "renovay:sandstone_brick_stairs"
-  }
-}
