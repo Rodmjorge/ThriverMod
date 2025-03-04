@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "renovay:block/palm_planks",
-    "side": "renovay:block/palm_planks",
-    "top": "renovay:block/palm_planks"
-  }
-}

@@ -89,6 +89,12 @@ public class ItemRegistry {
                     .setId(createId("coir_mat"))),
             CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
+    public static final Supplier<Item> REED_FLUTE = register("reed_flute",
+            () -> new ReedFluteItem(new Item.Properties()
+                    .durability(9)
+                    .setId(createId("reed_flute"))),
+            CreativeModeTabs.TOOLS_AND_UTILITIES);
+
     public static void register(IEventBus event) { ITEMS.register(event); }
 
     private static <T extends Item> Supplier<T> register(String name, Supplier<T> item, ResourceKey<CreativeModeTab>... creativeTabs) {

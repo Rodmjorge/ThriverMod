@@ -5,6 +5,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.renovay.RenovayMod;
+import net.rodmjorgeh.renovay.world.area.areagen.feature.configurations.OasisFeatureConfiguration;
 
 import java.util.function.Supplier;
 

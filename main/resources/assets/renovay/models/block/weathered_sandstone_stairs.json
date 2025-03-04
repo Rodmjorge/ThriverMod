@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "renovay:block/weathered_sandstone_bottom",
-    "side": "renovay:block/weathered_sandstone",
-    "top": "renovay:block/weathered_sandstone_top"
-  }
-}

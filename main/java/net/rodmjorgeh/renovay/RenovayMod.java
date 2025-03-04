@@ -10,7 +10,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.rodmjorgeh.renovay.client.model.ModelLayersR;
 import net.rodmjorgeh.renovay.util.events.BusEvents;
-import net.rodmjorgeh.renovay.util.events.ChunkLoadEvent;
 import net.rodmjorgeh.renovay.util.events.DatagenEvents;
 import net.rodmjorgeh.renovay.world.area.areagen.feature.FeatureRegistry;
 import net.rodmjorgeh.renovay.world.area.areagen.feature.decorators.TreeDecoratorsRegistry;
@@ -45,8 +44,6 @@ public class RenovayMod {
         bus.addListener(BusEvents::onClientSetup);
         bus.addListener(DatagenEvents::onGatherDataClient);
         bus.addListener(ModelLayersR::registerLayers);
-
-        NeoForge.EVENT_BUS.register(ChunkLoadEvent.class);
     }
 
     /**

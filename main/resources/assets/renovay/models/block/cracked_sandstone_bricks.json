@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "minecraft:block/sandstone_top",
-    "side": "renovay:block/cracked_sandstone_bricks"
-  }
-}

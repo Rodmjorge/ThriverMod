@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "renovay:block/weathered_sandstone_top",
-    "side": "renovay:block/weathered_sandstone_bricks"
-  }
-}

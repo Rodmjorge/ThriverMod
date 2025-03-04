@@ -33,14 +33,6 @@ Desert Ideas:
       : Can be used as food for Camels.
     - Tall Reeds
       : Just like Tall Grass, it does spawn naturally, but it's impossible to get this block in Survival.
-    - Thatch Block
-      : 4 Reeds to create 1 Thatch Block;
-      : Has a similar texture to a Hay Block, although more desaturated and without the red wire;
-      : Can be crafted back to 4 Reeds;
-      : Just like Hay Blocks, it can also extend a Campfire smoke, though it doesn't extend as much;
-      : Just like Hay Blocks, it also reduces fall damage, though by 60% instead of the Hay Block's 80%;
-      : Can also be used to craft Target, like the Hay Block;
-      : Can be used as food for Horses and Llamas, just like the Hay Block.
     - Coir Mat
       : 6 Coir in a Trapdoor formation;
       : Like a Sign, you can write something on it.
@@ -55,7 +47,8 @@ Desert Ideas:
   - New items:
     - Coconut Bowl
       : Crafted with 3 coconuts in the same form as a normal Bowl;
-      : You can craft every type of food you can normally craft with the Wooden Bowl, except with the Coconut Bowl, every item has an increase of 4 on hunger;
+      : You can craft every type of food you can normally craft with the Wooden Bowl, except with the Coconut Bowl,
+        every item has an increase of 4 on hunger;
       : On Suspicious Stews with the Coconut Bowl, the duration of the effect is 5x of that from a normal Bowl.
     - Coconut Beetroot Soup
     - Coconut Mushroom Stew
@@ -68,10 +61,17 @@ Desert Ideas:
     - Coir
       : 3 String in Bucket form + Coconut in the middle;
       : Is a very good compostable resource, having an 100% chance for composting.
+    - Reed Flute
+      : 2 Reed (#) + 1 Stick (A) + 1 String (B):
+        . . #
+        . # B
+        A . . ;
+      : When played, any neutral mob on an 8 block radius that was previously attacking the player stops the attack.
 
   - New generation:
     - Palm trees
-      : The log top will not feature normal tree rings since palm trees do not contain annual ones, instead it will feature a smooth surface on top;
+      : The log top will not feature normal tree rings since palm trees do not contain annual ones, instead it will
+        feature a smooth surface on top;
       : Spawns coconuts.
 
   - Features:

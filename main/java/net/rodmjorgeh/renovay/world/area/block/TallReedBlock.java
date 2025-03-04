@@ -31,7 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.rodmjorgeh.renovay.util.tags.BlockTagRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.BlockStatePropertyRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.TripleBlockStep;
-import org.jetbrains.annotations.Nullable;
 
 public class TallReedBlock extends BushBlock {
     public static final MapCodec<TallReedBlock> CODEC = simpleCodec(TallReedBlock::new);
