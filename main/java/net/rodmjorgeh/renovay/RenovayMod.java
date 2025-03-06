@@ -7,8 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.rodmjorgeh.renovay.advancements.CriteriaTriggerRegistry;
 import net.rodmjorgeh.renovay.client.model.ModelLayersR;
 import net.rodmjorgeh.renovay.data.loot.modifiers.LootModifierRegistry;
+import net.rodmjorgeh.renovay.sound.SoundEventRegistry;
 import net.rodmjorgeh.renovay.util.BusEvents;
 import net.rodmjorgeh.renovay.data.DatagenEvents;
 import net.rodmjorgeh.renovay.world.area.areagen.feature.FeatureRegistry;
@@ -34,11 +36,13 @@ public class RenovayMod {
         ItemRegistry.register(bus);
         EntityRegistry.register(bus);
         BlockEntityRegistry.register(bus);
+        SoundEventRegistry.register(bus);
         FeatureRegistry.register(bus);
         TrunkPlacerRegistry.register(bus);
         FoliagePlacerRegistry.register(bus);
         TreeDecoratorsRegistry.register(bus);
         LootModifierRegistry.register(bus);
+        CriteriaTriggerRegistry.register(bus);
 
         bus.addListener(CreativeModeTabRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);

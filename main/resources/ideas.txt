@@ -82,8 +82,7 @@ Desert Ideas:
         . # B
         A . . ;
       : When played, any neutral mob on an 8 block radius that was previously attacking the player stops the attack.
-    - Doll's Eye Frond
-      : The seed for the Doll's Eyes
+    - Doll's Eye Seeds
     - Beige Dye
     - Beige Bundle
 

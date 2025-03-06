@@ -1,0 +1,8 @@
+{
+  "item.reed_flute.play": {
+    "subtitle": "sounds.renovay.item.reed_flute.play",
+    "sounds": [
+      "renovay:reed_flute_play"
+    ]
+  }
+}

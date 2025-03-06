@@ -1,6 +1,9 @@
 package net.rodmjorgeh.renovay.world.item;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -18,6 +21,7 @@ import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.monster.warden.WardenAi;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.InstrumentItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
@@ -28,8 +32,11 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.ContainerScreenEvent;
 import net.rodmjorgeh.renovay.RenovayMod;
+import net.rodmjorgeh.renovay.advancements.CriteriaTriggerRegistry;
+import net.rodmjorgeh.renovay.sound.SoundEventRegistry;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ReedFluteItem extends Item {
     private static final int COOLDOWN = 10;
@@ -43,12 +50,45 @@ public class ReedFluteItem extends Item {
         return Mth.floor(this.getCooldown() / 3F);
     }
 
+    /**
+     * Small rant, but when you make a mob stop being angry via the {@code stopBeingAngry()} function, you also need to
+     * set targets inside the available goals of the entity, for some reason. Kinda annoying.
+     */
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack item = player.getItemInHand(hand);
 
         player.startUsingItem(hand);
-        player.getCooldowns().addCooldown(item, this.getCooldown()); //10s * 20 ticks
+        player.getCooldowns().addCooldown(item, this.getCooldown());
+        level.playSound(player, player.getOnPos(), SoundEventRegistry.REED_FLUTE_PLAY.get(), SoundSource.RECORDS);
+
+        if (level instanceof ServerLevel) {
+            Vec3 playerPos = player.position();
+
+            List<Mob> mobsNear = level.getEntitiesOfClass(
+                                    Mob.class,
+                                    new AABB(playerPos.x - 8.0F, playerPos.y - 8.0F, playerPos.z - 8.0F, playerPos.x + 8.0F, playerPos.y + 8.0F, playerPos.z + 8.0F),
+                                    EntitySelector.ENTITY_STILL_ALIVE
+                                 );
+            getNeutralMobs(mobsNear).forEach(x -> {
+                NeutralMob mob = (NeutralMob)x;
+                if (player.getUUID().equals(mob.getPersistentAngerTarget())) {
+                    mob.stopBeingAngry();
+                    x.targetSelector.getAvailableGoals()
+                            .stream()
+                            .filter(y -> y.getGoal() instanceof TargetGoal)
+                            .map(y -> (TargetGoal)y.getGoal())
+                            .forEach(y -> y.targetMob = null);
+
+                    x.setLastHurtByMob(null);
+                }
+            });
+
+            int i = (int)getNeutralMobs(mobsNear).count();
+            if (i > 0 && player instanceof ServerPlayer serverPlayer) {
+                CriteriaTriggerRegistry.PLAYED_REED_FLUTE.get().trigger(serverPlayer, item, i);
+            }
+        }
 
         return InteractionResult.CONSUME;
     }
@@ -59,37 +99,11 @@ public class ReedFluteItem extends Item {
         return true;
     }
 
-    /**
-     * Small rant, but when you make a mob stop being angry via the {@code stopBeingAngry()} function, you also need to
-     * set targets inside the available goals of the entity, for some reason. Kinda annoying.
-     */
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player player) {
             stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
             player.awardStat(Stats.ITEM_USED.get(this));
-
-            if (level instanceof ServerLevel) {
-                Vec3 playerPos = player.position();
-                level.getEntitiesOfClass(
-                                Mob.class,
-                                new AABB(playerPos.x - 5.0F, playerPos.y - 5.0F, playerPos.z - 5.0F, playerPos.x + 5.0F, playerPos.y + 5.0F, playerPos.z + 5.0F),
-                                EntitySelector.ENTITY_STILL_ALIVE
-                        ).stream()
-                        .filter(x -> x instanceof NeutralMob)
-                        .forEach(x -> {
-                            NeutralMob mob = (NeutralMob)x;
-                            if (player.getUUID().equals(mob.getPersistentAngerTarget())) {
-                                mob.stopBeingAngry();
-                                x.targetSelector.getAvailableGoals()
-                                        .stream()
-                                        .filter(y -> y.getGoal() instanceof TargetGoal)
-                                        .map(y -> (TargetGoal)y.getGoal())
-                                        .forEach(y -> y.targetMob = null);
-                                x.setLastHurtByMob(null);
-                            }
-                        });
-            }
         }
 
         return stack;
@@ -103,6 +117,11 @@ public class ReedFluteItem extends Item {
     @Override
     public ItemUseAnimation getUseAnimation(ItemStack stack) {
         return ItemUseAnimation.TOOT_HORN;
+    }
+
+    private static Stream<Mob> getNeutralMobs(List<Mob> mobList) {
+        return mobList.stream()
+                .filter(x -> x instanceof NeutralMob);
     }
 
     private int getCooldown() {

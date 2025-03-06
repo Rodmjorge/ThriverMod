@@ -5,6 +5,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.rodmjorgeh.renovay.client.data.BuilderRegistries;
+import net.rodmjorgeh.renovay.data.advancements.AdvancementDataGenerator;
 import net.rodmjorgeh.renovay.data.loot.GlobalLootDataGenerator;
 import net.rodmjorgeh.renovay.data.loot.LootDataGenerator;
 import net.rodmjorgeh.renovay.client.data.models.ModelDataGenerator;
@@ -23,6 +24,7 @@ public class DatagenEvents {
         event.createProvider(LootDataGenerator::new);
         event.createProvider(GlobalLootDataGenerator::new);
         event.createProvider(RecipeDataGenerator.Runner::new);
+        event.createProvider(AdvancementDataGenerator::new);
 
         TagsProvider<Block> blockTags = event.createProvider(BlockTagDataGenerator::new);
         event.createProvider(EntityTypeTagDataGenerator::new);

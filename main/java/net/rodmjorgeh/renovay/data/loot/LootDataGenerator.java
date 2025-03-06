@@ -11,8 +11,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class LootDataGenerator extends LootTableProvider {
 
-    public LootDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-        super(output, Set.of(), getProviderEntries(), provider);
+    public LootDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, Set.of(), getProviderEntries(), registries);
     }
 
     private static List<SubProviderEntry> getProviderEntries() {
