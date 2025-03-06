@@ -148,7 +148,7 @@ public class RecipeDataGenerator extends RecipeProvider {
         this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.SANDSTONE_BRICK_WALL.get(), Blocks.SANDSTONE);
         this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.SANDSTONE_BRICK_WALL.get(), Blocks.CUT_SANDSTONE);
         this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.SANDSTONE_BRICK_WALL.get(), BlockRegistry.SANDSTONE_BRICKS.get());
-        this.shapeless(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.SILT_MUD.get())
+        this.shapeless(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.SILT_MUD.get(), 2)
                 .requires(Blocks.MUD)
                 .requires(Blocks.SAND)
                 .unlockedBy("has_mud", this.has(Blocks.MUD))
