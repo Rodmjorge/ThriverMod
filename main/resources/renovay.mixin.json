@@ -3,13 +3,15 @@
   "package": "net.rodmjorgeh.renovay.plus",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "client.LocalPlayerP",
-    "world.block.CropBlockP",
-    "world.block.FarmBlockP",
-    "world.block.LeavesBlockP",
-    "world.block.entity.BlockEntityTypeP",
-    "world.block.state.properties.BlockStatePropertiesP",
-    "world.entity.MushroomCowP"
+    "client.data.models.PlantTypeP",
+    "client.player.LocalPlayerP",
+    "data.recipes.RecipeBuilderP",
+    "world.entity.animal.MushroomCowP",
+    "world.level.block.CropBlockP",
+    "world.level.block.FarmBlockP",
+    "world.level.block.LeavesBlockP",
+    "world.level.block.entity.BlockEntityTypeP",
+    "world.level.block.state.properties.BlockStatePropertiesP"
   ],
   "client": [],
   "injectors": {

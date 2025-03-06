@@ -10,6 +10,7 @@ import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.rodmjorgeh.renovay.world.item.food.FoodRegistry;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -59,9 +60,7 @@ public class CreativeModeTabRegistry {
             List<SuspiciousStewEffects.Entry> effects = holder.getSuspiciousEffects().effects();
 
             if (!effects.isEmpty()) {
-                SuspiciousStewEffects.Entry entry = effects.getFirst();
-                stack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS,
-                        new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(entry.effect(), entry.duration() * 5))));
+                stack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, FoodRegistry.forCoconut(effects.getFirst()));
                 set.add(stack);
             }
         }

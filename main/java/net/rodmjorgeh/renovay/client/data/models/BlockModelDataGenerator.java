@@ -4,11 +4,17 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.common.asm.enumextension.IExtensibleEnum;
 import net.rodmjorgeh.renovay.data.BlockFamilyRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.CoconutBlock;
@@ -50,8 +56,8 @@ public class BlockModelDataGenerator {
                 BlockRegistry.PALM_HANGING_SIGN.get(), BlockRegistry.PALM_WALL_HANGING_SIGN.get());
         this.generator.createTrivialCube(BlockRegistry.PALM_LEAVES.get());
         this.generator.createPlantWithDefaultItem(BlockRegistry.PALM_SPROUT.get(), BlockRegistry.POTTED_PALM_SPROUT.get(),
-                BlockModelGenerators.PlantType.NOT_TINTED);
-        this.generator.createDoublePlantWithDefaultItem(BlockRegistry.REEDS.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+                PlantTypeR.NOT_TINTED_CUTOUT);
+        this.generator.createDoublePlantWithDefaultItem(BlockRegistry.REEDS.get(), PlantTypeR.NOT_TINTED_CUTOUT);
         this.generator.createTrivialCube(BlockRegistry.SILT_MUD.get());
         this.createTallReeds();
 
@@ -149,10 +155,11 @@ public class BlockModelDataGenerator {
 
     private void createTallReeds() {
         Block block = BlockRegistry.TALL_REEDS.get();
+        ModelTemplate template = ModelTemplates.CROSS.extend().renderType("minecraft:cutout").build();
 
-        ResourceLocation top = this.generator.createSuffixedVariant(block, "_top", ModelTemplates.CROSS, TextureMapping::cross);
-        ResourceLocation middle = this.generator.createSuffixedVariant(block, "_middle", ModelTemplates.CROSS, TextureMapping::cross);
-        ResourceLocation bottom = this.generator.createSuffixedVariant(block, "_bottom", ModelTemplates.CROSS, TextureMapping::cross);
+        ResourceLocation top = this.generator.createSuffixedVariant(block, "_top", template, TextureMapping::cross);
+        ResourceLocation middle = this.generator.createSuffixedVariant(block, "_middle", template, TextureMapping::cross);
+        ResourceLocation bottom = this.generator.createSuffixedVariant(block, "_bottom", template, TextureMapping::cross);
 
         this.stateProvider.accept(
                 MultiVariantGenerator.multiVariant(block)
@@ -189,5 +196,10 @@ public class BlockModelDataGenerator {
                         )
 
         );
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static class PlantTypeR {
+        public static final BlockModelGenerators.PlantType NOT_TINTED_CUTOUT = BlockModelGenerators.PlantType.valueOf("NOT_TINTED_CUTOUT");
     }
 }

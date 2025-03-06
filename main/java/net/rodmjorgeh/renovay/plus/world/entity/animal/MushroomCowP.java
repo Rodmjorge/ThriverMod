@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.world.entity;
+package net.rodmjorgeh.renovay.plus.world.entity.animal;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;

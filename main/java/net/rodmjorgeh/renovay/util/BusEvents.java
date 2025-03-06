@@ -1,23 +1,19 @@
-package net.rodmjorgeh.renovay.util.events;
+package net.rodmjorgeh.renovay.util;
 
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
-import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.renovay.client.renderer.blockentity.BlockEntityRendererRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
-import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 
 public class BusEvents {
 

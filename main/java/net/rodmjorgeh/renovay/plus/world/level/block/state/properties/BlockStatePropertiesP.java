@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.world.block.state.properties;
+package net.rodmjorgeh.renovay.plus.world.level.block.state.properties;
 
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

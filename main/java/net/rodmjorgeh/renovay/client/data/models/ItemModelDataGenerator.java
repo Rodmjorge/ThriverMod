@@ -5,6 +5,7 @@ import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
 
@@ -30,7 +31,7 @@ public class ItemModelDataGenerator {
     }
 
     private void generateReedFlute(Item item, String adder) {
-        String playingItemName = "reed_flute_" + adder;
+        String playingItemName = BuiltInRegistries.ITEM.getKey(item).getPath() + "_" + adder;
 
         ItemModel.Unbaked model = ItemModelUtils.plainModel(ModelLocationUtils.getModelLocation(item));
         ItemModel.Unbaked modelPlaying = ItemModelUtils.plainModel(ModelDataGenerator.decorateItemModelLocation(playingItemName));

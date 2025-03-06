@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.world.block;
+package net.rodmjorgeh.renovay.plus.world.level.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;

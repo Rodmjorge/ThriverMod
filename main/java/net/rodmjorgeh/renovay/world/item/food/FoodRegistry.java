@@ -1,6 +1,9 @@
 package net.rodmjorgeh.renovay.world.item.food;
 
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
+
+import java.util.List;
 
 public class FoodRegistry {
 
@@ -20,5 +23,10 @@ public class FoodRegistry {
 
     private static FoodProperties registerStew(int nutrition, boolean canAlwaysEat) {
         return register(nutrition, 0.8F, canAlwaysEat);
+    }
+
+
+    public static SuspiciousStewEffects forCoconut(SuspiciousStewEffects.Entry entry) {
+        return new SuspiciousStewEffects(List.of(new SuspiciousStewEffects.Entry(entry.effect(), entry.duration() * 5)));
     }
 }

@@ -43,6 +43,21 @@ Desert Ideas:
       : Appears in the oasis area, underwater mixed with sand and on land, near the water;
       : If placed below of Farmland blocks, the moisture of these blocks rises even more, making crops grow faster.
     - Cracked Mud Bricks
+    - Doll's Eyes
+      : New flower to be dug from Sniffers on Silt Mud / Mud or Sand from Beaches;
+      : Can be used to craft a new Beige Dye.
+    - Beige Banner
+    - Beige Bed
+    - Beige Candle
+    - Beige Carpet
+    - Beige Concrete
+    - Beige Concrete Powder
+    - Beige Glazed Terracotta
+    - Beige Shulker Box
+    - Beige Stained Glass
+    - Beige Stained Glass Pane
+    - Beige Terracotta
+    - Beige Wool
 
   - New items:
     - Coconut Bowl
@@ -67,6 +82,10 @@ Desert Ideas:
         . # B
         A . . ;
       : When played, any neutral mob on an 8 block radius that was previously attacking the player stops the attack.
+    - Doll's Eye Frond
+      : The seed for the Doll's Eyes
+    - Beige Dye
+    - Beige Bundle
 
   - New generation:
     - Palm trees

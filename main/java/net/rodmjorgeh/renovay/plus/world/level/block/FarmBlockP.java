@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.world.block;
+package net.rodmjorgeh.renovay.plus.world.level.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -8,8 +8,6 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.BlockStatePropertyRegistry;
 import org.spongepowered.asm.mixin.Mixin;
