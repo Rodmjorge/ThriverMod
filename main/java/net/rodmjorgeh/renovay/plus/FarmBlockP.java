@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.world.level.block;
+package net.rodmjorgeh.renovay.plus;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

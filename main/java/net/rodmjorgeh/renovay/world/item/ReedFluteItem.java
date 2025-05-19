@@ -1,6 +1,5 @@
 package net.rodmjorgeh.renovay.world.item;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -9,29 +8,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.goal.WrappedGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
-import net.minecraft.world.entity.animal.Bee;
-import net.minecraft.world.entity.animal.PolarBear;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.animal.horse.Llama;
-import net.minecraft.world.entity.monster.EnderMan;
-import net.minecraft.world.entity.monster.ZombifiedPiglin;
-import net.minecraft.world.entity.monster.warden.Warden;
-import net.minecraft.world.entity.monster.warden.WardenAi;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.InstrumentItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BedBlock;
-import net.minecraft.world.level.block.entity.BedBlockEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.client.event.ContainerScreenEvent;
-import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.advancements.CriteriaTriggerRegistry;
 import net.rodmjorgeh.renovay.sound.SoundEventRegistry;
 

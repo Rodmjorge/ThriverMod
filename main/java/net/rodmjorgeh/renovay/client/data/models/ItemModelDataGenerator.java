@@ -18,6 +18,8 @@ public class ItemModelDataGenerator {
     }
 
     public void register() {
+        this.generator.generateBundleModels(ItemRegistry.BEIGE_BUNDLE.get());
+        this.generator.generateFlatItem(ItemRegistry.BEIGE_DYE.get(), ModelTemplates.FLAT_ITEM);
         this.generator.generateFlatItem(ItemRegistry.COCONUT_BEETROOT_SOUP.get(), ModelTemplates.FLAT_ITEM);
         this.generator.generateFlatItem(ItemRegistry.COCONUT_BOWL.get(), ModelTemplates.FLAT_ITEM);
         this.generator.generateFlatItem(ItemRegistry.COCONUT_MILK.get(), ModelTemplates.FLAT_ITEM);

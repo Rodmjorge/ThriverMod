@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.client.player;
+package net.rodmjorgeh.renovay.plus;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;

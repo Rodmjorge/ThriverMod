@@ -1,6 +1,7 @@
 package net.rodmjorgeh.renovay.util;
 
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -10,15 +11,19 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.rodmjorgeh.renovay.client.data.models.BlockModelDataGenerator;
 import net.rodmjorgeh.renovay.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.renovay.client.renderer.blockentity.BlockEntityRendererRegistry;
 import net.rodmjorgeh.renovay.world.area.block.BlockRegistry;
+import net.rodmjorgeh.renovay.world.area.block.entity.BlockEntityAdderRegistry;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
 
 public class BusEvents {
 
     public static void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            BlockEntityAdderRegistry.bootstrap();
+
             AxeItem.STRIPPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPPABLES)
                     .put(BlockRegistry.PALM_LOG.get(), BlockRegistry.STRIPPED_PALM_LOG.get())
                     .put(BlockRegistry.PALM_WOOD.get(), BlockRegistry.STRIPPED_PALM_WOOD.get())
@@ -42,6 +47,7 @@ public class BusEvents {
         event.enqueueWork(() -> {
             EntityRendererRegistry.registerAll();
             BlockEntityRendererRegistry.registerAll();
+            BlockModelDataGenerator.setRenderTypes();
 
             Sheets.addWoodType(WoodTypeR.PALM);
         });

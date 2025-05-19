@@ -1,15 +1,17 @@
 package net.rodmjorgeh.renovay.world.area.block;
 
-import com.google.errorprone.annotations.SuppressPackageLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -17,13 +19,12 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.renovay.RenovayMod;
 import net.rodmjorgeh.renovay.world.area.block.state.properties.WoodTypeR;
 import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
+import net.rodmjorgeh.renovay.world.item.DyeColorR;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
-import net.rodmjorgeh.renovay.world.material.MapColorR;
+import net.rodmjorgeh.renovay.world.area.maps.MapColorR;
 
 import java.util.function.Supplier;
 
@@ -38,38 +39,60 @@ public class BlockRegistry {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WOOD).setId(createId("palm_wood"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> STRIPPED_PALM_LOG = register("stripped_palm_log",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_LOG).mapColor(MapColorR.PALM_TREE).setId(createId("stripped_palm_log"))),
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_LOG)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("stripped_palm_log"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> STRIPPED_PALM_WOOD = register("stripped_palm_wood",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_WOOD).mapColor(MapColorR.PALM_TREE).setId(createId("stripped_palm_wood"))),
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_WOOD)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("stripped_palm_wood"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_PLANKS = register("palm_planks",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS).mapColor(MapColorR.PALM_TREE).setId(createId("palm_planks"))),
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_planks"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_SLAB = register("palm_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SLAB).mapColor(MapColorR.PALM_TREE).setId(createId("palm_slab"))),
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SLAB)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_slab"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_STAIRS = register("palm_stairs",
             () -> new StairBlock(PALM_PLANKS.get().defaultBlockState(),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_STAIRS).mapColor(MapColorR.PALM_TREE).setId(createId("palm_stairs"))),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_STAIRS)
+                            .mapColor(MapColorR.PALM_TREE)
+                            .setId(createId("palm_stairs"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_FENCE = register("palm_fence",
-            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE).mapColor(MapColorR.PALM_TREE).setId(createId("palm_fence"))),
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_fence"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_FENCE_GATE = register("palm_fence_gate",
-            () -> new FenceGateBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE_GATE).mapColor(MapColorR.PALM_TREE).setId(createId("palm_fence_gate"))),
+            () -> new FenceGateBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE_GATE)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_fence_gate"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_DOOR = register("palm_door",
-            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_DOOR).mapColor(MapColorR.PALM_TREE).setId(createId("palm_door"))),
+            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_DOOR)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_door"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_TRAPDOOR = register("palm_trapdoor",
-            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_TRAPDOOR).mapColor(MapColorR.PALM_TREE).setId(createId("palm_trapdoor"))),
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_TRAPDOOR)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_trapdoor"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_PRESSURE_PLATE = register("palm_pressure_plate",
-            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PRESSURE_PLATE).mapColor(MapColorR.PALM_TREE).setId(createId("palm_pressure_plate"))),
+            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PRESSURE_PLATE)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_pressure_plate"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_BUTTON = register("palm_button",
-            () -> new ButtonBlock(BlockSetType.OAK, 30, Blocks.buttonProperties().mapColor(MapColorR.PALM_TREE).setId(createId("palm_button"))),
+            () -> new ButtonBlock(BlockSetType.OAK, 30, Blocks.buttonProperties()
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_button"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_LEAVES = register("palm_leaves",
             () -> new PalmLeavesBlock(Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
@@ -81,7 +104,9 @@ public class BlockRegistry {
             () -> new FlowerPotBlock(PALM_SPROUT.get(), Blocks.flowerPotProperties().setId(createId("potted_palm_sprout"))),
             false);
     public static final Supplier<Block> PALM_SIGN = register("palm_sign",
-            () -> new StandingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_sign"))),
+            () -> new StandingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_SIGN = register("palm_wall_sign",
             () -> new WallSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_SIGN.get(), true)
@@ -94,7 +119,9 @@ public class BlockRegistry {
                     .setId(createId("palm_sign"))),
             false);
     public static final Supplier<Block> PALM_HANGING_SIGN = register("palm_hanging_sign",
-            () -> new CeilingHangingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_HANGING_SIGN).mapColor(MapColorR.PALM_TREE).setId(createId("palm_hanging_sign"))),
+            () -> new CeilingHangingSignBlock(WoodTypeR.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_HANGING_SIGN)
+                    .mapColor(MapColorR.PALM_TREE)
+                    .setId(createId("palm_hanging_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign",
             () -> new WallHangingSignBlock(WoodTypeR.PALM, Blocks.wallVariant(PALM_HANGING_SIGN.get(), true)
@@ -145,9 +172,90 @@ public class BlockRegistry {
                     .setId(createId("silt_mud"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> CRACKED_MUD_BRICKS = register("cracked_mud_bricks",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS)
-                    .setId(createId("cracked_mud_bricks"))),
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD_BRICKS).setId(createId("cracked_mud_bricks"))),
             CreativeModeTabs.BUILDING_BLOCKS);
+
+    public static final Supplier<Block> BEIGE_WOOL = register("beige_wool",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_WOOL)
+                    .mapColor(MapColorR.COLOR_BEIGE)
+                    .setId(createId("beige_wool"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final Supplier<Block> BEIGE_BANNER = register("beige_banner",
+            () -> new BannerBlock(DyeColorR.BEIGE, BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_BANNER).setId(createId("beige_banner"))),
+            false);
+    public static final Supplier<Block> BEIGE_WALL_BANNER = register("beige_wall_banner",
+            () -> new WallBannerBlock(DyeColorR.BEIGE, Blocks.wallVariant(BEIGE_BANNER.get(), true)
+                    .mapColor(MapColor.WOOD)
+                    .forceSolidOn()
+                    .instrument(NoteBlockInstrument.BASS)
+                    .noCollission()
+                    .strength(1.0F)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava()
+                    .setId(createId("beige_wall_banner"))),
+            false);
+    public static final Supplier<Block> BEIGE_BED = register("beige_bed",
+            () -> new BedBlock(DyeColorR.BEIGE, BlockBehaviour.Properties.of()
+                    .mapColor(x -> x.getValue(BedBlock.PART) == BedPart.FOOT ? MapColorR.COLOR_BEIGE : MapColor.WOOL)
+                    .sound(SoundType.WOOD)
+                    .strength(0.2F)
+                    .noOcclusion()
+                    .ignitedByLava()
+                    .pushReaction(PushReaction.DESTROY)
+                    .setId(createId("beige_bed"))),
+            false);
+    public static final Supplier<Block> BEIGE_CANDLE = register("beige_candle",
+            () -> new CandleBlock(Blocks.candleProperties(MapColorR.COLOR_BEIGE).setId(createId("beige_candle"))),
+            CreativeModeTabs.FUNCTIONAL_BLOCKS);
+    public static final Supplier<Block> BEIGE_CANDLE_CAKE = register("beige_candle_cake",
+            () -> new CandleCakeBlock(BEIGE_CANDLE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE).setId(createId("beige_candle_cake"))),
+            false);
+    public static final Supplier<Block> BEIGE_CARPET = register("beige_carpet",
+            () -> new WoolCarpetBlock(DyeColorR.BEIGE, BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_CARPET)
+                    .mapColor(MapColorR.COLOR_BEIGE)
+                    .setId(createId("beige_carpet"))),
+            false);
+    public static final Supplier<Block> BEIGE_CONCRETE = register("beige_concrete",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_CONCRETE)
+                    .mapColor(DyeColorR.BEIGE)
+                    .setId(createId("beige_concrete"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final Supplier<Block> BEIGE_CONCRETE_POWDER = register("beige_concrete_powder",
+            () -> new ConcretePowderBlock(BEIGE_CONCRETE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_CONCRETE_POWDER)
+                    .mapColor(DyeColorR.BEIGE)
+                    .setId(createId("beige_concrete_powder"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final Supplier<Block> BEIGE_GLAZED_TERRACOTTA = register("beige_glazed_terracotta",
+            () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_GLAZED_TERRACOTTA)
+                    .mapColor(DyeColorR.BEIGE)
+                    .setId(createId("beige_glazed_terracotta"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final Supplier<Block> BEIGE_STAINED_GLASS = register("beige_stained_glass",
+            () -> new StainedGlassBlock(DyeColorR.BEIGE, BlockBehaviour.Properties.of()
+                    .mapColor(MapColorR.COLOR_BEIGE)
+                    .instrument(NoteBlockInstrument.HAT)
+                    .strength(0.3F)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+                    .isValidSpawn(BlockRegistry::falsePredicate)
+                    .isRedstoneConductor(BlockRegistry::falsePredicate)
+                    .isSuffocating(BlockRegistry::falsePredicate)
+                    .isViewBlocking(BlockRegistry::falsePredicate)
+                    .setId(createId("beige_stained_glass"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final Supplier<Block> BEIGE_STAINED_GLASS_PANE = register("beige_stained_glass_pane",
+            () -> new StainedGlassPaneBlock(DyeColorR.BEIGE, BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_STAINED_GLASS_PANE)
+                    .mapColor(MapColorR.COLOR_BEIGE)
+                    .setId(createId("beige_stained_glass_pane"))),
+            CreativeModeTabs.COLORED_BLOCKS);
+    public static final DeferredHolder<Block, Block> BEIGE_SHULKER_BOX = register("beige_shulker_box",
+            () -> new ShulkerBoxBlock(DyeColorR.BEIGE, Blocks.shulkerBoxProperties(MapColorR.COLOR_BEIGE).setId(createId("beige_terracotta"))),
+            false);
+    public static final Supplier<Block> BEIGE_TERRACOTTA = register("beige_terracotta",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_TERRACOTTA)
+                    .mapColor(MapColorR.TERRACOTTA_BEIGE)
+                    .setId(createId("beige_terracotta"))),
+            CreativeModeTabs.COLORED_BLOCKS);
 
     public static final Supplier<Block> SANDSTONE_BRICKS = register("sandstone_bricks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE).setId(createId("sandstone_bricks"))),
@@ -181,52 +289,6 @@ public class BlockRegistry {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(RED_SANDSTONE_BRICKS.get()).setId(createId("cracked_red_sandstone_bricks"))),
             CreativeModeTabs.BUILDING_BLOCKS);
 
-    public static final Supplier<Block> WEATHERED_SANDSTONE = register("weathered_sandstone",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE).setId(createId("weathered_sandstone"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> CHISELED_WEATHERED_SANDSTONE = register("chiseled_weathered_sandstone",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_SANDSTONE).setId(createId("chiseled_weathered_sandstone"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> CUT_WEATHERED_SANDSTONE = register("cut_weathered_sandstone",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_SANDSTONE).setId(createId("cut_weathered_sandstone"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> SMOOTH_WEATHERED_SANDSTONE = register("smooth_weathered_sandstone",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE).setId(createId("smooth_weathered_sandstone"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_SLAB = register("weathered_sandstone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_SLAB).setId(createId("weathered_sandstone_slab"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_STAIRS = register("weathered_sandstone_stairs",
-            () -> new StairBlock(WEATHERED_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_STAIRS).setId(createId("weathered_sandstone_stairs"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_WALL = register("weathered_sandstone_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE_WALL).setId(createId("weathered_sandstone_wall"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> CUT_WEATHERED_SANDSTONE_SLAB = register("cut_weathered_sandstone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_SANDSTONE_SLAB).setId(createId("cut_weathered_sandstone_slab"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> SMOOTH_WEATHERED_SANDSTONE_SLAB = register("smooth_weathered_sandstone_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE_SLAB).setId(createId("smooth_weathered_sandstone_slab"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> SMOOTH_WEATHERED_SANDSTONE_STAIRS = register("smooth_weathered_sandstone_stairs",
-            () -> new StairBlock(SMOOTH_WEATHERED_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE_STAIRS).setId(createId("smooth_weathered_sandstone_stairs"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_BRICKS = register("weathered_sandstone_bricks",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(WEATHERED_SANDSTONE.get()).setId(createId("weathered_sandstone_bricks"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_BRICK_SLAB = register("weathered_sandstone_brick_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(WEATHERED_SANDSTONE_SLAB.get()).setId(createId("weathered_sandstone_brick_slab"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_BRICK_STAIRS = register("weathered_sandstone_brick_stairs",
-            () -> new StairBlock(WEATHERED_SANDSTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(WEATHERED_SANDSTONE_STAIRS.get()).setId(createId("weathered_sandstone_brick_stairs"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> WEATHERED_SANDSTONE_BRICK_WALL = register("weathered_sandstone_brick_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(WEATHERED_SANDSTONE_WALL.get()).forceSolidOn().setId(createId("weathered_sandstone_brick_wall"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-    public static final Supplier<Block> CRACKED_WEATHERED_SANDSTONE_BRICKS = register("cracked_weathered_sandstone_bricks",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(WEATHERED_SANDSTONE_BRICKS.get()).setId(createId("cracked_weathered_sandstone_bricks"))),
-            CreativeModeTabs.BUILDING_BLOCKS);
-
 
     public static void register(IEventBus event) { BLOCKS.register(event); }
 
@@ -234,8 +296,8 @@ public class BlockRegistry {
      * This method only ever gets called whenever you don't want a {@link BlockItem}, setting {@code includeItem}
      * as {@code false}. See below for the more common called method.
      */
-    private static <T extends Block> Supplier<T> register(String name, Supplier<T> block, boolean includeItem) {
-        Supplier<T> registry = BLOCKS.register(name, block);
+    private static <T extends Block> DeferredHolder<Block, T> register(String name, Supplier<T> block, boolean includeItem) {
+        DeferredHolder<Block, T> registry = BLOCKS.register(name, block);
 
         if (includeItem) {
             registerItem(name, registry);
@@ -269,5 +331,12 @@ public class BlockRegistry {
 
     private static ResourceKey createId(String name) {
         return RenovayMod.createId(name, Registries.BLOCK);
+    }
+
+    private static boolean falsePredicate(BlockState a, BlockGetter b, BlockPos c, EntityType<?> d) {
+        return false;
+    }
+    private static boolean falsePredicate(BlockState a, BlockGetter b, BlockPos c) {
+        return false;
     }
 }

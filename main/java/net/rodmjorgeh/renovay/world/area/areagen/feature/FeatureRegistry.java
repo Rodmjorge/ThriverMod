@@ -1,5 +1,6 @@
 package net.rodmjorgeh.renovay.world.area.areagen.feature;
 
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.neoforged.bus.api.IEventBus;

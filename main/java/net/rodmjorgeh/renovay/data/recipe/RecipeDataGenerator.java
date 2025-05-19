@@ -7,14 +7,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.rodmjorgeh.renovay.RenovayMod;
@@ -38,8 +36,6 @@ public class RecipeDataGenerator extends RecipeProvider {
                 .filter(BlockFamily::shouldGenerateRecipe)
                 .forEach(x -> this.generateRecipes(x, FeatureFlagSet.of(FeatureFlags.VANILLA)));
 
-        this.chiseled(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get(), BlockRegistry.WEATHERED_SANDSTONE_SLAB.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
         this.shapeless(RecipeCategory.FOOD, ItemRegistry.COCONUT_BEETROOT_SOUP.get())
                 .requires(ItemRegistry.COCONUT_BOWL.get())
                 .requires(Items.BEETROOT, 6)
@@ -106,10 +102,6 @@ public class RecipeDataGenerator extends RecipeProvider {
                 Ingredient.of(Blocks.MUD_BRICKS), RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CRACKED_MUD_BRICKS.get(), 0.1F, 200)
                 .unlockedBy("has_mud_bricks", this.has(Blocks.MUD_BRICKS))
                 .save(this.output);
-        this.cut(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CUT_WEATHERED_SANDSTONE.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CUT_WEATHERED_SANDSTONE.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CUT_WEATHERED_SANDSTONE_SLAB.get(), BlockRegistry.WEATHERED_SANDSTONE.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.CUT_WEATHERED_SANDSTONE_SLAB.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get(), 2);
         this.woodenBoat(ItemRegistry.PALM_BOAT.get(), BlockRegistry.PALM_PLANKS.get());
         this.chestBoat(ItemRegistry.PALM_CHEST_BOAT.get(), ItemRegistry.PALM_BOAT.get());
         this.hangingSign(ItemRegistry.PALM_HANGING_SIGN.get(), BlockRegistry.STRIPPED_PALM_LOG.get());
@@ -154,47 +146,24 @@ public class RecipeDataGenerator extends RecipeProvider {
                 .unlockedBy("has_mud", this.has(Blocks.MUD))
                 .unlockedBy("has_sand", this.has(Blocks.SAND))
                 .save(this.output);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.SMOOTH_WEATHERED_SANDSTONE_SLAB.get(), BlockRegistry.SMOOTH_WEATHERED_SANDSTONE.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.SMOOTH_WEATHERED_SANDSTONE_STAIRS.get(), BlockRegistry.SMOOTH_WEATHERED_SANDSTONE.get());
         this.woodFromLogs(BlockRegistry.STRIPPED_PALM_WOOD.get(), BlockRegistry.STRIPPED_PALM_LOG.get());
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(BlockRegistry.WEATHERED_SANDSTONE.get()),
-                        RecipeCategory.BUILDING_BLOCKS, BlockRegistry.SMOOTH_WEATHERED_SANDSTONE.get(), 0.1F, 200)
-                .unlockedBy("has_weathered_sandstone", this.has(BlockRegistry.WEATHERED_SANDSTONE.get()))
+
+
+        this.shaped(RecipeCategory.FOOD, Blocks.CAKE)
+                .define('M', ItemTagRegistry.MILK)
+                .define('S', Items.SUGAR)
+                .define('W', Items.WHEAT)
+                .define('E', Items.EGG)
+                .pattern("MMM")
+                .pattern("SES")
+                .pattern("WWW")
+                .unlockedBy("has_egg", this.has(Items.EGG))
                 .save(this.output);
-        this.shaped(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE.get())
-                .define('S', Blocks.SANDSTONE)
-                .define('C', Blocks.COARSE_DIRT)
-                .pattern("CS")
-                .pattern("SC")
-                .unlockedBy("has_sandstone", this.has(Blocks.SANDSTONE))
+        this.shapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.PACKED_MUD)
+                .requires(ItemTagRegistry.MUD)
+                .requires(Items.WHEAT)
+                .unlockedBy("has_mud", this.has(ItemTagRegistry.MUD))
                 .save(this.output);
-        this.slabBuilder(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_SLAB.get(),
-                        Ingredient.of(BlockRegistry.WEATHERED_SANDSTONE.get(), BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get()))
-                .unlockedBy("has_weathered_sandstone", this.has(BlockRegistry.WEATHERED_SANDSTONE.get()))
-                .unlockedBy("has_chiseled_weathered_sandstone", this.has(BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get()))
-                .save(this.output);
-        this.stairBuilder(BlockRegistry.WEATHERED_SANDSTONE_STAIRS.get(),
-                        Ingredient.of(BlockRegistry.WEATHERED_SANDSTONE.get(), BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get()))
-                .unlockedBy("has_weathered_sandstone", this.has(BlockRegistry.WEATHERED_SANDSTONE.get()))
-                .unlockedBy("has_chiseled_weathered_sandstone", this.has(BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get()))
-                .unlockedBy("has_cut_weathered_sandstone", this.has(BlockRegistry.CUT_WEATHERED_SANDSTONE.get()))
-                .save(this.output);
-        this.wall(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_WALL.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_SLAB.get(), BlockRegistry.WEATHERED_SANDSTONE.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_STAIRS.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_WALL.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.cut(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_SLAB.get(), BlockRegistry.WEATHERED_SANDSTONE.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_SLAB.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_SLAB.get(), BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get(), 2);
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_STAIRS.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_STAIRS.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_STAIRS.get(), BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get());
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_WALL.get(), BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_WALL.get(), BlockRegistry.CUT_WEATHERED_SANDSTONE.get());
-        this.stonecutterResultFromBase(RecipeCategory.DECORATIONS, BlockRegistry.WEATHERED_SANDSTONE_BRICK_WALL.get(), BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get());
     }
 
 

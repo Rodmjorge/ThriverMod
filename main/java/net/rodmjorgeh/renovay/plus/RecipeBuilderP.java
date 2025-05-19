@@ -1,4 +1,4 @@
-package net.rodmjorgeh.renovay.plus.data.recipes;
+package net.rodmjorgeh.renovay.plus;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeBuilder;

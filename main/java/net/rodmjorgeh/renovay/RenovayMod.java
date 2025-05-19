@@ -1,6 +1,8 @@
 package net.rodmjorgeh.renovay;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +24,7 @@ import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.FoliagePlacerRe
 import net.rodmjorgeh.renovay.world.area.areagen.feature.placers.TrunkPlacerRegistry;
 import net.rodmjorgeh.renovay.world.item.CreativeModeTabRegistry;
 import net.rodmjorgeh.renovay.world.item.ItemRegistry;
+import net.rodmjorgeh.renovay.world.area.maps.MapDecorationTypeRegistry;
 import org.slf4j.Logger;
 
 @Mod(RenovayMod.MOD_ID)
@@ -43,6 +46,7 @@ public class RenovayMod {
         TreeDecoratorsRegistry.register(bus);
         LootModifierRegistry.register(bus);
         CriteriaTriggerRegistry.register(bus);
+        MapDecorationTypeRegistry.register(bus);
 
         bus.addListener(CreativeModeTabRegistry::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);

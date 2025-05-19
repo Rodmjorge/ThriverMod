@@ -4,7 +4,9 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -33,7 +35,19 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropSelf(BlockRegistry.CHISELED_WEATHERED_SANDSTONE.get());
+        this.add(BlockRegistry.BEIGE_BANNER.get(), x -> this.createBannerDrop(x));
+        this.add(BlockRegistry.BEIGE_BED.get(), x -> this.createSinglePropConditionTable(x, BedBlock.PART, BedPart.HEAD));
+        this.add(BlockRegistry.BEIGE_CANDLE.get(), x -> this.createCandleDrops(x));
+        this.add(BlockRegistry.BEIGE_CANDLE_CAKE.get(), x -> createCandleCakeDrops(BlockRegistry.BEIGE_CANDLE.get()));
+        this.dropSelf(BlockRegistry.BEIGE_CARPET.get());
+        this.dropSelf(BlockRegistry.BEIGE_CONCRETE.get());
+        this.dropSelf(BlockRegistry.BEIGE_CONCRETE_POWDER.get());
+        this.dropSelf(BlockRegistry.BEIGE_GLAZED_TERRACOTTA.get());
+        this.add(BlockRegistry.BEIGE_SHULKER_BOX.get(), x -> this.createShulkerBoxDrop(x));
+        this.dropWhenSilkTouch(BlockRegistry.BEIGE_STAINED_GLASS.get());
+        this.dropWhenSilkTouch(BlockRegistry.BEIGE_STAINED_GLASS_PANE.get());
+        this.dropSelf(BlockRegistry.BEIGE_TERRACOTTA.get());
+        this.dropSelf(BlockRegistry.BEIGE_WOOL.get());
         this.add(BlockRegistry.COCONUT.get(),
                 x -> LootTable.lootTable()
                         .withPool(
@@ -57,9 +71,6 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.CRACKED_MUD_BRICKS.get());
         this.dropSelf(BlockRegistry.CRACKED_RED_SANDSTONE_BRICKS.get());
         this.dropSelf(BlockRegistry.CRACKED_SANDSTONE_BRICKS.get());
-        this.dropSelf(BlockRegistry.CRACKED_WEATHERED_SANDSTONE_BRICKS.get());
-        this.dropSelf(BlockRegistry.CUT_WEATHERED_SANDSTONE.get());
-        this.add(BlockRegistry.CUT_WEATHERED_SANDSTONE_SLAB.get(), x -> this.createSlabItemTable(x));
         this.dropSelf(BlockRegistry.PALM_BUTTON.get());
         this.add(BlockRegistry.PALM_DOOR.get(), x -> this.createDoorTable(x));
         this.dropSelf(BlockRegistry.PALM_FENCE.get());
@@ -86,19 +97,8 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.SANDSTONE_BRICK_STAIRS.get());
         this.dropSelf(BlockRegistry.SANDSTONE_BRICK_WALL.get());
         this.dropSelf(BlockRegistry.SILT_MUD.get());
-        this.dropSelf(BlockRegistry.SMOOTH_WEATHERED_SANDSTONE.get());
-        this.add(BlockRegistry.SMOOTH_WEATHERED_SANDSTONE_SLAB.get(), x -> this.createSlabItemTable(x));
-        this.dropSelf(BlockRegistry.SMOOTH_WEATHERED_SANDSTONE_STAIRS.get());
         this.dropSelf(BlockRegistry.STRIPPED_PALM_LOG.get());
         this.dropSelf(BlockRegistry.STRIPPED_PALM_WOOD.get());
         this.add(BlockRegistry.TALL_REEDS.get(), this.createDoublePlantShearsDrop(BlockRegistry.REEDS.get()));
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE.get());
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE_BRICKS.get());
-        this.add(BlockRegistry.WEATHERED_SANDSTONE_BRICK_SLAB.get(), x -> this.createSlabItemTable(x));
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE_BRICK_STAIRS.get());
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE_BRICK_WALL.get());
-        this.add(BlockRegistry.WEATHERED_SANDSTONE_SLAB.get(), x -> this.createSlabItemTable(x));
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE_STAIRS.get());
-        this.dropSelf(BlockRegistry.WEATHERED_SANDSTONE_WALL.get());
     }
 }
