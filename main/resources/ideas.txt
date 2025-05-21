@@ -45,7 +45,9 @@ Desert Ideas:
     - Cracked Mud Bricks
     - Doll's Eyes
       : New flower to be dug from Sniffers on Silt Mud / Mud or Sand from Beaches;
-      : Can be used to craft a new Beige Dye.
+      : Can be used to craft a new Beige Dye;
+      : While standing on it, the screen will gradually darken via fog. After 5 seconds of standing on the same plant,
+        you get Blindness for 30 seconds. You will also get an advancement for this.
     - Beige Banner
     - Beige Bed
     - Beige Candle

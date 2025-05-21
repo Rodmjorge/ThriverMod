@@ -1,9 +1,12 @@
 {
   "values": {
-    "renovay:coir": {
+    "thriver:reeds": {
+      "burn_time": 100
+    },
+    "thriver:coir": {
       "burn_time": 40
     },
-    "renovay:coir_mat": {
+    "thriver:coir_mat": {
       "burn_time": 240
     }
   }

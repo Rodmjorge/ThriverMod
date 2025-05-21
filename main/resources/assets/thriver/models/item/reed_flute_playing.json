@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thriver:item/reed_flute"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, 55, 135 ],
+      "translation": [ 1, 1, -2.75 ],
+      "scale": [ 0.7, 0.7, 0.7 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, -125, -135 ],
+      "translation": [ 1, 1, -2.75 ],
+      "scale": [ 0.7, 0.7, 0.7 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, 120, 130 ],
+      "translation": [ -2.5, -3, -10 ],
+      "scale": [ 1, 1, 1 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, -70, -130 ],
+      "translation": [ -1.5, -3, -10 ],
+      "scale": [ 1, 1, 1 ]
+    }
+  }
+}

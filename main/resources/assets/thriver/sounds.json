@@ -1,0 +1,8 @@
+{
+  "item.reed_flute.play": {
+    "subtitle": "sounds.thriver.item.reed_flute.play",
+    "sounds": [
+      "thriver:reed_flute_play"
+    ]
+  }
+}

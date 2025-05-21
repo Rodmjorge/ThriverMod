@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "package": "net.rodmjorgeh.thriver.plus",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockStatePropertiesP",
+    "CropBlockP",
+    "DyeColorP",
+    "EquipmentAssetsP",
+    "FarmBlockP",
+    "LeavesBlockP",
+    "LocalPlayerP",
+    "MapBannerP",
+    "MapColorP",
+    "MushroomCowP",
+    "RecipeBuilderP",
+    "SheepP",
+    "SheetsP",
+    "ShulkerBoxBlockP"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

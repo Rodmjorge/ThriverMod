@@ -1,0 +1,33 @@
+{
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "thriver:block/coconut_stage2",
+    "coconut": "thriver:block/coconut_stage2"
+  },
+  "elements": [
+    {
+      "from": [4.5, 6, 4.5],
+      "to": [11.5, 14, 11.5],
+      "faces": {
+        "north": {"uv": [0, 1, 7, 9], "texture": "#coconut"},
+        "east": {"uv": [0, 1, 7, 9], "texture": "#coconut"},
+        "south": {"uv": [0, 1, 7, 9], "texture": "#coconut"},
+        "west": {"uv": [0, 1, 7, 9], "texture": "#coconut"},
+        "up": {"uv": [9, 0, 16, 7], "texture": "#coconut"},
+        "down": {"uv": [9, 7, 16, 14], "texture": "#coconut"}
+      }
+    },
+    {
+      "from": [8, 14, 7],
+      "to": [8, 16, 9],
+      "faces": {
+        "north": {"uv": [14, 9, 14, 11], "texture": "#coconut"},
+        "east": {"uv": [14, 14, 16, 16], "texture": "#coconut"},
+        "south": {"uv": [16, 9, 16, 11], "texture": "#coconut"},
+        "west": {"uv": [14, 14, 16, 16], "texture": "#coconut"},
+        "up": {"uv": [14, 9, 14, 7], "texture": "#coconut"},
+        "down": {"uv": [14, 7, 14, 9], "texture": "#coconut"}
+      }
+    }
+  ]
+}

@@ -1,15 +1,15 @@
 {
   "values": {
-    "renovay:palm_leaves": {
+    "thriver:palm_leaves": {
       "chance": 0.3
     },
-    "renovay:palm_sprout": {
+    "thriver:palm_sprout": {
       "chance": 0.3
     },
-    "renovay:coconut": {
+    "thriver:coconut": {
       "chance": 0.65
     },
-    "renovay:coir": {
+    "thriver:coir": {
       "chance": 1
     }
   }
