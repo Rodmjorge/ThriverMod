@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Mixin(MushroomCow.class)
-public class MushroomCowP {
+public class IMushroomCow {
 
     @Shadow @Nullable private SuspiciousStewEffects stewEffects;
 

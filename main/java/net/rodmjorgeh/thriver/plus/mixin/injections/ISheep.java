@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Sheep.class)
-public class SheepP {
+public class ISheep {
 
     @Shadow @Final private static EntityDataAccessor<Byte> DATA_WOOL_ID;
     private static byte NEW_AMOUNT = 32;

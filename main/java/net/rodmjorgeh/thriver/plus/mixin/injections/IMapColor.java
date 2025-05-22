@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.world.level.material.MapColor;
 import org.spongepowered.asm.mixin.Final;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(MapColor.class)
-public class MapColorP {
+public class IMapColor {
 
     @Shadow @Final @Mutable
     private static final MapColor[] MATERIAL_COLORS = new MapColor[256];

@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.Sheets;
@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Mixin(Sheets.class)
-public class SheetsP {
+public class ISheets {
 
     /**
      * All this mixin class is doing is making sure that when any colored block uses one of my custom colors, it goes

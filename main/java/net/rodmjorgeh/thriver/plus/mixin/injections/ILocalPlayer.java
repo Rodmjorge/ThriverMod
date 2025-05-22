@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LocalPlayer.class)
-public class LocalPlayerP {
+public class ILocalPlayer {
 
     @Inject(method = "openTextEdit", at = @At("HEAD"), cancellable = true)
     public void openTextEdit(SignBlockEntity blockEntity, boolean isFrontText, CallbackInfo ci) {

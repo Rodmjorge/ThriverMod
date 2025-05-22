@@ -37,9 +37,11 @@ public class GlobalLootDataGenerator extends GlobalLootModifierProvider {
                 }, new LootPool[] {
                     LootPool.lootPool()
                             .setRolls(UniformGenerator.between(2.0F, 3.0F))
-                            .add(EmptyLootItem.emptyItem().setWeight(5))
-                            .add(LootItem.lootTableItem(BlockRegistry.REEDS.get()).setWeight(3)
-                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F))))
+                            .add(EmptyLootItem.emptyItem().setWeight(6))
+                            .add(LootItem.lootTableItem(BlockRegistry.REEDS.get()).setWeight(2)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
+                            .add(LootItem.lootTableItem(BlockRegistry.SANDSTONE_BRICKS.get()).setWeight(1)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))))
                             .name(POOL_NAME)
                             .build()
                 }));

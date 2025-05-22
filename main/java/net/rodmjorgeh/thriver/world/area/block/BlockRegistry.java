@@ -176,7 +176,7 @@ public class BlockRegistry {
             CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final Supplier<Block> DOLLS_EYES = register("dolls_eyes",
-            () -> new FlowerBlock(MobEffects.NIGHT_VISION, 20.0F, BlockBehaviour.Properties.of()
+            () -> new DollsEyesBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
                     .instabreak()

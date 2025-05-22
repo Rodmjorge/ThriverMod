@@ -13,6 +13,7 @@ import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.client.data.models.BlockModelDataGenerator;
 import net.rodmjorgeh.thriver.client.renderer.EntityRendererRegistry;
 import net.rodmjorgeh.thriver.client.renderer.blockentity.BlockEntityRendererRegistry;
+import net.rodmjorgeh.thriver.world.area.GameRuleRegistry;
 import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
 import net.rodmjorgeh.thriver.world.area.block.entity.BlockEntityAdderRegistry;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.WoodTypeR;
@@ -22,6 +23,7 @@ public class BusEvents {
     public static void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             BlockEntityAdderRegistry.bootstrap();
+            GameRuleRegistry.registerAll();
 
             AxeItem.STRIPPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPPABLES)
                     .put(BlockRegistry.PALM_LOG.get(), BlockRegistry.STRIPPED_PALM_LOG.get())

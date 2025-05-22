@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import javax.annotation.Nullable;
 
 @Mixin(ShulkerBoxBlock.class)
-public class ShulkerBoxBlockP {
+public class IShulkerBoxBlock {
 
     @Inject(method = "getBlockByColor", at = @At("HEAD"), cancellable = true)
     private static void getBlockByColor(@Nullable DyeColor color, CallbackInfoReturnable<Block> cir) {

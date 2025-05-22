@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -9,15 +9,11 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.material.MapColor;
 import net.rodmjorgeh.thriver.world.area.maps.MapColorR;
-import net.rodmjorgeh.thriver.world.item.DyeColorR;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +21,7 @@ import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 @Mixin(DyeColor.class)
-public class DyeColorP {
+public class IDyeColor {
 
     @Shadow @Final @Mutable
     public static DyeColor[] $VALUES;

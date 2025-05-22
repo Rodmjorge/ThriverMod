@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.DyeColor;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MapBanner.class)
-public class MapBannerP {
+public class IMapBanner {
 
     @Inject(method = "getDecoration", at = @At("HEAD"), cancellable = true)
     public void getDecoration(CallbackInfoReturnable<Holder<MapDecorationType>> cir) {

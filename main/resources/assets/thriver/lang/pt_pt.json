@@ -58,6 +58,8 @@
   "death.attack.coconut.player": "%1$s foi fortemente atingido na cabeça por um coco que caiu enquanto lutava com %2$s",
   "entity.thriver.palm_boat": "Barco de palmeira",
   "entity.thriver.palm_chest_boat": "Barco de palmeira com baú",
+  "gamerule.doDollsEyesBlind": "Erva-de-São-Cristóvão transmite o efeito de Cegueira",
+  "gamerule.doDollsEyesBlind.description": "Quando qualquer entidade (isto incluí o jogador) encontra-se em cima de uma erva-de-São-Cristóvão totalmente crescida, este receberá o efeito de Cegueira depois de passarem 5 segundos.",
   "item.thriver.beige_bundle": "Sacola bege",
   "item.thriver.beige_dye": "Corante bege",
   "item.thriver.coconut_beetroot_soup": "Sopa de beterraba em tigela de coco",

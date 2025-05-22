@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus;
+package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmBlock.class)
-public class FarmBlockP {
+public class IFarmBlock {
 
     /**
      * Adds a new property for the {@link FarmBlock} block state, to know if there's a Silt Mud block below it. This is
-     * used in {@link CropBlockP}, because if the Farmland is silty, then the crops grow faster by 2.5x.
+     * used in {@link ICropBlock}, because if the Farmland is silty, then the crops grow faster by 2.5x.
      */
     private static final BooleanProperty SILTY = BlockStatePropertyRegistry.SILTY;
 
