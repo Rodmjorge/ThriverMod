@@ -5,7 +5,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.rodmjorgeh.thriver.ThriverMod;
-import net.rodmjorgeh.thriver.world.item.DyeColorR;
+import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,7 +25,7 @@ public interface IEquipmentAssets {
         if (name.endsWith("_carpet")) {
 
             String dyeName = name.replace("_carpet", "");
-            if (Arrays.stream(DyeColor.values()).anyMatch(x -> x.getSerializedName().equals(dyeName) && DyeColorR.isCustomColor(x))) {
+            if (Arrays.stream(DyeColor.values()).anyMatch(x -> x.getSerializedName().equals(dyeName) && DyeColorThr.isCustomColor(x))) {
                 cir.setReturnValue(ResourceKey.create(EquipmentAssets.ROOT_ID, ThriverMod.createLoc(name)));
             }
         }

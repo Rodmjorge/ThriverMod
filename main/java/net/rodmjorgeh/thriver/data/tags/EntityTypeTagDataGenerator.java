@@ -5,7 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.rodmjorgeh.thriver.ThriverMod;
-import net.rodmjorgeh.thriver.world.area.entity.EntityRegistry;
+import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,6 +17,6 @@ public class EntityTypeTagDataGenerator extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(EntityTypeTags.BOAT).add(EntityRegistry.PALM_BOAT.get());
+        this.tag(EntityTypeTags.BOAT).add(EntityReg.PALM_BOAT.get());
     }
 }

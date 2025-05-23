@@ -9,10 +9,10 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.rodmjorgeh.thriver.ThriverMod;
-import net.rodmjorgeh.thriver.util.tags.BlockTagRegistry;
-import net.rodmjorgeh.thriver.util.tags.ItemTagRegistry;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.util.tags.BlockTagReg;
+import net.rodmjorgeh.thriver.util.tags.ItemTagReg;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -25,14 +25,14 @@ public class ItemTagDataGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(ItemTags.BANNERS).add(ItemRegistry.BEIGE_BANNER.get());
-        this.tag(ItemTags.BOATS).add(ItemRegistry.PALM_BOAT.get());
-        this.tag(ItemTags.BUNDLES).add(ItemRegistry.BEIGE_BUNDLE.get());
-        this.tag(ItemTags.CAMEL_FOOD).add(BlockRegistry.REEDS.get().asItem());
-        this.tag(ItemTags.CHEST_BOATS).add(ItemRegistry.PALM_CHEST_BOAT.get());
+        this.tag(ItemTags.BANNERS).add(ItemReg.BEIGE_BANNER.get());
+        this.tag(ItemTags.BOATS).add(ItemReg.PALM_BOAT.get());
+        this.tag(ItemTags.BUNDLES).add(ItemReg.BEIGE_BUNDLE.get());
+        this.tag(ItemTags.CAMEL_FOOD).add(BlockReg.REEDS.get().asItem());
+        this.tag(ItemTags.CHEST_BOATS).add(ItemReg.PALM_CHEST_BOAT.get());
 
-        this.tag(ItemTagRegistry.MILK).add(
-                ItemRegistry.COCONUT_MILK.get(),
+        this.tag(ItemTagReg.MILK).add(
+                ItemReg.COCONUT_MILK.get(),
                 Items.MILK_BUCKET
         );
 
@@ -60,7 +60,7 @@ public class ItemTagDataGenerator extends ItemTagsProvider {
         this.copy(BlockTags.WOOL, ItemTags.WOOL);
         this.copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
 
-        this.copy(BlockTagRegistry.MUD, ItemTagRegistry.MUD);
-        this.copy(BlockTagRegistry.PALM_LOGS, ItemTagRegistry.PALM_LOGS);
+        this.copy(BlockTagReg.MUD, ItemTagReg.MUD);
+        this.copy(BlockTagReg.PALM_LOGS, ItemTagReg.PALM_LOGS);
     }
 }

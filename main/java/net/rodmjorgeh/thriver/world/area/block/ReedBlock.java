@@ -22,7 +22,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.rodmjorgeh.thriver.util.tags.BlockTagRegistry;
+import net.rodmjorgeh.thriver.util.tags.BlockTagReg;
 
 public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, SimpleWaterloggedBlock {
     public static final MapCodec<ReedBlock> CODEC = simpleCodec(ReedBlock::new);
@@ -61,7 +61,7 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(BlockTagRegistry.MUD);
+        return state.is(BlockTagReg.MUD);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
-        BlockState checkState = BlockRegistry.TALL_REEDS.get().defaultBlockState();
+        BlockState checkState = BlockReg.TALL_REEDS.get().defaultBlockState();
         int i = state.getValue(HALF) == DoubleBlockHalf.LOWER ? 2 : 1;
         return checkState.canSurvive(level, pos.below(2 - i)) && level.isEmptyBlock(pos.above(i));
     }
@@ -104,7 +104,7 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
         int i = state.getValue(HALF) == DoubleBlockHalf.LOWER ? 0 : 1;
-        TallReedBlock.place(level, pos.below(i), BlockRegistry.TALL_REEDS.get().defaultBlockState(), 2, true);
+        TallReedBlock.place(level, pos.below(i), BlockReg.TALL_REEDS.get().defaultBlockState(), 2, true);
     }
 
     @Override

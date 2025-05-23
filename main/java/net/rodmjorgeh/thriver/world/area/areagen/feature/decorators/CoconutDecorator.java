@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.block.CoconutBlock;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class CoconutDecorator extends TreeDecorator {
     }
 
     @Override
-    protected TreeDecoratorType<?> type() { return TreeDecoratorsRegistry.COCONUT.get(); }
+    protected TreeDecoratorType<?> type() { return TreeDecoratorsReg.COCONUT.get(); }
 
     @Override
     public void place(Context context) {
@@ -38,7 +38,7 @@ public class CoconutDecorator extends TreeDecorator {
                             if (random.nextDouble() > 0.45F) {
                                 BlockPos belowLeaves = pos.below();
                                 if (context.isAir(belowLeaves)) {
-                                    context.setBlock(belowLeaves, BlockRegistry.COCONUT.get()
+                                    context.setBlock(belowLeaves, BlockReg.COCONUT.get()
                                             .defaultBlockState()
                                             .setValue(CoconutBlock.AGE, Integer.valueOf(random.nextInt(3)))
                                     );

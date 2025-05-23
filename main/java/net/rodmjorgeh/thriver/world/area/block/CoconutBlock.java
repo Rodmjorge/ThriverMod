@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
-import net.rodmjorgeh.thriver.world.area.entity.damage.DamageSourcesR;
+import net.rodmjorgeh.thriver.world.area.entity.damage.DamageSourcesThr;
 
 public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     public static final MapCodec<CoconutBlock> CODEC = simpleCodec(CoconutBlock::new);
@@ -76,7 +76,7 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockState stateAbove = level.getBlockState(pos.above());
         if (isValidBonemealTarget(level, pos, state)) {
-            return stateAbove.is(BlockRegistry.PALM_LEAVES.get());
+            return stateAbove.is(BlockReg.PALM_LEAVES.get());
         }
 
         return true;
@@ -118,7 +118,7 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
 
     @Override
     public DamageSource getFallDamageSource(Entity entity) {
-        return DamageSourcesR.coconut(entity);
+        return DamageSourcesThr.coconut(entity);
     }
 
     @Override

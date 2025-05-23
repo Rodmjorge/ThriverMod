@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 public class DollsEyesCropBlock extends CropBlock {
     public static final MapCodec<DollsEyesCropBlock> CODEC = simpleCodec(DollsEyesCropBlock::new);
@@ -47,12 +47,12 @@ public class DollsEyesCropBlock extends CropBlock {
 
     @Override
     public BlockState getStateForAge(int age) {
-        return (age == MAX_AGE) ? BlockRegistry.DOLLS_EYES.get().defaultBlockState() : super.getStateForAge(age);
+        return (age == MAX_AGE) ? BlockReg.DOLLS_EYES.get().defaultBlockState() : super.getStateForAge(age);
     }
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ItemRegistry.DOLLS_EYE_SEEDS.get();
+        return ItemReg.DOLLS_EYE_SEEDS.get();
     }
 
     @Override

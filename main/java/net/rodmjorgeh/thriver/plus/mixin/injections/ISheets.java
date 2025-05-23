@@ -6,7 +6,7 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.rodmjorgeh.thriver.ThriverMod;
-import net.rodmjorgeh.thriver.world.item.DyeColorR;
+import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -30,7 +30,7 @@ public class ISheets {
     @Shadow @Final @Mutable
     public static final Material[] BED_TEXTURES = Arrays.stream(DyeColor.values())
             .sorted(Comparator.comparingInt(DyeColor::getId))
-            .map(x -> new Material(Sheets.BED_SHEET, DyeColorR.isCustomColor(x)
+            .map(x -> new Material(Sheets.BED_SHEET, DyeColorThr.isCustomColor(x)
                     ? ThriverMod.createLoc("entity/bed/" + x.getName())
                     : ResourceLocation.withDefaultNamespace("entity/bed/" + x.getName())))
             .toArray(Material[]::new);
@@ -38,21 +38,21 @@ public class ISheets {
     @Shadow @Final @Mutable
     public static final List<Material> SHULKER_TEXTURE_LOCATION = Arrays.stream(DyeColor.values())
             .sorted(Comparator.comparingInt(DyeColor::getId))
-            .map(x -> new Material(Sheets.SHULKER_SHEET, DyeColorR.isCustomColor(x)
+            .map(x -> new Material(Sheets.SHULKER_SHEET, DyeColorThr.isCustomColor(x)
                     ? ThriverMod.createLoc("entity/shulker/shulker_" + x.getName())
                     : ResourceLocation.withDefaultNamespace("entity/shulker/shulker_" + x.getName())))
             .collect(ImmutableList.toImmutableList());
 
     @Inject(method = "colorToResourceMaterial", at = @At("HEAD"), cancellable = true)
     private static void colorToResourceMaterial(DyeColor color, CallbackInfoReturnable<ResourceLocation> cir) {
-        if (DyeColorR.isCustomColor(color)) {
+        if (DyeColorThr.isCustomColor(color)) {
             cir.setReturnValue(ThriverMod.createLoc(color.getName()));
         }
     }
 
     @Inject(method = "colorToShulkerMaterial", at = @At("HEAD"), cancellable = true)
     private static void colorToShulkerMaterial(DyeColor color, CallbackInfoReturnable<ResourceLocation> cir) {
-        if (DyeColorR.isCustomColor(color)) {
+        if (DyeColorThr.isCustomColor(color)) {
             cir.setReturnValue(ThriverMod.createLoc("shulker_" + color.getName()));
         }
     }

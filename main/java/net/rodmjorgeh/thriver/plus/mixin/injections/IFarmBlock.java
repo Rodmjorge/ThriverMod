@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
-import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyRegistry;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
+import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyReg;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,7 +23,7 @@ public class IFarmBlock {
      * Adds a new property for the {@link FarmBlock} block state, to know if there's a Silt Mud block below it. This is
      * used in {@link ICropBlock}, because if the Farmland is silty, then the crops grow faster by 2.5x.
      */
-    private static final BooleanProperty SILTY = BlockStatePropertyRegistry.SILTY;
+    private static final BooleanProperty SILTY = BlockStatePropertyReg.SILTY;
 
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/level/block/FarmBlock;registerDefaultState(Lnet/minecraft/world/level/block/state/BlockState;)V"))
@@ -38,7 +38,7 @@ public class IFarmBlock {
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
         FarmBlock instance = (FarmBlock)(Object)this;
         BlockState stateBelow = level.getBlockState(pos.below());
-        boolean isSilty = stateBelow.is(BlockRegistry.SILT_MUD.get());
+        boolean isSilty = stateBelow.is(BlockReg.SILT_MUD.get());
 
         if (state.getValue(FarmBlock.MOISTURE) == 7 &&
                 (instance.isNearWater(level, pos) || level.isRainingAt(pos.above()))) {

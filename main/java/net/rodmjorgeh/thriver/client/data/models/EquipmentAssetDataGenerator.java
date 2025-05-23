@@ -4,12 +4,11 @@ import net.minecraft.client.data.models.EquipmentAssetProvider;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.rodmjorgeh.thriver.ThriverMod;
-import net.rodmjorgeh.thriver.world.item.DyeColorR;
+import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -30,7 +29,7 @@ public class EquipmentAssetDataGenerator extends EquipmentAssetProvider {
         for (Map.Entry<DyeColor, ResourceKey<EquipmentAsset>> entry : EquipmentAssets.CARPETS.entrySet()) {
             DyeColor color = entry.getKey();
 
-            if (DyeColorR.isCustomColor(color)) {
+            if (DyeColorThr.isCustomColor(color)) {
                 ResourceKey key = ResourceKey.create(EquipmentAssets.ROOT_ID, ThriverMod.createLocFromKey(entry.getValue()));
                 output.accept(key,
                         EquipmentClientInfo.builder()

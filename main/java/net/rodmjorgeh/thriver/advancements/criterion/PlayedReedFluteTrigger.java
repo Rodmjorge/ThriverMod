@@ -9,7 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.rodmjorgeh.thriver.advancements.CriteriaTriggerRegistry;
+import net.rodmjorgeh.thriver.advancements.CriteriaTriggerReg;
 
 import java.util.Optional;
 
@@ -41,7 +41,7 @@ public class PlayedReedFluteTrigger extends SimpleCriterionTrigger<PlayedReedFlu
         }
 
         public static Criterion<PlayedReedFluteTrigger.TriggerInstance> playedReedFlute(ItemPredicate item, MinMaxBounds.Ints mobAmount) {
-            return CriteriaTriggerRegistry.PLAYED_REED_FLUTE.get().createCriterion(
+            return CriteriaTriggerReg.PLAYED_REED_FLUTE.get().createCriterion(
                     new PlayedReedFluteTrigger.TriggerInstance(Optional.empty(), Optional.of(item), mobAmount)
             );
         }

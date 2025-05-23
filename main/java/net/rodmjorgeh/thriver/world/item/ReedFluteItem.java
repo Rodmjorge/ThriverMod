@@ -16,8 +16,8 @@ import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.rodmjorgeh.thriver.advancements.CriteriaTriggerRegistry;
-import net.rodmjorgeh.thriver.sound.SoundEventRegistry;
+import net.rodmjorgeh.thriver.advancements.CriteriaTriggerReg;
+import net.rodmjorgeh.thriver.sound.SoundEventReg;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -44,7 +44,7 @@ public class ReedFluteItem extends Item {
 
         player.startUsingItem(hand);
         player.getCooldowns().addCooldown(item, this.getCooldown());
-        level.playSound(player, player.getOnPos(), SoundEventRegistry.REED_FLUTE_PLAY.get(), SoundSource.RECORDS);
+        level.playSound(player, player.getOnPos(), SoundEventReg.REED_FLUTE_PLAY.get(), SoundSource.RECORDS);
 
         if (level instanceof ServerLevel) {
             Vec3 playerPos = player.position();
@@ -70,7 +70,7 @@ public class ReedFluteItem extends Item {
 
             int i = (int)getNeutralMobs(mobsNear).count();
             if (i > 0 && player instanceof ServerPlayer serverPlayer) {
-                CriteriaTriggerRegistry.PLAYED_REED_FLUTE.get().trigger(serverPlayer, item, i);
+                CriteriaTriggerReg.PLAYED_REED_FLUTE.get().trigger(serverPlayer, item, i);
             }
         }
 

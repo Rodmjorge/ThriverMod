@@ -7,23 +7,23 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.rodmjorgeh.thriver.advancements.CriteriaTriggerRegistry;
-import net.rodmjorgeh.thriver.client.model.ModelLayersR;
-import net.rodmjorgeh.thriver.client.renderer.blockentity.SpecialModeRendererRegistry;
-import net.rodmjorgeh.thriver.data.loot.modifiers.LootModifierRegistry;
-import net.rodmjorgeh.thriver.sound.SoundEventRegistry;
+import net.rodmjorgeh.thriver.advancements.CriteriaTriggerReg;
+import net.rodmjorgeh.thriver.client.model.ModelLayersThr;
+import net.rodmjorgeh.thriver.client.renderer.blockentity.SpecialModeRendererReg;
+import net.rodmjorgeh.thriver.data.loot.modifiers.LootModifierReg;
+import net.rodmjorgeh.thriver.sound.SoundEventReg;
 import net.rodmjorgeh.thriver.util.BusEvents;
 import net.rodmjorgeh.thriver.data.DatagenEvents;
-import net.rodmjorgeh.thriver.world.area.areagen.feature.FeatureRegistry;
-import net.rodmjorgeh.thriver.world.area.areagen.feature.decorators.TreeDecoratorsRegistry;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
-import net.rodmjorgeh.thriver.world.area.block.entity.BlockEntityRegistry;
-import net.rodmjorgeh.thriver.world.area.entity.EntityRegistry;
-import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.FoliagePlacerRegistry;
-import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.TrunkPlacerRegistry;
-import net.rodmjorgeh.thriver.world.item.CreativeModeTabRegistry;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
-import net.rodmjorgeh.thriver.world.area.maps.MapDecorationTypeRegistry;
+import net.rodmjorgeh.thriver.world.area.areagen.feature.FeatureReg;
+import net.rodmjorgeh.thriver.world.area.areagen.feature.decorators.TreeDecoratorsReg;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
+import net.rodmjorgeh.thriver.world.area.block.entity.BlockEntityReg;
+import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
+import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.FoliagePlacerReg;
+import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.TrunkPlacerReg;
+import net.rodmjorgeh.thriver.world.item.CreativeModeTabReg;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
+import net.rodmjorgeh.thriver.world.area.maps.MapDecorationTypeReg;
 import org.slf4j.Logger;
 
 @Mod(ThriverMod.MOD_ID)
@@ -34,25 +34,25 @@ public class ThriverMod {
 
     public ThriverMod(IEventBus bus, ModContainer container)
     {
-        BlockRegistry.register(bus);
-        ItemRegistry.register(bus);
-        EntityRegistry.register(bus);
-        BlockEntityRegistry.register(bus);
-        SoundEventRegistry.register(bus);
-        FeatureRegistry.register(bus);
-        TrunkPlacerRegistry.register(bus);
-        FoliagePlacerRegistry.register(bus);
-        TreeDecoratorsRegistry.register(bus);
-        LootModifierRegistry.register(bus);
-        CriteriaTriggerRegistry.register(bus);
-        MapDecorationTypeRegistry.register(bus);
+        BlockReg.register(bus);
+        ItemReg.register(bus);
+        EntityReg.register(bus);
+        BlockEntityReg.register(bus);
+        SoundEventReg.register(bus);
+        FeatureReg.register(bus);
+        TrunkPlacerReg.register(bus);
+        FoliagePlacerReg.register(bus);
+        TreeDecoratorsReg.register(bus);
+        LootModifierReg.register(bus);
+        CriteriaTriggerReg.register(bus);
+        MapDecorationTypeReg.register(bus);
 
-        bus.addListener(CreativeModeTabRegistry::addToCreativeTab);
+        bus.addListener(CreativeModeTabReg::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);
         bus.addListener(BusEvents::onClientSetup);
         bus.addListener(DatagenEvents::onGatherDataClient);
-        bus.addListener(ModelLayersR::registerLayers);
-        bus.addListener(SpecialModeRendererRegistry::register);
+        bus.addListener(ModelLayersThr::registerLayers);
+        bus.addListener(SpecialModeRendererReg::register);
     }
 
     /**

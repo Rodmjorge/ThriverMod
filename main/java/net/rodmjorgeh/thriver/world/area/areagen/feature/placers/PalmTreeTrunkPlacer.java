@@ -30,7 +30,7 @@ public class PalmTreeTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    protected TrunkPlacerType<?> type() { return TrunkPlacerRegistry.PALM_TREE_TRUNK_PLACER.get(); }
+    protected TrunkPlacerType<?> type() { return TrunkPlacerReg.PALM_TREE_TRUNK_PLACER.get(); }
 
     /**
      * Method that places the log structure, simple as that. The parameter {@code pos} is the position of the sapling

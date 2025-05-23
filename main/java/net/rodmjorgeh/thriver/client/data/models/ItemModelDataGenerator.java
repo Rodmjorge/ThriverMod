@@ -7,7 +7,7 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 public class ItemModelDataGenerator {
 
@@ -18,18 +18,18 @@ public class ItemModelDataGenerator {
     }
 
     public void register() {
-        this.generator.generateBundleModels(ItemRegistry.BEIGE_BUNDLE.get());
-        this.generator.generateFlatItem(ItemRegistry.BEIGE_DYE.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_BEETROOT_SOUP.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_BOWL.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_MILK.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_MUSHROOM_STEW.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_RABBIT_STEW.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COCONUT_SUSPICIOUS_STEW.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.COIR.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.PALM_BOAT.get(), ModelTemplates.FLAT_ITEM);
-        this.generator.generateFlatItem(ItemRegistry.PALM_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
-        this.generateReedFlute(ItemRegistry.REED_FLUTE.get(), "playing");
+        this.generator.generateBundleModels(ItemReg.BEIGE_BUNDLE.get());
+        this.generator.generateFlatItem(ItemReg.BEIGE_DYE.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_BEETROOT_SOUP.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_BOWL.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_MILK.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_MUSHROOM_STEW.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_RABBIT_STEW.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COCONUT_SUSPICIOUS_STEW.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.COIR.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.PALM_BOAT.get(), ModelTemplates.FLAT_ITEM);
+        this.generator.generateFlatItem(ItemReg.PALM_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
+        this.generateReedFlute(ItemReg.REED_FLUTE.get(), "playing");
     }
 
     private void generateReedFlute(Item item, String adder) {

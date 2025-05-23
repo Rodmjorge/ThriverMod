@@ -25,14 +25,14 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.rodmjorgeh.thriver.util.tags.BlockTagRegistry;
-import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyRegistry;
+import net.rodmjorgeh.thriver.util.tags.BlockTagReg;
+import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyReg;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.TripleBlockStep;
 
 public class TallReedBlock extends BushBlock {
     public static final MapCodec<TallReedBlock> CODEC = simpleCodec(TallReedBlock::new);
 
-    public static final EnumProperty<TripleBlockStep> STEP = BlockStatePropertyRegistry.TRIPLE_BLOCK_STEP;
+    public static final EnumProperty<TripleBlockStep> STEP = BlockStatePropertyReg.TRIPLE_BLOCK_STEP;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private static final VoxelShape[] SHAPE_BY_STEP = new VoxelShape[] {
             Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0),
@@ -56,7 +56,7 @@ public class TallReedBlock extends BushBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(BlockTagRegistry.MUD);
+        return state.is(BlockTagReg.MUD);
     }
 
     @Override

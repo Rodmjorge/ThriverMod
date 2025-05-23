@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rodmjorgeh.thriver.plus.EntityAdder;
-import net.rodmjorgeh.thriver.world.area.GameRuleRegistry;
+import net.rodmjorgeh.thriver.world.area.GameRuleReg;
 
 public class DollsEyesBlock extends FlowerBlock {
 
@@ -27,7 +27,7 @@ public class DollsEyesBlock extends FlowerBlock {
                 && entity instanceof EntityAdder aEntity
                 && entity instanceof LivingEntity livingEntity) {
 
-            if ((serverLevel.getGameRules().getBoolean(GameRuleRegistry.RULE_DO_DOLLS_EYES_BLIND) || !(entity instanceof Player))
+            if ((serverLevel.getGameRules().getBoolean(GameRuleReg.RULE_DO_DOLLS_EYES_BLIND) || !(entity instanceof Player))
                 && !livingEntity.hasEffect(MobEffects.BLINDNESS)) {
                 aEntity.setIsInDollsEyes(true);
             }

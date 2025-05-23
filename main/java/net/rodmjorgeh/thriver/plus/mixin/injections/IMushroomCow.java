@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,7 +38,7 @@ public class IMushroomCow {
             locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     public void mobInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir, ItemStack stack) {
         MushroomCow cow = (MushroomCow)(Object)this;
-        boolean isCoconut = stack.is(ItemRegistry.COCONUT_BOWL.get());
+        boolean isCoconut = stack.is(ItemReg.COCONUT_BOWL.get());
 
         if ((stack.is(Items.BOWL) || isCoconut) && !cow.isBaby()) {
             boolean flag = (stewEffects != null);
@@ -47,14 +47,14 @@ public class IMushroomCow {
             if (flag) {
                 SuspiciousStewEffects.Entry effect = stewEffects.effects().getFirst();
 
-                stack2 = new ItemStack(isCoconut ? ItemRegistry.COCONUT_SUSPICIOUS_STEW.get() : Items.SUSPICIOUS_STEW);
+                stack2 = new ItemStack(isCoconut ? ItemReg.COCONUT_SUSPICIOUS_STEW.get() : Items.SUSPICIOUS_STEW);
                 stack2.set(DataComponents.SUSPICIOUS_STEW_EFFECTS,
                         new SuspiciousStewEffects(List.of(
                                 new SuspiciousStewEffects.Entry(effect.effect(), effect.duration() * (isCoconut ? 5 : 1)))));
 
                 stewEffects = null;
             } else {
-                stack2 = new ItemStack(isCoconut ? ItemRegistry.COCONUT_MUSHROOM_STEW.get() : Items.MUSHROOM_STEW);
+                stack2 = new ItemStack(isCoconut ? ItemReg.COCONUT_MUSHROOM_STEW.get() : Items.MUSHROOM_STEW);
             }
 
             ItemStack stack1 = ItemUtils.createFilledResult(stack, player, stack2, false);

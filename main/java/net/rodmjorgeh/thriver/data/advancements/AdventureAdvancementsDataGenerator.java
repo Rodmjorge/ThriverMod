@@ -10,7 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.world.item.Item;
 import net.rodmjorgeh.thriver.advancements.criterion.PlayedReedFluteTrigger;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 import java.util.function.Consumer;
 
@@ -29,7 +29,7 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
         Advancement.Builder.advancement()
                 .parent(AdvancementDataGenerator.createParent("adventure/kill_a_mob"))
                 .display(
-                        ItemRegistry.REED_FLUTE.get(),
+                        ItemReg.REED_FLUTE.get(),
                         this.createTitle("play_reed_flute"),
                         this.createDescription("play_reed_flute"),
                         null,
@@ -39,7 +39,7 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
                         false
                 )
                 .addCriterion("play_reed_flute",
-                        PlayedReedFluteTrigger.TriggerInstance.playedReedFlute(items, ItemRegistry.REED_FLUTE.get(), MinMaxBounds.Ints.atLeast(6)))
+                        PlayedReedFluteTrigger.TriggerInstance.playedReedFlute(items, ItemReg.REED_FLUTE.get(), MinMaxBounds.Ints.atLeast(6)))
                 .save(writer, this.getFolder("play_reed_flute"));
     }
 

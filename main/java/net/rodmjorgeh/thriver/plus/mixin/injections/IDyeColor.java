@@ -8,7 +8,7 @@ import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.material.MapColor;
-import net.rodmjorgeh.thriver.world.area.maps.MapColorR;
+import net.rodmjorgeh.thriver.world.area.maps.MapColorThr;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -27,7 +27,7 @@ public class IDyeColor {
     public static DyeColor[] $VALUES;
 
     private static final DyeColor BEIGE = addDyeColor("BEIGE",
-            16, "beige", 14724731, MapColorR.COLOR_BEIGE, 14923919, 13412734);
+            16, "beige", 14724731, MapColorThr.COLOR_BEIGE, 14923919, 13412734);
 
     @Invoker("<init>")
     public static DyeColor dyeColor(String variableName, int variableId,

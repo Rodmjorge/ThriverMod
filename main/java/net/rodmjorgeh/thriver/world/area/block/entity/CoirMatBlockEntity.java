@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class CoirMatBlockEntity extends SignBlockEntity {
 
     public CoirMatBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.COIR_MAT.get(), pos, state);
+        super(BlockEntityReg.COIR_MAT.get(), pos, state);
     }
 
     /**

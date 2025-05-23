@@ -12,14 +12,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.rodmjorgeh.thriver.data.BlockFamilyRegistry;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
+import net.rodmjorgeh.thriver.data.BlockFamilyReg;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.block.CoconutBlock;
 import net.rodmjorgeh.thriver.world.area.block.TallReedBlock;
-import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyRegistry;
+import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyReg;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.TripleBlockStep;
-import net.rodmjorgeh.thriver.world.item.DyeColorR;
-import net.rodmjorgeh.thriver.world.item.ItemRegistry;
+import net.rodmjorgeh.thriver.world.item.DyeColorThr;
+import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -37,38 +37,38 @@ public class BlockModelDataGenerator {
     }
 
     private void registerModels() {
-        BlockFamilyRegistry.getCustomFamilies()
+        BlockFamilyReg.getCustomFamilies()
                 .filter(BlockFamily::shouldGenerateModel)
                 .forEach(x -> this.generator.family(x.getBaseBlock()).generateFor(x));
 
-        this.generator.createBanner(BlockRegistry.BEIGE_BANNER.get(), BlockRegistry.BEIGE_WALL_BANNER.get(), DyeColorR.BEIGE);
-        this.generator.createBed(BlockRegistry.BEIGE_BED.get(), BlockRegistry.BEIGE_WOOL.get(), DyeColorR.BEIGE);
-        this.generator.createCandleAndCandleCake(BlockRegistry.BEIGE_CANDLE.get(), BlockRegistry.BEIGE_CANDLE_CAKE.get());
-        this.generator.createTrivialCube(BlockRegistry.BEIGE_CONCRETE.get());
-        this.generator.createColoredBlockWithRandomRotations(TexturedModel.CUBE, BlockRegistry.BEIGE_CONCRETE_POWDER.get());
-        this.generator.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, BlockRegistry.BEIGE_GLAZED_TERRACOTTA.get());
-        this.generator.createGlassBlocks(BlockRegistry.BEIGE_STAINED_GLASS.get(), BlockRegistry.BEIGE_STAINED_GLASS_PANE.get());
-        this.generator.createTrivialCube(BlockRegistry.BEIGE_TERRACOTTA.get());
-        this.generator.createFullAndCarpetBlocks(BlockRegistry.BEIGE_WOOL.get(), BlockRegistry.BEIGE_CARPET.get());
-        this.generator.createShulkerBox(BlockRegistry.BEIGE_SHULKER_BOX.get(), DyeColorR.BEIGE);
+        this.generator.createBanner(BlockReg.BEIGE_BANNER.get(), BlockReg.BEIGE_WALL_BANNER.get(), DyeColorThr.BEIGE);
+        this.generator.createBed(BlockReg.BEIGE_BED.get(), BlockReg.BEIGE_WOOL.get(), DyeColorThr.BEIGE);
+        this.generator.createCandleAndCandleCake(BlockReg.BEIGE_CANDLE.get(), BlockReg.BEIGE_CANDLE_CAKE.get());
+        this.generator.createTrivialCube(BlockReg.BEIGE_CONCRETE.get());
+        this.generator.createColoredBlockWithRandomRotations(TexturedModel.CUBE, BlockReg.BEIGE_CONCRETE_POWDER.get());
+        this.generator.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, BlockReg.BEIGE_GLAZED_TERRACOTTA.get());
+        this.generator.createGlassBlocks(BlockReg.BEIGE_STAINED_GLASS.get(), BlockReg.BEIGE_STAINED_GLASS_PANE.get());
+        this.generator.createTrivialCube(BlockReg.BEIGE_TERRACOTTA.get());
+        this.generator.createFullAndCarpetBlocks(BlockReg.BEIGE_WOOL.get(), BlockReg.BEIGE_CARPET.get());
+        this.generator.createShulkerBox(BlockReg.BEIGE_SHULKER_BOX.get(), DyeColorThr.BEIGE);
         this.createCoconut();
-        this.createHorizontalFacingWithoutDataModel(BlockRegistry.COIR_MAT.get());
-        this.generator.createTrivialCube(BlockRegistry.CRACKED_MUD_BRICKS.get());
-        this.generator.createCrossBlock(BlockRegistry.DOLLS_EYES_CROP.get(), BlockModelGenerators.PlantType.NOT_TINTED, BlockStateProperties.AGE_2, 0, 1, 2);
-        this.generator.createPlantWithDefaultItem(BlockRegistry.DOLLS_EYES.get(), BlockRegistry.POTTED_DOLLS_EYES.get(), BlockModelGenerators.PlantType.NOT_TINTED);
-        this.generator.woodProvider(BlockRegistry.PALM_LOG.get())
-                .logWithHorizontal(BlockRegistry.PALM_LOG.get())
-                .wood(BlockRegistry.PALM_WOOD.get());
-        this.generator.woodProvider(BlockRegistry.STRIPPED_PALM_LOG.get())
-                .logWithHorizontal(BlockRegistry.STRIPPED_PALM_LOG.get())
-                .wood(BlockRegistry.STRIPPED_PALM_WOOD.get());
-        this.generator.createHangingSign(BlockRegistry.STRIPPED_PALM_LOG.get(),
-                BlockRegistry.PALM_HANGING_SIGN.get(), BlockRegistry.PALM_WALL_HANGING_SIGN.get());
-        this.generator.createTrivialCube(BlockRegistry.PALM_LEAVES.get());
-        this.generator.createPlantWithDefaultItem(BlockRegistry.PALM_SPROUT.get(), BlockRegistry.POTTED_PALM_SPROUT.get(),
+        this.createHorizontalFacingWithoutDataModel(BlockReg.COIR_MAT.get());
+        this.generator.createTrivialCube(BlockReg.CRACKED_MUD_BRICKS.get());
+        this.generator.createCrossBlock(BlockReg.DOLLS_EYES_CROP.get(), BlockModelGenerators.PlantType.NOT_TINTED, BlockStateProperties.AGE_2, 0, 1, 2);
+        this.generator.createPlantWithDefaultItem(BlockReg.DOLLS_EYES.get(), BlockReg.POTTED_DOLLS_EYES.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        this.generator.woodProvider(BlockReg.PALM_LOG.get())
+                .logWithHorizontal(BlockReg.PALM_LOG.get())
+                .wood(BlockReg.PALM_WOOD.get());
+        this.generator.woodProvider(BlockReg.STRIPPED_PALM_LOG.get())
+                .logWithHorizontal(BlockReg.STRIPPED_PALM_LOG.get())
+                .wood(BlockReg.STRIPPED_PALM_WOOD.get());
+        this.generator.createHangingSign(BlockReg.STRIPPED_PALM_LOG.get(),
+                BlockReg.PALM_HANGING_SIGN.get(), BlockReg.PALM_WALL_HANGING_SIGN.get());
+        this.generator.createTrivialCube(BlockReg.PALM_LEAVES.get());
+        this.generator.createPlantWithDefaultItem(BlockReg.PALM_SPROUT.get(), BlockReg.POTTED_PALM_SPROUT.get(),
                 BlockModelGenerators.PlantType.NOT_TINTED);
-        this.generator.createDoublePlantWithDefaultItem(BlockRegistry.REEDS.get(), BlockModelGenerators.PlantType.NOT_TINTED);
-        this.generator.createTrivialCube(BlockRegistry.SILT_MUD.get());
+        this.generator.createDoublePlantWithDefaultItem(BlockReg.REEDS.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        this.generator.createTrivialCube(BlockReg.SILT_MUD.get());
         this.createTallReeds();
 
         this.updateFarmland();
@@ -78,32 +78,32 @@ public class BlockModelDataGenerator {
         this.generator.texturedModels = new ImmutableMap.Builder<Block, TexturedModel>()
                 .putAll(this.generator.texturedModels)
                 .put(
-                        BlockRegistry.SANDSTONE_BRICKS.get(),
+                        BlockReg.SANDSTONE_BRICKS.get(),
                         TexturedModel.COLUMN_WITH_WALL.get(Blocks.SANDSTONE)
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockRegistry.SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockReg.SANDSTONE_BRICKS.get())))
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.WALL, TextureMapping.getBlockTexture(BlockRegistry.SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.WALL, TextureMapping.getBlockTexture(BlockReg.SANDSTONE_BRICKS.get())))
                 )
                 .put(
-                        BlockRegistry.CRACKED_SANDSTONE_BRICKS.get(),
+                        BlockReg.CRACKED_SANDSTONE_BRICKS.get(),
                         TexturedModel.COLUMN.get(Blocks.SANDSTONE)
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockRegistry.CRACKED_SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockReg.CRACKED_SANDSTONE_BRICKS.get())))
                 )
                 .put(
-                        BlockRegistry.RED_SANDSTONE_BRICKS.get(),
+                        BlockReg.RED_SANDSTONE_BRICKS.get(),
                         TexturedModel.COLUMN_WITH_WALL.get(Blocks.RED_SANDSTONE)
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockRegistry.RED_SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockReg.RED_SANDSTONE_BRICKS.get())))
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.WALL, TextureMapping.getBlockTexture(BlockRegistry.RED_SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.WALL, TextureMapping.getBlockTexture(BlockReg.RED_SANDSTONE_BRICKS.get())))
                 )
                 .put(
-                        BlockRegistry.CRACKED_RED_SANDSTONE_BRICKS.get(),
+                        BlockReg.CRACKED_RED_SANDSTONE_BRICKS.get(),
                         TexturedModel.COLUMN.get(Blocks.RED_SANDSTONE)
                                 .updateTextures(m ->
-                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockRegistry.CRACKED_RED_SANDSTONE_BRICKS.get())))
+                                        m.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(BlockReg.CRACKED_RED_SANDSTONE_BRICKS.get())))
                 )
                 .build();
     }
@@ -117,15 +117,15 @@ public class BlockModelDataGenerator {
         RenderType cutout = RenderType.CUTOUT;
         RenderType translucent = RenderType.TRANSLUCENT;
 
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.REEDS.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TALL_REEDS.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.PALM_SPROUT.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.POTTED_PALM_SPROUT.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.DOLLS_EYES.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.DOLLS_EYES_CROP.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.POTTED_DOLLS_EYES.get(), cutout);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BEIGE_STAINED_GLASS.get(), translucent);
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BEIGE_STAINED_GLASS_PANE.get(), translucent);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.REEDS.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.TALL_REEDS.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.PALM_SPROUT.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.POTTED_PALM_SPROUT.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.DOLLS_EYES.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.DOLLS_EYES_CROP.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.POTTED_DOLLS_EYES.get(), cutout);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.BEIGE_STAINED_GLASS.get(), translucent);
+        ItemBlockRenderTypes.setRenderLayer(BlockReg.BEIGE_STAINED_GLASS_PANE.get(), translucent);
     }
 
     private void createHorizontalFacingWithoutDataModel(Block block) {
@@ -137,9 +137,9 @@ public class BlockModelDataGenerator {
     }
 
     private void createCoconut() {
-        Block block = BlockRegistry.COCONUT.get();
+        Block block = BlockReg.COCONUT.get();
 
-        this.generator.registerSimpleFlatItemModel(ItemRegistry.COCONUT.get());
+        this.generator.registerSimpleFlatItemModel(ItemReg.COCONUT.get());
         this.stateProvider.accept(
                 MultiVariantGenerator.multiVariant(block)
                         .with(
@@ -156,7 +156,7 @@ public class BlockModelDataGenerator {
     }
 
     private void createTallReeds() {
-        Block block = BlockRegistry.TALL_REEDS.get();
+        Block block = BlockReg.TALL_REEDS.get();
 
         ResourceLocation top = this.generator.createSuffixedVariant(block, "_top", ModelTemplates.CROSS, TextureMapping::cross);
         ResourceLocation middle = this.generator.createSuffixedVariant(block, "_middle", ModelTemplates.CROSS, TextureMapping::cross);
@@ -188,7 +188,7 @@ public class BlockModelDataGenerator {
         this.stateProvider.accept(
                 MultiVariantGenerator.multiVariant(Blocks.FARMLAND)
                         .with(
-                                PropertyDispatch.properties(FarmBlock.MOISTURE, BlockStatePropertyRegistry.SILTY)
+                                PropertyDispatch.properties(FarmBlock.MOISTURE, BlockStatePropertyReg.SILTY)
                                         .generate(
                                                 (moisture, isSilty) -> (moisture == 7)
                                                         ? Variant.variant().with(VariantProperties.MODEL, isSilty ? silty : moistured)

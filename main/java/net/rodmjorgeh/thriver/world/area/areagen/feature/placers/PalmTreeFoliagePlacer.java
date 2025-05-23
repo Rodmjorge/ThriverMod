@@ -20,7 +20,7 @@ public class PalmTreeFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected FoliagePlacerType<?> type() { return FoliagePlacerRegistry.PALM_TREE_FOLIAGE_PLACER.get(); }
+    protected FoliagePlacerType<?> type() { return FoliagePlacerReg.PALM_TREE_FOLIAGE_PLACER.get(); }
 
     @Override
     protected void createFoliage(LevelSimulatedReader level, FoliageSetter foliageSetter, RandomSource random, TreeConfiguration treeConfig,

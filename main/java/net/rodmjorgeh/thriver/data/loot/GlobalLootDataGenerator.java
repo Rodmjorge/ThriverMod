@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.data.loot.modifiers.AddLootPoolModifier;
-import net.rodmjorgeh.thriver.world.area.block.BlockRegistry;
+import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -38,9 +38,9 @@ public class GlobalLootDataGenerator extends GlobalLootModifierProvider {
                     LootPool.lootPool()
                             .setRolls(UniformGenerator.between(2.0F, 3.0F))
                             .add(EmptyLootItem.emptyItem().setWeight(6))
-                            .add(LootItem.lootTableItem(BlockRegistry.REEDS.get()).setWeight(2)
+                            .add(LootItem.lootTableItem(BlockReg.REEDS.get()).setWeight(2)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 6.0F))))
-                            .add(LootItem.lootTableItem(BlockRegistry.SANDSTONE_BRICKS.get()).setWeight(1)
+                            .add(LootItem.lootTableItem(BlockReg.SANDSTONE_BRICKS.get()).setWeight(1)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))))
                             .name(POOL_NAME)
                             .build()
