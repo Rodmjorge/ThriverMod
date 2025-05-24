@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class TreeGrowerThr {
 
-    public static final TreeGrower PALM = new TreeGrower(ThriverMod.name("palm"),
+    public static final TreeGrower PALM = new TreeGrower(ThriverMod.createStringLoc("palm"),
             Optional.empty(),
             Optional.of(TreeFeaturesReg.PALM_TREE),
             Optional.empty());

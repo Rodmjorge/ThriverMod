@@ -8,7 +8,6 @@
     "injections.IDyeColor",
     "injections.IEquipmentAssets",
     "injections.IFarmBlock",
-    "unique.UGui",
     "injections.ILeavesBlock",
     "injections.ILivingEntity",
     "injections.ILocalPlayer",
@@ -19,7 +18,9 @@
     "injections.ISheep",
     "injections.ISheets",
     "injections.IShulkerBoxBlock",
-    "unique.UEntity"
+    "unique.UEntity",
+    "unique.UGui",
+    "unique.UGuiGraphics"
   ],
   "client": [],
   "injectors": {

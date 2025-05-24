@@ -71,8 +71,4 @@ public class ThriverMod {
     public static String createStringLoc(String name) {
         return MOD_ID + ":" + name;
     }
-
-    public static String name(String s) {
-        return MOD_ID + ":" + s;
-    }
 }

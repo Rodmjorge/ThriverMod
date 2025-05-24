@@ -4,27 +4,23 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.spectator.SpectatorGui;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.client.renderer.RenderTypeReg;
 import net.rodmjorgeh.thriver.plus.EntityAdder;
+import net.rodmjorgeh.thriver.plus.GuiAdder;
+import net.rodmjorgeh.thriver.plus.GuiGraphicsAdder;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Gui.class)
-public class UGui {
-
+public class UGui implements GuiAdder {
     @Shadow @Final private Minecraft minecraft;
-    @Unique private static final ResourceLocation CLOSING_OVERLAY_LOCATION = ThriverMod.createLoc("textures/misc/dolls_eyes_closing_overlay.png");
 
     @Inject(method = "renderCameraOverlays", at = @At("HEAD"))
     public void renderCameraOverlays(GuiGraphics graphics, DeltaTracker tracker, CallbackInfo ci) {
@@ -40,8 +36,10 @@ public class UGui {
         }
     }
 
-    @Unique
-    private void renderClosingOverlay(GuiGraphics graphics, int ticks) {
+    @Override
+    public void renderClosingOverlay(GuiGraphics graphics, int ticks) {
+        GuiGraphicsAdder aGraphics = (GuiGraphicsAdder)graphics;
+
         int col = ARGB.white(1.0F);
         int height = graphics.guiHeight();
         double heightMult = 0.5F + 1.5F / Math.sqrt(ticks);
@@ -52,14 +50,14 @@ public class UGui {
         double d3 = Math.pow(2, (d1 > 0) ? 1 : d2 + 1);
         double d4 = Math.pow(2, d2) - 1;
         double d5 = d4 / d3 * Math.signum(d1);
-        double vOffset = d5 * -height;
+        double yOffset = d5 * -height;
 
-        graphics.blit(
+        aGraphics.blitInfDilation(
                 RenderTypeReg::closingOverlay,
                 CLOSING_OVERLAY_LOCATION,
-                0, (int)vOffset,
+                0, (int)yOffset,
                 0.0F, 0.0F,
-                graphics.guiWidth(), height,
+                graphics.guiWidth(), textureHeight,
                 graphics.guiWidth(), textureHeight,
                 col
         );

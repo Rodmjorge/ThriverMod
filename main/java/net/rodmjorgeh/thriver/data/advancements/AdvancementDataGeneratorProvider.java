@@ -1,13 +1,19 @@
 package net.rodmjorgeh.thriver.data.advancements;
 
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.rodmjorgeh.thriver.ThriverMod;
 
 public interface AdvancementDataGeneratorProvider {
 
     String getType();
+    PackOutput getOutput();
 
     default MutableComponent createTitle(String name) {
         return this.createTranslatableComponent(name, "title");
@@ -23,5 +29,13 @@ public interface AdvancementDataGeneratorProvider {
 
     default ResourceLocation getFolder(String name) {
         return ThriverMod.createLoc(this.getType() + "/" + name);
+    }
+    default ResourceLocation getFolderMinecraft(String name) {
+        return ResourceLocation.withDefaultNamespace(this.getType() + "/" + name);
+    }
+
+
+    default HolderLookup.RegistryLookup<Item> items(HolderLookup.Provider registries) {
+        return registries.lookupOrThrow(Registries.ITEM);
     }
 }

@@ -6,5 +6,5 @@ import net.rodmjorgeh.thriver.ThriverMod;
 
 public final class WoodTypeThr {
 
-    public static final WoodType PALM = WoodType.register(new WoodType(ThriverMod.name("palm"), BlockSetType.OAK));
+    public static final WoodType PALM = WoodType.register(new WoodType(ThriverMod.createStringLoc("palm"), BlockSetType.OAK));
 }
