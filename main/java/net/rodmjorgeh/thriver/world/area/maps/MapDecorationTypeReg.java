@@ -6,6 +6,7 @@ import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public class MapDecorationTypeReg {
 
@@ -21,7 +22,7 @@ public class MapDecorationTypeReg {
     }
     private static Holder<MapDecorationType> register(String name, String assetId, boolean showOnItemFrame, int mapColor,
                                                       boolean explorationMapElement, boolean trackCount) {
-        return MAP_DECORATION.register(name, () -> new MapDecorationType(ThriverMod.createLoc(assetId),
+        return MAP_DECORATION.register(name, () -> new MapDecorationType(ResourceMod.createLoc(assetId),
                 showOnItemFrame, mapColor, explorationMapElement, trackCount));
     }
 

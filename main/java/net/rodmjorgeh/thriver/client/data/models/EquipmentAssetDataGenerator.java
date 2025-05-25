@@ -8,6 +8,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 
 import java.util.Map;
@@ -30,11 +31,11 @@ public class EquipmentAssetDataGenerator extends EquipmentAssetProvider {
             DyeColor color = entry.getKey();
 
             if (DyeColorThr.isCustomColor(color)) {
-                ResourceKey key = ResourceKey.create(EquipmentAssets.ROOT_ID, ThriverMod.createLocFromKey(entry.getValue()));
+                ResourceKey key = ResourceKey.create(EquipmentAssets.ROOT_ID, ResourceMod.createLocFromKey(entry.getValue()));
                 output.accept(key,
                         EquipmentClientInfo.builder()
                                 .addLayers(EquipmentClientInfo.LayerType.LLAMA_BODY,
-                                        new EquipmentClientInfo.Layer(ThriverMod.createLoc(color.getSerializedName()))
+                                        new EquipmentClientInfo.Layer(ResourceMod.createLoc(color.getSerializedName()))
                                 ).build()
                 );
             }

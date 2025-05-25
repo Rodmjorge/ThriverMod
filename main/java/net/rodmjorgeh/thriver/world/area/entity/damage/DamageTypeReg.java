@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageEffects;
 import net.minecraft.world.damagesource.DamageType;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public class DamageTypeReg {
 
@@ -16,7 +17,7 @@ public class DamageTypeReg {
     }
 
     private static ResourceKey<DamageType> register(String name) {
-        return ThriverMod.createId(name, Registries.DAMAGE_TYPE);
+        return ResourceMod.createId(name, Registries.DAMAGE_TYPE);
     }
 
     private static void register(BootstrapContext<DamageType> context, ResourceKey<DamageType> key, String name, float exhaustion) {

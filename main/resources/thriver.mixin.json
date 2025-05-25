@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "injections.IBlockStateProperties",
+    "injections.IBuiltInLootTables",
     "injections.ICropBlock",
     "injections.IDyeColor",
     "injections.IEquipmentAssets",

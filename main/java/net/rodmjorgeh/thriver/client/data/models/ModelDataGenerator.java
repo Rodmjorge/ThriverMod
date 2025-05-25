@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public class ModelDataGenerator extends ModelProvider {
 
@@ -23,10 +24,10 @@ public class ModelDataGenerator extends ModelProvider {
 
     public static ResourceLocation useVanillaTextureWithNamespace(Block block, String suffix) {
         ResourceLocation blockLoc = BuiltInRegistries.BLOCK.getKey(block);
-        return ThriverMod.createLoc(blockLoc.getPath() + suffix).withPrefix("block/");
+        return ResourceMod.createLoc(blockLoc.getPath() + suffix).withPrefix("block/");
     }
 
     public static ResourceLocation decorateItemModelLocation(String name) {
-        return ThriverMod.createLoc(name).withPrefix("item/");
+        return ResourceMod.createLoc(name).withPrefix("item/");
     }
 }

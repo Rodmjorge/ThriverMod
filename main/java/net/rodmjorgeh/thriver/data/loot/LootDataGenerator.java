@@ -7,14 +7,17 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.rodmjorgeh.thriver.data.Datagen;
+import net.rodmjorgeh.thriver.data.advancements.AdvancementDataGeneratorProvider;
 
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class LootDataGenerator extends LootTableProvider implements Datagen<LootTable, LootTableProvider.SubProviderEntry> {
 
@@ -33,7 +36,8 @@ public class LootDataGenerator extends LootTableProvider implements Datagen<Loot
     public List<SubProviderEntry> getProviderEntries() {
         return List.of(
                 new SubProviderEntry(this::blockLootSub, LootContextParamSets.BLOCK),
-                new SubProviderEntry(this::entityLootSub, LootContextParamSets.ENTITY)
+                new SubProviderEntry(this::entityLootSub, LootContextParamSets.ENTITY),
+                new SubProviderEntry(this::shearingLootSub, LootContextParamSets.SHEARING)
         );
     }
 
@@ -42,6 +46,26 @@ public class LootDataGenerator extends LootTableProvider implements Datagen<Loot
     }
     private LootTableSubProvider entityLootSub(HolderLookup.Provider provider) {
         return new EntityLootDataGenerator(this, provider);
+    }
+    private LootTableSubProvider shearingLootSub(HolderLookup.Provider provider) {
+        return new ShearingLootDataGenerator(this, provider);
+    }
+
+    public <T> LootTable.Builder getLootTable(LootDataGeneratorProvider<T> provider, String name, HolderLookup.Provider lookupProvider, int... indexesToAdd) {
+        LootTable loot = this.getInfoFromFile(provider, name, lookupProvider);
+        List<LootPool> pools = loot.pools;
+
+        LootTable.Builder builder = LootTable.lootTable();
+        if (indexesToAdd.length == 0) {
+            int length = pools.size();
+            indexesToAdd = IntStream.range(0, length).toArray();
+        }
+        for (int i : indexesToAdd) {
+            LootPool pool = pools.get(i);
+            builder.pools.add(pool);
+        }
+
+        return builder;
     }
 
     @Override

@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.data.BlockFamilyReg;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.util.tags.ItemTagReg;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.item.ItemReg;
@@ -193,7 +194,7 @@ public class RecipeDataGenerator extends RecipeProvider {
                 .define('#', BlockReg.REEDS.get())
                 .pattern("###")
                 .unlockedBy("has_reeds", this.has(BlockReg.REEDS.get()))
-                .save(this.output, ThriverMod.createStringLoc("paper_from_reeds"));
+                .save(this.output, ResourceMod.createStringLoc("paper_from_reeds"));
     }
 
 

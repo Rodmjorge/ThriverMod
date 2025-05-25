@@ -19,6 +19,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.WoodTypeThr;
 import net.rodmjorgeh.thriver.world.item.CreativeModeTabReg;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
@@ -353,7 +354,7 @@ public class BlockReg {
     }
 
     private static ResourceKey createId(String name) {
-        return ThriverMod.createId(name, Registries.BLOCK);
+        return ResourceMod.createId(name, Registries.BLOCK);
     }
 
     private static boolean falsePredicate(BlockState a, BlockGetter b, BlockPos c, EntityType<?> d) {

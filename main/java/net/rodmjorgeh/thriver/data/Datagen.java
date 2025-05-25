@@ -13,6 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 import javax.xml.crypto.Data;
 import java.io.BufferedReader;
@@ -48,7 +49,7 @@ public interface Datagen<T, U> {
         DynamicOps<JsonElement> ops = lookupProvider.createSerializationContext(JsonOps.INSTANCE);
         Codec<Optional<T>> conditionalCodec = ConditionalOps.createConditionalCodec(this.getCodec());
         String outputFolder = output.getOutputFolder().toString();
-        Path filePath = Path.of(outputFolder.replace("generated", "main"), "data", location.getNamespace(), location.getPath());
+        Path filePath = Path.of(ResourceMod.mainFromGenerated(outputFolder), "data", location.getNamespace(), location.getPath());
 
         Optional<T> optional = Optional.empty();
         try (BufferedReader reader = Files.newBufferedReader(filePath, StandardCharsets.UTF_8)) {

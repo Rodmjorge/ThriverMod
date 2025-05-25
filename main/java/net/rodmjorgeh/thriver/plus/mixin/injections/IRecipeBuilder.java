@@ -4,6 +4,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -25,7 +26,7 @@ public interface IRecipeBuilder {
 
         ResourceLocation loc = BuiltInRegistries.ITEM.getKey(instance.getResult());
         return (loc.getNamespace().equals(ThriverMod.MOD_ID))
-                ? ThriverMod.createLoc(id)
+                ? ResourceMod.createLoc(id)
                 : ResourceLocation.parse(id);
     }
 }

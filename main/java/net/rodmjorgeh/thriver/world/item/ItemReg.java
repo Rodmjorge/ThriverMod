@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
 import net.rodmjorgeh.thriver.world.item.food.FoodReg;
@@ -155,6 +156,6 @@ public class ItemReg {
     }
 
     public static ResourceKey createId(String name) {
-        return ThriverMod.createId(name, Registries.ITEM);
+        return ResourceMod.createId(name, Registries.ITEM);
     }
 }

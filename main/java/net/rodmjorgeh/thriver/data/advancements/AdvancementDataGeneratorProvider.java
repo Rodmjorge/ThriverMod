@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.data.DataGeneratorProvider;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public interface AdvancementDataGeneratorProvider extends DataGeneratorProvider {
     default MutableComponent createTitle(String name) {
@@ -25,7 +26,7 @@ public interface AdvancementDataGeneratorProvider extends DataGeneratorProvider 
     }
 
     default ResourceLocation getFolder(String name) {
-        return ThriverMod.createLoc(this.getType() + "/" + name);
+        return ResourceMod.createLoc(this.getType() + "/" + name);
     }
     default ResourceLocation getFolderMinecraft(String name) {
         return ResourceLocation.withDefaultNamespace(this.getType() + "/" + name);

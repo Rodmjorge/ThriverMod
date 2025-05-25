@@ -9,12 +9,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import org.joml.Vector3f;
 
 public class CoirMatEditScreen extends AbstractSignEditScreen {
 
     private static final Vector3f TEXT_SCALE = new Vector3f(1.1F, 1.1F, 1.1F);
-    private final ResourceLocation COIR_MAT_TEXTURE = ThriverMod.createLoc("textures/block/coir_mat.png");
+    private final ResourceLocation COIR_MAT_TEXTURE = ResourceMod.createLoc("textures/block/coir_mat.png");
 
     public CoirMatEditScreen(SignBlockEntity blockEntity, boolean isFrontText, boolean isFiltered) {
         super(blockEntity, isFrontText, isFiltered, Component.translatable("coir_mat.edit"));

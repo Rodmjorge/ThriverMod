@@ -13,6 +13,7 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.worldgen.placement.MiscOverworldPlacementsReg;
 import net.rodmjorgeh.thriver.world.worldgen.placement.VegetationPlacementsReg;
 
@@ -44,6 +45,6 @@ public class BiomeModifierReg {
     }
 
     private static ResourceKey<BiomeModifier> register(String name) {
-        return ThriverMod.createId(name, NeoForgeRegistries.Keys.BIOME_MODIFIERS);
+        return ResourceMod.createId(name, NeoForgeRegistries.Keys.BIOME_MODIFIERS);
     }
 }

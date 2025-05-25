@@ -5,6 +5,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public class FeaturesReg {
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -14,6 +15,6 @@ public class FeaturesReg {
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> register(String name) {
-        return ThriverMod.createId(name, Registries.CONFIGURED_FEATURE);
+        return ResourceMod.createId(name, Registries.CONFIGURED_FEATURE);
     }
 }

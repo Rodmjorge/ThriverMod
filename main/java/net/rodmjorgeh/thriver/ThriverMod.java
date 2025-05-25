@@ -54,21 +54,4 @@ public class ThriverMod {
         bus.addListener(ModelLayersThr::registerLayers);
         bus.addListener(SpecialModeRendererReg::register);
     }
-
-    /**
-     * Creates a new {@code ResourceKey} based on the registry type.
-     */
-    public static <T> ResourceKey<T> createId(String name, ResourceKey<? extends Registry<T>> registryType) {
-        return ResourceKey.create(registryType, createLoc(name));
-    }
-
-    public static ResourceLocation createLoc(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
-    }
-    public static <T> ResourceLocation createLocFromKey(ResourceKey<T> key) {
-        return createLoc(key.location().getPath());
-    }
-    public static String createStringLoc(String name) {
-        return MOD_ID + ":" + name;
-    }
 }

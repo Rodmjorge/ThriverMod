@@ -10,6 +10,7 @@ import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 import java.util.function.Supplier;
@@ -33,6 +34,6 @@ public class EntityReg {
     }
 
     private static ResourceKey createId(String name) {
-        return ThriverMod.createId(name, Registries.ENTITY_TYPE);
+        return ResourceMod.createId(name, Registries.ENTITY_TYPE);
     }
 }
