@@ -20,10 +20,10 @@ public class DatagenEvents {
         event.createProvider(BuilderRegistries::new);
         event.createProvider(ModelDataGenerator::new);
         event.createProvider(EquipmentAssetDataGenerator::new);
-        event.createProvider(LootDataGenerator::new);
         event.createProvider(GlobalLootDataGenerator::new);
         event.createProvider(RecipeDataGenerator.Runner::new);
-        event.createProvider(AdvancementDataGenerator::new);
+        event.createProvider(LootDataGenerator::createProvider);
+        event.createProvider(AdvancementDataGenerator::createProvider);
 
         TagsProvider<Block> blockTags = event.createProvider(BlockTagDataGenerator::new);
         event.createProvider(EntityTypeTagDataGenerator::new);

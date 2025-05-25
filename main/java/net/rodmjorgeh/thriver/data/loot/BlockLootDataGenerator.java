@@ -14,23 +14,25 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.block.CoconutBlock;
 import net.rodmjorgeh.thriver.world.item.ItemReg;
 
 import java.util.Set;
 
-public class BlockLootDataGenerator extends BlockLootSubProvider {
+public class BlockLootDataGenerator extends BlockLootSubProvider implements LootDataGeneratorProvider<Block> {
 
-    public BlockLootDataGenerator(HolderLookup.Provider registries) {
+    private final LootDataGenerator generator;
+
+    public BlockLootDataGenerator(LootDataGenerator generator, HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+        this.generator = generator;
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockReg.BLOCKS.getEntries().stream()
-                .map(x -> (Block)x.value())
-                .toList();
+        return this.registryList();
     }
 
     @Override
@@ -107,5 +109,15 @@ public class BlockLootDataGenerator extends BlockLootSubProvider {
         this.dropSelf(BlockReg.STRIPPED_PALM_LOG.get());
         this.dropSelf(BlockReg.STRIPPED_PALM_WOOD.get());
         this.add(BlockReg.TALL_REEDS.get(), this.createDoublePlantShearsDrop(BlockReg.REEDS.get()));
+    }
+
+    @Override
+    public DeferredRegister<Block> getRegistry() {
+        return BlockReg.BLOCKS;
+    }
+
+    @Override
+    public String getType() {
+        return "blocks";
     }
 }

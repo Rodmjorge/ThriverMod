@@ -9,12 +9,9 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.rodmjorgeh.thriver.ThriverMod;
+import net.rodmjorgeh.thriver.data.DataGeneratorProvider;
 
-public interface AdvancementDataGeneratorProvider {
-
-    String getType();
-    PackOutput getOutput();
-
+public interface AdvancementDataGeneratorProvider extends DataGeneratorProvider {
     default MutableComponent createTitle(String name) {
         return this.createTranslatableComponent(name, "title");
     }

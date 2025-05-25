@@ -18,18 +18,18 @@ import java.util.function.Consumer;
 
 public class AdventureAdvancementsDataGenerator implements AdvancementSubProvider, AdvancementDataGeneratorProvider {
 
-    private final PackOutput output;
+    private final AdvancementDataGenerator generator;
     private final String type;
 
-    public AdventureAdvancementsDataGenerator(PackOutput output, String type) {
-        this.output = output;
+    public AdventureAdvancementsDataGenerator(AdvancementDataGenerator generator, String type) {
+        this.generator = generator;
         this.type = type;
     }
 
     @Override
     public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> writer) {
         Advancement.Builder.advancement()
-                .parent(AdvancementDataGenerator.createParent(this, "kill_a_mob"))
+                .parent(this.generator.createParent(this, "kill_a_mob"))
                 .display(
                         ItemReg.REED_FLUTE.get(),
                         this.createTitle("play_reed_flute"),
@@ -48,10 +48,5 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
     @Override
     public String getType() {
         return this.type;
-    }
-
-    @Override
-    public PackOutput getOutput() {
-        return this.output;
     }
 }
