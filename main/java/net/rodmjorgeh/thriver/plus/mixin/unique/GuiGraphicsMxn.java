@@ -4,16 +4,15 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
-import net.rodmjorgeh.thriver.plus.GuiAdder;
-import net.rodmjorgeh.thriver.plus.GuiGraphicsAdder;
+import net.rodmjorgeh.thriver.plus.GuiAdd;
+import net.rodmjorgeh.thriver.plus.GuiGraphicsAdd;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 
 import java.util.function.Function;
 
 @Mixin(GuiGraphics.class)
-public abstract class UGuiGraphics implements GuiGraphicsAdder {
+public abstract class GuiGraphicsMxn implements GuiGraphicsAdd {
 
     @Shadow protected abstract void innerBlit(Function<ResourceLocation, RenderType> renderTypeGetter, ResourceLocation atlasLocation,
                                               int x1, int x2, int y1, int y2,
@@ -47,7 +46,7 @@ public abstract class UGuiGraphics implements GuiGraphicsAdder {
         if (y > 0) {
             graphics.blit(
                     RenderType::guiTextured,
-                    GuiAdder.WHITE_PIXEL_LOCATION,
+                    GuiAdd.WHITE_PIXEL_LOCATION,
                     0, 0,
                     0, 0,
                     guiWidth, y,
@@ -57,7 +56,7 @@ public abstract class UGuiGraphics implements GuiGraphicsAdder {
         if (vHeight + y < guiHeight) {
             graphics.blit(
                     RenderType::guiTextured,
-                    GuiAdder.WHITE_PIXEL_LOCATION,
+                    GuiAdd.WHITE_PIXEL_LOCATION,
                     0, vHeight + y,
                     0, 0,
                     guiWidth, guiHeight - vHeight - y,

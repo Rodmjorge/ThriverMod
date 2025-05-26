@@ -6,7 +6,6 @@ import com.google.gson.JsonParser;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -14,8 +13,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.util.ResourceMod;
+import net.rodmjorgeh.thriver.data.loot.LootDataGenerator;
 
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -42,6 +41,10 @@ public interface Datagen<T, U> {
         return ResourceLocation.withDefaultNamespace(locName + filename + ".json");
     }
 
+    /**
+     * Since this is in runClientData, the file has to be inside the resources folder inside a special copy data type
+     * folder.
+     */
     default T getInfoFromFile(DataGeneratorProvider provider, String name, HolderLookup.Provider lookupProvider) {
         ResourceLocation location = this.copyLocation(provider, name);
         PackOutput output = this.getOutput();
@@ -70,6 +73,10 @@ public interface Datagen<T, U> {
         return optional.get();
     }
 
+    /**
+     * Creates a new DataGenerator, like {@link LootDataGenerator}. Since every DataGenerator that implements this
+     * interface has a new parameter in its constructor, it needs its own create method.
+     */
     static <T extends DataProvider, U> DataProvider create(PackOutput output, CompletableFuture<HolderLookup.Provider> registries,
                                                          DataProviderUpdated<T, U> builder) {
         List<U> list = new ArrayList<>();
@@ -77,7 +84,7 @@ public interface Datagen<T, U> {
 
         if (instance instanceof Datagen<?, ?> datagen) {
             datagen.setOutput(output);
-            list.addAll((List<U>)datagen.getProviderEntries());
+            list.addAll((List<U>)datagen.getProviderEntries()); // this might be dangerous
         }
 
         return instance;

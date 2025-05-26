@@ -1,7 +1,6 @@
 package net.rodmjorgeh.thriver.data.loot;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -11,12 +10,10 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.rodmjorgeh.thriver.data.Datagen;
-import net.rodmjorgeh.thriver.data.advancements.AdvancementDataGeneratorProvider;
 
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class LootDataGenerator extends LootTableProvider implements Datagen<LootTable, LootTableProvider.SubProviderEntry> {
@@ -41,6 +38,10 @@ public class LootDataGenerator extends LootTableProvider implements Datagen<Loot
         );
     }
 
+    /**
+     * A bit of a retarded approach, but I couldn't brainstorm a better way of doing this so this bullshittery will
+     * suffice, I suppose.
+     */
     private LootTableSubProvider blockLootSub(HolderLookup.Provider provider) {
         return new BlockLootDataGenerator(this, provider);
     }
@@ -51,6 +52,10 @@ public class LootDataGenerator extends LootTableProvider implements Datagen<Loot
         return new ShearingLootDataGenerator(this, provider);
     }
 
+    /**
+     * @param indexesToAdd What pools to add via its indexes. By having the parameter empty, it'll just automatically
+     *                     add every index to it, meaning it adds all pools that the loot table originally had.
+     */
     public <T> LootTable.Builder getLootTable(LootDataGeneratorProvider<T> provider, String name, HolderLookup.Provider lookupProvider, int... indexesToAdd) {
         LootTable loot = this.getInfoFromFile(provider, name, lookupProvider);
         List<LootPool> pools = loot.pools;

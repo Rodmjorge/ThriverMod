@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(BlockStateProperties.class)
-public class IBlockStateProperties {
+public class BlockStatePropertiesMxn {
 
     /**
      * Changes the maximum integer of {@code DISTANCE} to 12. This is used for the {@link PalmLeavesBlock}, since they

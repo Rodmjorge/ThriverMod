@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MapBanner.class)
-public class IMapBanner {
+public class MapBannerMxn {
 
     @Inject(method = "getDecoration", at = @At("HEAD"), cancellable = true)
     public void getDecoration(CallbackInfoReturnable<Holder<MapDecorationType>> cir) {

@@ -40,7 +40,9 @@ public class TallReedBlock extends BushBlock {
     };
 
     @Override
-    public MapCodec<? extends TallReedBlock> codec() { return CODEC; }
+    public MapCodec<TallReedBlock> codec() {
+        return CODEC;
+    }
 
     public TallReedBlock(BlockBehaviour.Properties properties) {
         super(properties);

@@ -1,6 +1,6 @@
 package net.rodmjorgeh.thriver.plus;
 
-public interface EntityAdder {
+public interface EntityAdd {
     void setIsInDollsEyes(boolean isInDollsEyes);
     boolean getIsInDollsEyes();
 

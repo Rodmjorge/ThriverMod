@@ -44,7 +44,7 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
     }
 
     @Override
-    protected MapCodec<? extends CoconutBlock> codec() { return CODEC; }
+    protected MapCodec<CoconutBlock> codec() { return CODEC; }
 
     /**
      * This overrides {@code tick()} from {@link FallingBlock}. Checks when the coconut has reached the maximum age,

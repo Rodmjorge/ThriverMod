@@ -7,7 +7,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import net.rodmjorgeh.thriver.plus.EntityAdder;
+import net.rodmjorgeh.thriver.plus.EntityAdd;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Entity.class)
-public class UEntity implements EntityAdder {
+public class EntityMxn implements EntityAdd {
 
     /**
      * A lot of this mess is just to make the Doll's Eyes blindness effect working. It takes inspiration from the Powder

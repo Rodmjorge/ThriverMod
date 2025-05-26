@@ -35,7 +35,9 @@ public class ReedBlock extends DoublePlantBlock implements BonemealableBlock, Si
     };
 
     @Override
-    public MapCodec<? extends ReedBlock> codec() { return CODEC; }
+    public MapCodec<ReedBlock> codec() {
+        return CODEC;
+    }
 
     public ReedBlock(BlockBehaviour.Properties properties) {
         super(properties);

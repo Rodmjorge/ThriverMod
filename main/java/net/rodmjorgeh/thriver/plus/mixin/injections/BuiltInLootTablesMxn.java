@@ -15,8 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.EnumMap;
 
 @Mixin(BuiltInLootTables.class)
-public abstract class IBuiltInLootTables {
+public abstract class BuiltInLootTablesMxn {
 
+    /**
+     * Sets the loot tables that contain my dye colors to go to the thriver folder instead of the minecraft one.
+     */
     @Inject(method = "makeDyeKeyMap", at = @At("HEAD"), cancellable = true)
     private static void makeDyeKeyMap(EnumMap<DyeColor, ResourceKey<LootTable>> output, String name, CallbackInfo ci) {
         for (DyeColor color : DyeColor.values()) {

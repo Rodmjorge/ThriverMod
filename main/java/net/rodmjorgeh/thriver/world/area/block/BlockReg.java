@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
@@ -176,7 +177,8 @@ public class BlockReg {
             CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final Supplier<Block> DOLLS_EYES = register("dolls_eyes",
-            () -> new DollsEyesBlock(BlockBehaviour.Properties.of()
+            () -> new DollsEyesBlock(MobEffects.NIGHT_VISION, 20.0F,
+                    BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
                     .instabreak()

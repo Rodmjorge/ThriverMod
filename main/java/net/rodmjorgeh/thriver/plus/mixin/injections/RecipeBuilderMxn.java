@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(RecipeBuilder.class)
-public interface IRecipeBuilder {
+public interface RecipeBuilderMxn {
 
     /**
-     * Alright, let's do another rant, because Mojang's coding pisses me off.
+     * Alright, let's do a rant, because Mojang's coding pisses me off.
      *
      * <p>For some godforsaken reason, whenever a recipe is saved with another name outside solely the item name, it
      * ALWAYS saves on the vanilla folder. Now, you explain why the actual fuck does this happen. Whatever, you can

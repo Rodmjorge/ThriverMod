@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(CropBlock.class)
-public class ICropBlock {
+public class CropBlockMxn {
 
     /**
      * If the Farmland block is silty (that is, if there is a Silt Mud block below it), then make the crops grow faster

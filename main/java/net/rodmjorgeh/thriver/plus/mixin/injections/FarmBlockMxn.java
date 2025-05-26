@@ -11,19 +11,20 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStatePropertyReg;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmBlock.class)
-public class IFarmBlock {
+public class FarmBlockMxn {
 
     /**
      * Adds a new property for the {@link FarmBlock} block state, to know if there's a Silt Mud block below it. This is
-     * used in {@link ICropBlock}, because if the Farmland is silty, then the crops grow faster by 2.5x.
+     * used in {@link CropBlockMxn}, because if the Farmland is silty, then the crops grow faster by an insane 2.5x.
      */
-    private static final BooleanProperty SILTY = BlockStatePropertyReg.SILTY;
+    @Unique private static final BooleanProperty SILTY = BlockStatePropertyReg.SILTY;
 
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/level/block/FarmBlock;registerDefaultState(Lnet/minecraft/world/level/block/state/BlockState;)V"))

@@ -17,7 +17,9 @@ public class PalmSproutBlock extends SaplingBlock {
     }
 
     @Override
-    public MapCodec<? extends PalmSproutBlock> codec() { return CODEC; }
+    public MapCodec<PalmSproutBlock> codec() {
+        return CODEC;
+    }
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import javax.annotation.Nullable;
 
 @Mixin(ShulkerBoxBlock.class)
-public class IShulkerBoxBlock {
+public class ShulkerBoxBlockMxn {
 
     @Inject(method = "getBlockByColor", at = @At("HEAD"), cancellable = true)
     private static void getBlockByColor(@Nullable DyeColor color, CallbackInfoReturnable<Block> cir) {

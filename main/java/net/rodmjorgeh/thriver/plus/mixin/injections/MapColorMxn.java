@@ -9,8 +9,14 @@ import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(MapColor.class)
-public class IMapColor {
+public class MapColorMxn {
 
+    /**
+     * Removes the maximum value of 64 for map colors and sets it to 256. The good thing is that it's actually
+     * registered as an integer, so I could have 2,147,483,647 map colors if I really wanted to.
+     *
+     * <p>Eh, I'll keep it simple.</p>
+     */
     @Shadow @Final @Mutable
     private static final MapColor[] MATERIAL_COLORS = new MapColor[256];
 

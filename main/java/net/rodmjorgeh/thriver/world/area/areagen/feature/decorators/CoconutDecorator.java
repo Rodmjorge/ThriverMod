@@ -22,7 +22,9 @@ public class CoconutDecorator extends TreeDecorator {
     }
 
     @Override
-    protected TreeDecoratorType<?> type() { return TreeDecoratorsReg.COCONUT.get(); }
+    protected TreeDecoratorType<?> type() {
+        return TreeDecoratorsReg.COCONUT.get();
+    }
 
     @Override
     public void place(Context context) {

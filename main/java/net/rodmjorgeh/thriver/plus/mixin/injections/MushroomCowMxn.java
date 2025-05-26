@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Mixin(MushroomCow.class)
-public class IMushroomCow {
+public class MushroomCowMxn {
 
     @Shadow @Nullable private SuspiciousStewEffects stewEffects;
 

@@ -36,9 +36,6 @@ public class AdvancementDataGenerator extends AdvancementProvider implements Dat
         );
     }
 
-    /**
-     * Since this is in runClientData, the file for the advancement has to be inside the resources folder.
-     */
     public Advancement.Builder getAdvancement(AdvancementDataGeneratorProvider provider, String name,
                                                      HolderLookup.Provider lookupProvider) {
         return getAdvancement(provider, name, lookupProvider, true);

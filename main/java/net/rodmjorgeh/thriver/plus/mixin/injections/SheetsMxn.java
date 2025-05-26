@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
-import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 import org.spongepowered.asm.mixin.Final;
@@ -21,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Mixin(Sheets.class)
-public class ISheets {
+public class SheetsMxn {
 
     /**
      * All this mixin class is doing is making sure that when any colored block uses one of my custom colors, it goes

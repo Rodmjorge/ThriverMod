@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
-public interface GuiGraphicsAdder {
+public interface GuiGraphicsAdd {
 
     void blitInfDilation(Function<ResourceLocation, RenderType> renderTypeGetter, ResourceLocation atlasLocation,
                     int x, int y, float uOffset, float vOffset,

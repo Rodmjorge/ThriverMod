@@ -4,8 +4,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.packs.LootData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -15,7 +20,11 @@ import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
+import org.apache.commons.lang3.function.TriConsumer;
 
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class EntityLootDataGenerator extends EntityLootSubProvider implements LootDataGeneratorProvider<EntityType<?>> {
@@ -43,16 +52,31 @@ public class EntityLootDataGenerator extends EntityLootSubProvider implements Lo
                 this.generator.getLootTable(this, "sheep", this.registries, 0)
                         .withPool(createSheepDispatchPool(BuiltInLootTables.SHEEP_BY_DYE))
         );
-        LootData.WOOL_ITEM_BY_DYE.put(DyeColorThr.BEIGE, BlockReg.BEIGE_WOOL.get());
-        LootData.WOOL_ITEM_BY_DYE
-                .forEach(
-                        (p_367830_, p_367831_) -> this.add(
-                                EntityType.SHEEP,
-                                BuiltInLootTables.SHEEP_BY_DYE.get(p_367830_),
-                                LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(p_367831_)))
-                        )
-                );
+        this.addWoolItem(DyeColorThr.BEIGE, BlockReg.BEIGE_WOOL.get());
     }
+
+
+    private void addWoolItem(DyeColor color, Block wool) {
+        addWoolItemLoot(color, wool, BuiltInLootTables.SHEEP_BY_DYE,
+                (key, item) -> this.add(EntityType.SHEEP, key,
+                        LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(item)))));
+    }
+
+    public static void addWoolItemLoot(DyeColor color, Block wool, Map<DyeColor, ResourceKey<LootTable>> lootTable,
+                             BiConsumer<ResourceKey<LootTable>, ItemLike> consumer) {
+        Map<DyeColor, ItemLike> map = LootData.WOOL_ITEM_BY_DYE;
+        map.putIfAbsent(color, wool);
+
+        map.forEach((col, item) -> {
+            boolean isCustom = DyeColorThr.isCustomColor(col);
+            if (isCustom && !color.equals(col)) {
+                return;
+            }
+
+            consumer.accept(lootTable.get(col), item);
+        });
+    }
+
 
     @Override
     public DeferredRegister<EntityType<?>> getRegistry() {

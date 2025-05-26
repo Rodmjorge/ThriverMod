@@ -24,13 +24,18 @@ public class DollsEyesCropBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
-            Block.box(4.0, 0.0, 4.0, 11.0, 4.0, 11.0),
-            Block.box(3.0, 0.0, 3.0, 12.0, 6.0, 12.0),
-            Block.box(2.0, 0.0, 2.0, 13.0, 10.0, 13.0),
+            Block.box(5.0, 0.0, 5.0, 11.0, 4.0, 11.0),
+            Block.box(5.0, 0.0, 5.0, 11.0, 6.0, 11.0),
+            Block.box(5.0, 0.0, 5.0, 11.0, 10.0, 11.0),
     };
 
     public DollsEyesCropBlock(BlockBehaviour.Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public MapCodec<DollsEyesCropBlock> codec() {
+        return CODEC;
     }
 
     @Override

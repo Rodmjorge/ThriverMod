@@ -21,7 +21,7 @@ import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
 @Mixin(DyeColor.class)
-public class IDyeColor {
+public class DyeColorMxn {
 
     @Shadow @Final @Mutable
     public static DyeColor[] $VALUES;
@@ -32,6 +32,7 @@ public class IDyeColor {
     @Invoker("<init>")
     public static DyeColor dyeColor(String variableName, int variableId,
                                     int id, String name, int textureDefuseColor, MapColor mapColor, int fireworkColor, int textColor) {
+        // I just saw a different mod doing this, so I copied it, but I have no idea if this is needed
         throw new AssertionError();
     }
 
@@ -46,6 +47,10 @@ public class IDyeColor {
         return dyeColor;
     }
 
+    /**
+     * Whatever variables call the values from the {@link DyeColor}, it's not gonna have my custom values, so I need to
+     * pretty much copy the same thing and apply to here. Kinda annoying.
+     */
     @Shadow @Final @Mutable
     private static final IntFunction<DyeColor> BY_ID = ByIdMap.continuous(DyeColor::getId, DyeColor.values(), ByIdMap.OutOfBoundsStrategy.ZERO);
 

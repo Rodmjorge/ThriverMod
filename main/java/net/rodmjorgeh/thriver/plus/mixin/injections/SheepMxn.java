@@ -12,9 +12,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Sheep.class)
-public class ISheep {
+public class SheepMxn {
 
     @Shadow @Final private static EntityDataAccessor<Byte> DATA_WOOL_ID;
+
+    /**
+     * Sets the new maximum of colors that the game can handle. A lot of it is hardcoded to have 16 instead of having
+     * a simple constant variable with a value like I do, for... some reason.
+     */
     private static byte NEW_AMOUNT = 32;
 
     @ModifyConstant(method = "getColor()Lnet/minecraft/world/item/DyeColor;", constant = @Constant(intValue = 15))
@@ -41,6 +46,7 @@ public class ISheep {
         SynchedEntityData entityData = ((Sheep)(Object)this).getEntityData();
         byte b0 = entityData.get(DATA_WOOL_ID);
 
+        //sets the first byte next to the 5 bytes used (32) for if it's sheared or not
         if (sheared) {
             entityData.set(DATA_WOOL_ID, (byte)(b0 | NEW_AMOUNT));
         } else {

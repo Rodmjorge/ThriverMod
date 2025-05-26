@@ -4,7 +4,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
-import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Arrays;
 
 @Mixin(EquipmentAssets.class)
-public interface IEquipmentAssets {
+public interface EquipmentAssetsMxn {
 
     /**
      * When you add a new llama carpet texture, the location is automatically assigned to the minecraft namespace,
@@ -23,7 +22,7 @@ public interface IEquipmentAssets {
      */
     @Inject(method = "createId", at = @At("HEAD"), cancellable = true)
     private static void createId(String name, CallbackInfoReturnable<ResourceKey<EquipmentAsset>> cir) {
-        if (name.endsWith("_carpet")) {
+        if (name.endsWith("_carpet")) { // "good enough" ahh coding
 
             String dyeName = name.replace("_carpet", "");
             if (Arrays.stream(DyeColor.values()).anyMatch(x -> x.getSerializedName().equals(dyeName) && DyeColorThr.isCustomColor(x))) {

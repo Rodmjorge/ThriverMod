@@ -6,8 +6,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PalmLeavesBlock extends LeavesBlock {
-
     public static final MapCodec<PalmLeavesBlock> CODEC = simpleCodec(PalmLeavesBlock::new);
+
     /**
      * Assigns a new {@code DECAY_DISTANCE} of 12 to accommodate the palm tree leaves.
      */
@@ -23,7 +23,9 @@ public class PalmLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public MapCodec<? extends PalmLeavesBlock> codec() { return CODEC; }
+    public MapCodec<PalmLeavesBlock> codec() {
+        return CODEC;
+    }
 
     @Override
     protected boolean decaying(BlockState state) {
