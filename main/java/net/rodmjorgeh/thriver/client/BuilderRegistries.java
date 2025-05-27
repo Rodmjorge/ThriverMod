@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.client.data;
+package net.rodmjorgeh.thriver.client;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;

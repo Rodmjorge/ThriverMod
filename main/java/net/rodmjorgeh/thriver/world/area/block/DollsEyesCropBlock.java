@@ -1,6 +1,7 @@
 package net.rodmjorgeh.thriver.world.area.block;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;

@@ -9,6 +9,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.rodmjorgeh.thriver.advancements.CriteriaTriggerReg;
 import net.rodmjorgeh.thriver.client.model.ModelLayersThr;
+import net.rodmjorgeh.thriver.client.renderer.DollsEyesFogRenderer;
 import net.rodmjorgeh.thriver.client.renderer.blockentity.SpecialModeRendererReg;
 import net.rodmjorgeh.thriver.data.loot.modifiers.LootModifierReg;
 import net.rodmjorgeh.thriver.sound.SoundEventReg;

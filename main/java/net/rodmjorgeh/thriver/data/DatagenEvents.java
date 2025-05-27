@@ -3,7 +3,7 @@ package net.rodmjorgeh.thriver.data;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.rodmjorgeh.thriver.client.data.BuilderRegistries;
+import net.rodmjorgeh.thriver.client.BuilderRegistries;
 import net.rodmjorgeh.thriver.client.data.models.EquipmentAssetDataGenerator;
 import net.rodmjorgeh.thriver.data.advancements.AdvancementDataGenerator;
 import net.rodmjorgeh.thriver.data.loot.GlobalLootDataGenerator;

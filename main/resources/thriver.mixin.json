@@ -9,6 +9,7 @@
     "injections.DyeColorMxn",
     "injections.EquipmentAssetsMxn",
     "injections.FarmBlockMxn",
+    "injections.FogRendererMxn",
     "injections.LeavesBlockMxn",
     "injections.LivingEntityMxn",
     "injections.LocalPlayerMxn",
