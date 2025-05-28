@@ -15,15 +15,10 @@ public class RenderTypeReg {
     public static final Function<ResourceLocation, RenderType> CLOSING_OVERLAY = Util.memoize(
             x -> RenderType.create(
                     "closing_display",
-                    DefaultVertexFormat.POSITION_TEX_COLOR,
-                    VertexFormat.Mode.QUADS,
                     786432,
+                    RenderPipelineReg.CLOSING_OVERLAY,
                     RenderType.CompositeState.builder()
                             .setTextureState(new RenderStateShard.TextureStateShard(x, TriState.TRUE, false))
-                            .setShaderState(RenderStateShard.POSITION_TEXTURE_COLOR_SHADER /*add your own shader here for masks*/)
-                            .setTransparencyState(RenderStateReg.CLOSING_OVERLAY_TRANSPARENCY)
-                            .setDepthTestState(RenderStateShard.NO_DEPTH_TEST)
-                            .setWriteMaskState(RenderStateShard.COLOR_WRITE)
                             .createCompositeState(false)
             )
     );

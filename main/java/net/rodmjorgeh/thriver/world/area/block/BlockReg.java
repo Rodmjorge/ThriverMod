@@ -1,6 +1,7 @@
 package net.rodmjorgeh.thriver.world.area.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -22,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.util.ResourceMod;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.WoodTypeThr;
+import net.rodmjorgeh.thriver.world.area.particles.ParticleReg;
 import net.rodmjorgeh.thriver.world.item.CreativeModeTabReg;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
 import net.rodmjorgeh.thriver.world.item.ItemReg;
@@ -96,7 +98,7 @@ public class BlockReg {
                     .setId(createId("palm_button"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_LEAVES = register("palm_leaves",
-            () -> new PalmLeavesBlock(Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
+            () -> new PalmLeavesBlock(0.03F, ParticleReg.PALM_LEAVES.get(), Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> PALM_SPROUT = register("palm_sprout",
             () -> new PalmSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),

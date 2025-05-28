@@ -2,11 +2,12 @@ package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.sheep.Sheep;
 import net.minecraft.world.item.DyeColor;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
@@ -20,7 +21,7 @@ public class SheepMxn {
      * Sets the new maximum of colors that the game can handle. A lot of it is hardcoded to have 16 instead of having
      * a simple constant variable with a value like I do, for... some reason.
      */
-    private static byte NEW_AMOUNT = 32;
+    @Unique private static byte NEW_AMOUNT = 32;
 
     @ModifyConstant(method = "getColor()Lnet/minecraft/world/item/DyeColor;", constant = @Constant(intValue = 15))
     public int getColorConstantValue(int i) {

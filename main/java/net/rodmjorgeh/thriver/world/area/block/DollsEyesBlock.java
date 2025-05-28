@@ -13,6 +13,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.InsideBlockEffectType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.SuspiciousStewEffects;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rodmjorgeh.thriver.plus.EntityAdd;
 import net.rodmjorgeh.thriver.world.area.GameRuleReg;
+import net.rodmjorgeh.thriver.world.area.entity.InsideBlockEffectTypeThr;
 
 public class DollsEyesBlock extends FlowerBlock {
     public static final MapCodec<DollsEyesBlock> CODEC = RecordCodecBuilder.mapCodec(
@@ -46,10 +49,10 @@ public class DollsEyesBlock extends FlowerBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof EntityAdd aEntity && entity instanceof LivingEntity livingEntity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
+        if (entity instanceof LivingEntity livingEntity) {
             if (this.checkLevel(level) && !livingEntity.hasEffect(MobEffects.BLINDNESS)) {
-                aEntity.setIsInDollsEyes(true);
+                applier.apply(InsideBlockEffectTypeThr.CLOSE_EYES);
             }
         }
     }

@@ -9,6 +9,7 @@ import net.rodmjorgeh.thriver.data.advancements.AdvancementDataGenerator;
 import net.rodmjorgeh.thriver.data.loot.GlobalLootDataGenerator;
 import net.rodmjorgeh.thriver.data.loot.LootDataGenerator;
 import net.rodmjorgeh.thriver.client.data.models.ModelDataGenerator;
+import net.rodmjorgeh.thriver.data.particle.ParticleDataGenerator;
 import net.rodmjorgeh.thriver.data.recipe.RecipeDataGenerator;
 import net.rodmjorgeh.thriver.data.tags.BlockTagDataGenerator;
 import net.rodmjorgeh.thriver.data.tags.EntityTypeTagDataGenerator;
@@ -24,6 +25,7 @@ public class DatagenEvents {
         event.createProvider(RecipeDataGenerator.Runner::new);
         event.createProvider(LootDataGenerator::createProvider);
         event.createProvider(AdvancementDataGenerator::createProvider);
+        event.createProvider(ParticleDataGenerator::new);
 
         TagsProvider<Block> blockTags = event.createProvider(BlockTagDataGenerator::new);
         event.createProvider(EntityTypeTagDataGenerator::new);

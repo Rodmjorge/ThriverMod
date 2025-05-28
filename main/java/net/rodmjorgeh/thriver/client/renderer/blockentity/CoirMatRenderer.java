@@ -23,7 +23,8 @@ public class CoirMatRenderer extends AbstractSignRenderer {
     }
 
     @Override
-    public void render(SignBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int lightColor, int overlayTexture) {
+    public void render(SignBlockEntity blockEntity, float partialTick, PoseStack poseStack,
+                       MultiBufferSource bufferSource, int lightColor, int overlayTexture, Vec3 cameraPos) {
         this.blockFacingDirection = blockEntity.getBlockState().getValue(CoirMatBlock.FACING);
         this.renderSignText(blockEntity.getBlockPos(), blockEntity.getText(true), poseStack, bufferSource, lightColor,
                 blockEntity.getTextLineHeight(), blockEntity.getMaxTextLineWidth(), true);

@@ -1,4 +1,4 @@
-package net.rodmjorgeh.thriver.plus.mixin.injections;
+package net.rodmjorgeh.thriver.plus.mixin.enums;
 
 import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -9,10 +9,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.material.MapColor;
 import net.rodmjorgeh.thriver.world.area.maps.MapColorThr;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 import java.util.ArrayList;
@@ -26,13 +23,12 @@ public class DyeColorMxn {
     @Shadow @Final @Mutable
     public static DyeColor[] $VALUES;
 
-    private static final DyeColor BEIGE = addDyeColor("BEIGE",
+    @Unique private static final DyeColor BEIGE = addDyeColor("BEIGE",
             16, "beige", 14724731, MapColorThr.COLOR_BEIGE, 14923919, 13412734);
 
     @Invoker("<init>")
     public static DyeColor dyeColor(String variableName, int variableId,
                                     int id, String name, int textureDefuseColor, MapColor mapColor, int fireworkColor, int textColor) {
-        // I just saw a different mod doing this, so I copied it, but I have no idea if this is needed
         throw new AssertionError();
     }
 
@@ -42,7 +38,7 @@ public class DyeColorMxn {
 
         DyeColor dyeColor = dyeColor(variableName, id, id, name, textureDefuseColor, mapColor, fireworkColor, textColor);
         arr.add(dyeColor);
-        $VALUES = arr.toArray(new DyeColor[0]);
+        $VALUES = arr.toArray(DyeColor[]::new);
 
         return dyeColor;
     }

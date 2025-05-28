@@ -30,7 +30,7 @@ import net.rodmjorgeh.thriver.world.area.block.state.properties.BlockStateProper
 import net.rodmjorgeh.thriver.world.area.block.state.properties.TripleBlockStep;
 
 public class TallReedBlock extends BushBlock {
-    public static final MapCodec<TallReedBlock> CODEC = simpleCodec(TallReedBlock::new);
+    public static final MapCodec<BushBlock> CODEC = simpleCodec(TallReedBlock::new);
 
     public static final EnumProperty<TripleBlockStep> STEP = BlockStatePropertyReg.TRIPLE_BLOCK_STEP;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -40,7 +40,7 @@ public class TallReedBlock extends BushBlock {
     };
 
     @Override
-    public MapCodec<TallReedBlock> codec() {
+    public MapCodec<BushBlock> codec() {
         return CODEC;
     }
 
@@ -73,20 +73,14 @@ public class TallReedBlock extends BushBlock {
 
         if (!check) {
             boolean check2 = neighborState.is(this);
-            switch (state.getValue(STEP)) {
-                default:
-                case TripleBlockStep.BOTTOM:
-                    flag = neighborDir != Direction.UP || check2 && neighborState.getValue(STEP) == TripleBlockStep.MIDDLE;
-                    break;
-
-                case TripleBlockStep.MIDDLE:
-                    flag = check2 && neighborState.getValue(STEP) == ((neighborDir == Direction.UP) ? TripleBlockStep.TOP : TripleBlockStep.BOTTOM);
-                    break;
-
-                case TripleBlockStep.TOP:
-                    flag = neighborDir != Direction.DOWN || check2 && neighborState.getValue(STEP) == TripleBlockStep.MIDDLE;
-                    break;
-            }
+            flag = switch (state.getValue(STEP)) {
+                case TripleBlockStep.MIDDLE ->
+                        check2 && neighborState.getValue(STEP) == ((neighborDir == Direction.UP) ? TripleBlockStep.TOP : TripleBlockStep.BOTTOM);
+                case TripleBlockStep.TOP ->
+                        neighborDir != Direction.DOWN || check2 && neighborState.getValue(STEP) == TripleBlockStep.MIDDLE;
+                default ->
+                        neighborDir != Direction.UP || check2 && neighborState.getValue(STEP) == TripleBlockStep.MIDDLE;
+            };
         }
 
         return flag ? super.updateShape(state, level, scheduledTick, pos, neighborDir, neighborPos, neighborState, random) : Blocks.AIR.defaultBlockState();

@@ -2,6 +2,7 @@ package net.rodmjorgeh.thriver.client.data.models;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -27,7 +28,7 @@ import java.util.function.Consumer;
 public class BlockModelDataGenerator {
 
     private final BlockModelGenerators generator;
-    private final Consumer<BlockStateGenerator> stateProvider;
+    private final Consumer<BlockModelDefinitionGenerator> stateProvider;
     private final BiConsumer<ResourceLocation, ModelInstance> modelOutput;
 
     public BlockModelDataGenerator(BlockModelGenerators generator) {
@@ -75,8 +76,8 @@ public class BlockModelDataGenerator {
     }
 
     private void createNewTexturedModels() {
-        this.generator.texturedModels = new ImmutableMap.Builder<Block, TexturedModel>()
-                .putAll(this.generator.texturedModels)
+        this.generator.TEXTURED_MODELS = new ImmutableMap.Builder<Block, TexturedModel>()
+                .putAll(this.generator.TEXTURED_MODELS)
                 .put(
                         BlockReg.SANDSTONE_BRICKS.get(),
                         TexturedModel.COLUMN_WITH_WALL.get(Blocks.SANDSTONE)
@@ -129,10 +130,10 @@ public class BlockModelDataGenerator {
     }
 
     private void createHorizontalFacingWithoutDataModel(Block block) {
+        MultiVariant variant = BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block));
         this.stateProvider.accept(
-                MultiVariantGenerator.multiVariant(block,
-                                Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(block)))
-                        .with(BlockModelGenerators.createHorizontalFacingDispatchAlt())
+                MultiVariantGenerator.dispatch(block, variant)
+                        .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT)
         );
     }
 
@@ -141,16 +142,11 @@ public class BlockModelDataGenerator {
 
         this.generator.registerSimpleFlatItemModel(ItemReg.COCONUT.get());
         this.stateProvider.accept(
-                MultiVariantGenerator.multiVariant(block)
+                MultiVariantGenerator.dispatch(block)
                         .with(
-                                PropertyDispatch.property(CoconutBlock.AGE)
-                                        .generate(
-                                                i -> Variant.variant()
-                                                        .with(
-                                                                VariantProperties.MODEL,
-                                                                ModelLocationUtils.getModelLocation(block, "_stage" + i)
-                                                        )
-                                        )
+                                PropertyDispatch.initial(CoconutBlock.AGE).generate(
+                                        i -> BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(block, "_stage" + i))
+                                )
                         )
         );
     }
@@ -163,12 +159,12 @@ public class BlockModelDataGenerator {
         ResourceLocation bottom = this.generator.createSuffixedVariant(block, "_bottom", ModelTemplates.CROSS, TextureMapping::cross);
 
         this.stateProvider.accept(
-                MultiVariantGenerator.multiVariant(block)
+                MultiVariantGenerator.dispatch(block)
                         .with(
-                                PropertyDispatch.property(TallReedBlock.STEP)
-                                        .select(TripleBlockStep.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottom))
-                                        .select(TripleBlockStep.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middle))
-                                        .select(TripleBlockStep.TOP, Variant.variant().with(VariantProperties.MODEL, top))
+                                PropertyDispatch.initial(TallReedBlock.STEP)
+                                        .select(TripleBlockStep.BOTTOM, BlockModelGenerators.plainVariant(bottom))
+                                        .select(TripleBlockStep.MIDDLE, BlockModelGenerators.plainVariant(middle))
+                                        .select(TripleBlockStep.TOP, BlockModelGenerators.plainVariant(top))
                         )
         );
     }
@@ -186,13 +182,13 @@ public class BlockModelDataGenerator {
         ResourceLocation silty = ModelTemplates.FARMLAND.create(siltyTextureName, siltyTextureMap, this.modelOutput);
 
         this.stateProvider.accept(
-                MultiVariantGenerator.multiVariant(Blocks.FARMLAND)
+                MultiVariantGenerator.dispatch(Blocks.FARMLAND)
                         .with(
-                                PropertyDispatch.properties(FarmBlock.MOISTURE, BlockStatePropertyReg.SILTY)
+                                PropertyDispatch.initial(FarmBlock.MOISTURE, BlockStatePropertyReg.SILTY)
                                         .generate(
                                                 (moisture, isSilty) -> (moisture == 7)
-                                                        ? Variant.variant().with(VariantProperties.MODEL, isSilty ? silty : moistured)
-                                                        : Variant.variant().with(VariantProperties.MODEL, notMoistured)
+                                                        ? BlockModelGenerators.plainVariant(isSilty ? silty : moistured)
+                                                        : BlockModelGenerators.plainVariant(notMoistured)
                                         )
                         )
 

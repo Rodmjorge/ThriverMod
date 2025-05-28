@@ -18,6 +18,7 @@ import net.rodmjorgeh.thriver.world.area.block.entity.BlockEntityReg;
 import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
 import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.FoliagePlacerReg;
 import net.rodmjorgeh.thriver.world.area.areagen.feature.placers.TrunkPlacerReg;
+import net.rodmjorgeh.thriver.world.area.particles.ParticleReg;
 import net.rodmjorgeh.thriver.world.item.CreativeModeTabReg;
 import net.rodmjorgeh.thriver.world.item.ItemReg;
 import net.rodmjorgeh.thriver.world.area.maps.MapDecorationTypeReg;
@@ -43,6 +44,7 @@ public class ThriverMod {
         LootModifierReg.register(bus);
         CriteriaTriggerReg.register(bus);
         MapDecorationTypeReg.register(bus);
+        ParticleReg.register(bus);
 
         bus.addListener(CreativeModeTabReg::addToCreativeTab);
         bus.addListener(BusEvents::commonSetup);

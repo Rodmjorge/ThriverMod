@@ -1,7 +1,6 @@
 package net.rodmjorgeh.thriver.world.area.maps;
 
 import net.minecraft.world.level.material.MapColor;
-import net.rodmjorgeh.thriver.ThriverMod;
 
 public class MapColorThr {
 

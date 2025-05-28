@@ -51,7 +51,7 @@ public class EntityMxn implements EntityAdd {
 
     @Inject(method = "load", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;setTicksFrozen(I)V", shift = At.Shift.AFTER))
     public void load(CompoundTag compound, CallbackInfo ci) {
-        this.setTicksToBlind(compound.getInt(DATA_TICKS_TO_BLIND_TEXT));
+        this.setTicksToBlind(compound.getIntOr(DATA_TICKS_TO_BLIND_TEXT, 0));
     }
 
     @Override

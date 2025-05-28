@@ -15,29 +15,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMxn {
 
-    @Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;removeFrost()V"))
+    @Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;pop()V", ordinal = 4, shift = At.Shift.AFTER))
     public void aiStep(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity)(Object)this;
         ProfilerFiller profiler = Profiler.get();
 
         // I have no fucking clue as to what this does.
-        profiler.pop();
         profiler.push("blinding");
 
         if (!entity.level().isClientSide && !entity.isDeadOrDying() && entity instanceof EntityAdd aEntity) {
-            int i = aEntity.getTicksToBlind();
+            if (!aEntity.getIsInDollsEyes()) {
+                // once you get the blindness from the plant, the closing overlay will disappear faster than if you move away from the plant
+                int i = entity.hasEffect(MobEffects.BLINDNESS) ? 15 : 3;
 
-            // once you get the blindness from the plant, the closing overlay will disappear faster than if you move away from the plant
-            int j = entity.hasEffect(MobEffects.BLINDNESS) ? 15 : 3;
-
-            int ticksToBlind = DollsEyesBlock.TICKS_TO_BLIND;
-            boolean isInDollsEyes = aEntity.getIsInDollsEyes();
-
-            aEntity.setTicksToBlind(isInDollsEyes ? Math.min(ticksToBlind, i + 1) : Math.max(0, i - j));
-            if (i >= ticksToBlind) {
-                entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 600));
-                aEntity.setIsInDollsEyes(false);
+                aEntity.setTicksToBlind(Math.max(0, aEntity.getTicksToBlind() - i));
             }
         }
+
+        profiler.pop();
     }
 }

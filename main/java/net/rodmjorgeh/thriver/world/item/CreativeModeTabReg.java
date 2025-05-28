@@ -16,7 +16,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class CreativeModeTabReg {
-    private static Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>> itemsInTab = new HashMap<>();
+    private static final Map<ResourceKey<CreativeModeTab>, List<Supplier<? extends ItemLike>>> itemsInTab = new HashMap<>();
 
     public static void registerInTab(Supplier<? extends ItemLike> item, ResourceKey<CreativeModeTab>[] creativeTabs) {
         for (ResourceKey<CreativeModeTab> tab : creativeTabs) {

@@ -3,10 +3,11 @@
   "package": "net.rodmjorgeh.thriver.plus.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "enums.DyeColorMxn",
+    "enums.InsideBlockEffectTypeMxn",
     "injections.BlockStatePropertiesMxn",
     "injections.BuiltInLootTablesMxn",
     "injections.CropBlockMxn",
-    "injections.DyeColorMxn",
     "injections.EquipmentAssetsMxn",
     "injections.FarmBlockMxn",
     "injections.FogRendererMxn",

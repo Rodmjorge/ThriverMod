@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.rodmjorgeh.thriver.client.data.models.BlockModelDataGenerator;
 import net.rodmjorgeh.thriver.client.renderer.EntityRendererReg;
 import net.rodmjorgeh.thriver.client.renderer.blockentity.BlockEntityRendererReg;
@@ -15,6 +16,7 @@ import net.rodmjorgeh.thriver.world.area.GameRuleReg;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.block.entity.BlockEntityAdderReg;
 import net.rodmjorgeh.thriver.world.area.block.state.properties.WoodTypeThr;
+import net.rodmjorgeh.thriver.world.area.particles.ParticleReg;
 
 public class BusEvents {
 
@@ -22,6 +24,7 @@ public class BusEvents {
         event.enqueueWork(() -> {
             BlockEntityAdderReg.bootstrap();
             GameRuleReg.registerAll();
+            ParticleReg.registerAll();
 
             AxeItem.STRIPPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPPABLES)
                     .put(BlockReg.PALM_LOG.get(), BlockReg.STRIPPED_PALM_LOG.get())
