@@ -1,27 +1,25 @@
 package net.rodmjorgeh.thriver.plus.mixin.injections;
 
 import net.minecraft.world.level.material.MapColor;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
+
+import java.util.Arrays;
 
 @Mixin(MapColor.class)
 public class MapColorMxn {
 
     /**
-     * Removes the maximum value of 64 for map colors and sets it to 256. The good thing is that it's actually
-     * registered as an integer, so I could have 2,147,483,647 map colors if I really wanted to.
-     *
-     * <p>Eh, I'll keep it simple.</p>
+     * Removes the maximum value of 64 for map colors and sets it to 128. Unfortunately, even though it's registered as
+     * an {@code int}, I can't go higher than 255 since it then gets transformed into a {@code byte}. Not that you need
+     * that many colors anyway.
      */
     @Shadow @Final @Mutable
-    private static final MapColor[] MATERIAL_COLORS = new MapColor[256];
+    public static final MapColor[] MATERIAL_COLORS = Arrays.copyOf(MapColor.MATERIAL_COLORS, 128);
 
     @ModifyConstant(method = "<init>", constant = @Constant(intValue = 63))
     public int constantValue(int i) {
-        return MATERIAL_COLORS.length - 1;
+        return 127;
     }
 }

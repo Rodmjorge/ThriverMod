@@ -1,10 +1,11 @@
 package net.rodmjorgeh.thriver.world.area.maps;
 
 import net.minecraft.world.level.material.MapColor;
+import net.rodmjorgeh.thriver.ThriverMod;
 
 public class MapColorThr {
 
-    private static int ID_START = 62;
+    public static int ID_START = 62;
 
     public static final MapColor PALM_TREE = create(13067354);
     public static final MapColor COLOR_BEIGE = create(14724731);
