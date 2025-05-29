@@ -36,69 +36,69 @@ public class BlockReg {
             DeferredRegister.create(BuiltInRegistries.BLOCK, ThriverMod.MOD_ID);
 
     public static final Supplier<Block> PALM_LOG = register("palm_log",
-            () -> new RotatedPillarBlock(Blocks.logProperties(MapColor.COLOR_BROWN, MapColorThr.PALM_TREE, SoundType.WOOD).setId(createId("palm_log"))),
+            () -> new RotatedPillarBlock(Blocks.logProperties(MapColor.COLOR_ORANGE, MapColor.COLOR_BROWN, SoundType.WOOD).setId(createId("palm_log"))),
             CreativeModeTabs.BUILDING_BLOCKS, CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> PALM_WOOD = register("palm_wood",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_WOOD).setId(createId("palm_wood"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> STRIPPED_PALM_LOG = register("stripped_palm_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_LOG)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("stripped_palm_log"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> STRIPPED_PALM_WOOD = register("stripped_palm_wood",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_DARK_OAK_WOOD)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("stripped_palm_wood"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_PLANKS = register("palm_planks",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_planks"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_SLAB = register("palm_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SLAB)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_slab"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_STAIRS = register("palm_stairs",
             () -> new StairBlock(PALM_PLANKS.get().defaultBlockState(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_STAIRS)
-                            .mapColor(MapColorThr.PALM_TREE)
+                            .mapColor(MapColor.COLOR_ORANGE)
                             .setId(createId("palm_stairs"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_FENCE = register("palm_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_fence"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_FENCE_GATE = register("palm_fence_gate",
             () -> new FenceGateBlock(WoodTypeThr.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_FENCE_GATE)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_fence_gate"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_DOOR = register("palm_door",
             () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_DOOR)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_door"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_TRAPDOOR = register("palm_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_TRAPDOOR)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_trapdoor"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_PRESSURE_PLATE = register("palm_pressure_plate",
             () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PRESSURE_PLATE)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_pressure_plate"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_BUTTON = register("palm_button",
             () -> new ButtonBlock(BlockSetType.OAK, 30, Blocks.buttonProperties()
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_button"))),
             CreativeModeTabs.BUILDING_BLOCKS);
     public static final Supplier<Block> PALM_LEAVES = register("palm_leaves",
-            () -> new PalmLeavesBlock(0.03F, ParticleReg.PALM_LEAVES.get(), Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
+            () -> new PalmLeavesBlock(0.005F, ParticleReg.PALM_LEAVES.get(), Blocks.leavesProperties(SoundType.GRASS).setId(createId("palm_leaves"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> PALM_SPROUT = register("palm_sprout",
             () -> new PalmSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SAPLING).setId(createId("palm_sprout"))),
@@ -108,12 +108,12 @@ public class BlockReg {
             false);
     public static final Supplier<Block> PALM_SIGN = register("palm_sign",
             () -> new StandingSignBlock(WoodTypeThr.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_SIGN)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_SIGN = register("palm_wall_sign",
             () -> new WallSignBlock(WoodTypeThr.PALM, Blocks.wallVariant(PALM_SIGN.get(), true)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .forceSolidOn()
                     .instrument(NoteBlockInstrument.BASS)
                     .noCollission()
@@ -123,12 +123,12 @@ public class BlockReg {
             false);
     public static final Supplier<Block> PALM_HANGING_SIGN = register("palm_hanging_sign",
             () -> new CeilingHangingSignBlock(WoodTypeThr.PALM, BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_HANGING_SIGN)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .setId(createId("palm_hanging_sign"))),
             false);
     public static final Supplier<Block> PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign",
             () -> new WallHangingSignBlock(WoodTypeThr.PALM, Blocks.wallVariant(PALM_HANGING_SIGN.get(), true)
-                    .mapColor(MapColorThr.PALM_TREE)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .forceSolidOn()
                     .instrument(NoteBlockInstrument.BASS)
                     .noCollission()
@@ -171,7 +171,7 @@ public class BlockReg {
 
     public static final Supplier<Block> SILT_MUD = register("silt_mud",
             () -> new MudBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)
-                    .mapColor(MapColor.SAND)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                     .setId(createId("silt_mud"))),
             CreativeModeTabs.NATURAL_BLOCKS);
     public static final Supplier<Block> CRACKED_MUD_BRICKS = register("cracked_mud_bricks",

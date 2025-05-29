@@ -15,7 +15,6 @@
     "injections.LivingEntityMxn",
     "injections.LocalPlayerMxn",
     "injections.MapBannerMxn",
-    "injections.MapColorMxn",
     "injections.MushroomCowMxn",
     "injections.RecipeBuilderMxn",
     "injections.SheepMxn",
@@ -23,7 +22,8 @@
     "injections.ShulkerBoxBlockMxn",
     "unique.EntityMxn",
     "unique.GuiMxn",
-    "unique.GuiGraphicsMxn"
+    "unique.GuiGraphicsMxn",
+    "unique.ServerPlayerMxn"
   ],
   "client": [],
   "injectors": {

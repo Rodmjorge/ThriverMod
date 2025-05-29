@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectType;
 import net.minecraft.world.entity.LivingEntity;
+import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.plus.EntityAdd;
 import net.rodmjorgeh.thriver.world.area.block.DollsEyesBlock;
 import org.spongepowered.asm.mixin.*;
@@ -24,13 +25,13 @@ public class InsideBlockEffectTypeMxn {
             (entity -> {
                 if (entity instanceof EntityAdd aEntity && entity instanceof LivingEntity livingEntity) {
                     aEntity.setIsInDollsEyes(true);
-                    int i = aEntity.getTicksToBlind();
                     int ticksToBlind = DollsEyesBlock.TICKS_TO_BLIND;
 
-                    if (aEntity.getIsInDollsEyes() && i > 0) {
+                    if (aEntity.getIsInDollsEyes()) {
+                        int i = aEntity.getTicksToBlind();
                         aEntity.setTicksToBlind(Math.min(ticksToBlind, i + 1));
 
-                        if (i > ticksToBlind) {
+                        if (i >= ticksToBlind) {
                             livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 600));
                             aEntity.setIsInDollsEyes(false);
                         }

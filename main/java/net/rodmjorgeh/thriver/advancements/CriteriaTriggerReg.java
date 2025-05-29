@@ -1,6 +1,7 @@
 package net.rodmjorgeh.thriver.advancements;
 
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.critereon.KilledTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,6 +17,8 @@ public class CriteriaTriggerReg {
 
     public static final Supplier<PlayedReedFluteTrigger> PLAYED_REED_FLUTE = CRITERIA.register("played_reed_flute",
             PlayedReedFluteTrigger::new);
+    public static final Supplier<KilledTrigger> KILL_MOB_WHILE_DOLLS_EYES_BLINDED = CRITERIA.register("kill_mob_while_dolls_eyes_blinded",
+            KilledTrigger::new);
 
     public static void register(IEventBus bus) {
         CRITERIA.register(bus);

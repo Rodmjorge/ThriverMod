@@ -22,6 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.plus.EntityAdd;
 import net.rodmjorgeh.thriver.world.area.GameRuleReg;
 import net.rodmjorgeh.thriver.world.area.entity.InsideBlockEffectTypeThr;
@@ -50,7 +51,7 @@ public class DollsEyesBlock extends FlowerBlock {
 
     @Override
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier) {
-        if (entity instanceof LivingEntity livingEntity) {
+        if (entity instanceof LivingEntity livingEntity && level instanceof ServerLevel) {
             if (this.checkLevel(level) && !livingEntity.hasEffect(MobEffects.BLINDNESS)) {
                 applier.apply(InsideBlockEffectTypeThr.CLOSE_EYES);
             }

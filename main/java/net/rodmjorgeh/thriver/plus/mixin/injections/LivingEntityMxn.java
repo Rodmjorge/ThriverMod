@@ -20,18 +20,15 @@ public abstract class LivingEntityMxn {
         LivingEntity entity = (LivingEntity)(Object)this;
         ProfilerFiller profiler = Profiler.get();
 
-        // I have no fucking clue as to what this does.
-        profiler.push("blinding");
-
+        profiler.push("blinding"); // I have no fucking clue as to what this does.
         if (!entity.level().isClientSide && !entity.isDeadOrDying() && entity instanceof EntityAdd aEntity) {
             if (!aEntity.getIsInDollsEyes()) {
+
                 // once you get the blindness from the plant, the closing overlay will disappear faster than if you move away from the plant
                 int i = entity.hasEffect(MobEffects.BLINDNESS) ? 15 : 3;
-
                 aEntity.setTicksToBlind(Math.max(0, aEntity.getTicksToBlind() - i));
             }
         }
-
         profiler.pop();
     }
 }
