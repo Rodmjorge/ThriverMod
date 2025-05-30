@@ -18,9 +18,10 @@ license="${mod_license}"
 
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
-
-# The modid of the mod
 modId="thriver" #mandatory
+
+[[mods.client]]
+displayTest = "IGNORE_ALL_VERSION"
 
 # The version number of the mod
 version="1.0.0" #mandatory
@@ -72,7 +73,7 @@ config="thriver.mixin.json"
     # An ordering relationship for the dependency.
     # BEFORE - This mod is loaded BEFORE the dependency
     # AFTER - This mod is loaded AFTER the dependency
-    ordering="NONE"
+    ordering="AFTER"
     # Side this dependency is applied on - BOTH, CLIENT, or SERVER
     side="BOTH"
 
@@ -82,7 +83,7 @@ config="thriver.mixin.json"
     type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${minecraft_version_range}"
-    ordering="NONE"
+    ordering="BEFORE"
     side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares

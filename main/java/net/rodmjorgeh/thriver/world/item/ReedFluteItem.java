@@ -49,6 +49,7 @@ public class ReedFluteItem extends Item {
         if (level instanceof ServerLevel) {
             Vec3 playerPos = player.position();
 
+            // Searches all mobs in an 8 block radius around the player
             List<Mob> mobsNear = level.getEntitiesOfClass(
                                     Mob.class,
                                     new AABB(playerPos.x - 8.0F, playerPos.y - 8.0F, playerPos.z - 8.0F, playerPos.x + 8.0F, playerPos.y + 8.0F, playerPos.z + 8.0F),

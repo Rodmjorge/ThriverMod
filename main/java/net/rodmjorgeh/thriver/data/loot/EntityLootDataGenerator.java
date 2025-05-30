@@ -16,15 +16,12 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
 import net.rodmjorgeh.thriver.world.area.entity.EntityReg;
 import net.rodmjorgeh.thriver.world.item.DyeColorThr;
-import org.apache.commons.lang3.function.TriConsumer;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class EntityLootDataGenerator extends EntityLootSubProvider implements LootDataGeneratorProvider<EntityType<?>> {

@@ -9,9 +9,12 @@ import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.neoforged.neoforge.common.conditions.ConditionalOps;
+import net.neoforged.neoforge.common.conditions.WithConditions;
 import net.rodmjorgeh.thriver.data.Datagen;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
@@ -57,7 +60,7 @@ public class LootDataGenerator extends LootTableProvider implements Datagen<Loot
      *                     add every index to it, meaning it adds all pools that the loot table originally had.
      */
     public <T> LootTable.Builder getLootTable(LootDataGeneratorProvider<T> provider, String name, HolderLookup.Provider lookupProvider, int... indexesToAdd) {
-        LootTable loot = this.getInfoFromFile(provider, name, lookupProvider);
+        LootTable loot = this.getInfoFromFile(provider.getType(), name, lookupProvider);
         List<LootPool> pools = loot.pools;
 
         LootTable.Builder builder = LootTable.lootTable();

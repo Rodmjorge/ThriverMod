@@ -13,12 +13,16 @@ import net.rodmjorgeh.thriver.data.DataGeneratorProvider;
 import net.rodmjorgeh.thriver.util.ResourceMod;
 
 public interface AdvancementDataGeneratorProvider extends DataGeneratorProvider {
+
     default MutableComponent createTitle(String name) {
         return this.createTranslatableComponent(name, "title");
     }
-
     default MutableComponent createDescription(String name) {
         return this.createTranslatableComponent(name, "description");
+    }
+
+    default ResourceLocation createBackground() {
+        return ResourceMod.createLoc("gui/advancements/backgrounds/" + this.getType());
     }
 
     private MutableComponent createTranslatableComponent(String name, String componentType) {
@@ -29,7 +33,10 @@ public interface AdvancementDataGeneratorProvider extends DataGeneratorProvider 
         return ResourceMod.createLoc(this.getType() + "/" + name);
     }
     default ResourceLocation getFolderMinecraft(String name) {
-        return ResourceLocation.withDefaultNamespace(this.getType() + "/" + name);
+        return this.getFolderMinecraft(this.getType(), name);
+    }
+    default ResourceLocation getFolderMinecraft(String type, String name) {
+        return ResourceLocation.withDefaultNamespace(type + "/" + name);
     }
 
 

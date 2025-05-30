@@ -1,8 +1,10 @@
 {
   "advancements.adventure.kill_warden_while_blind.title": "An Eye for an Eye",
-  "advancements.adventure.kill_warden_while_blind.description": "Kill a Warden without being able to see after striking a Doll's Eyes.",
+  "advancements.adventure.kill_warden_while_blind.description": "Kill a Warden without being able to see after striking a Doll's Eyes",
   "advancements.adventure.play_reed_flute.title": "A Neuralyzer in Disguise",
-  "advancements.adventure.play_reed_flute.description": "Play the Reed Flute while at least six neutral Mobs are planning on attacking you.",
+  "advancements.adventure.play_reed_flute.description": "Play the Reed Flute while at least six neutral Mobs are planning on attacking you",
+  "advancements.mining.root.title": "Mining",
+  "advancements.mining.root.description": "Mining, digging and getting rich",
   "block.minecraft.banner.base.beige": "Fully Beige Field",
   "block.minecraft.banner.border.beige": "Beige Bordure",
   "block.minecraft.banner.bricks.beige": "Beige Field Masoned",

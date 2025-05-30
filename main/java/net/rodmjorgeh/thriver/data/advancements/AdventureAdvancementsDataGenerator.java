@@ -10,10 +10,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentExactPredicate;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.component.predicates.DataComponentPredicate;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.AdvancementSubProvider;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.rodmjorgeh.thriver.ThriverMod;
 import net.rodmjorgeh.thriver.advancements.criterion.KilledTriggerThr;
 import net.rodmjorgeh.thriver.advancements.criterion.PlayedReedFluteTrigger;
 import net.rodmjorgeh.thriver.world.area.block.BlockReg;
@@ -33,7 +36,7 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
 
     @Override
     public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> writer) {
-        HolderGetter<EntityType<?>> entities = provider.lookupOrThrow(Registries.ENTITY_TYPE);
+        HolderLookup.RegistryLookup<EntityType<?>> entities = provider.lookupOrThrow(Registries.ENTITY_TYPE);
 
         Advancement.Builder.advancement()
                 .parent(this.generator.createParent(this, "kill_a_mob"))
@@ -68,6 +71,35 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
                                 EntityPredicate.Builder.entity().of(entities, EntityType.WARDEN)
                         ))
                 .save(writer, this.getFolder("kill_warden_while_blind"));
+
+        // Organization
+        this.generator.getAdvancement(this, "ol_betsy", provider)
+                .parent(this.generator.createParent(this, "shoot_arrow"))
+                .save(writer, this.getFolderMinecraft("ol_betsy"));
+
+        this.generator.getAdvancement(this, "voluntary_exile", provider)
+                .parent(this.generator.createParent(this, "kill_a_mob"))
+                .save(writer, this.getFolderMinecraft("voluntary_exile"));
+
+        this.generator.getAdvancement(this, "totem_of_undying", provider)
+                .parent(this.generator.createParent(this, "voluntary_exile"))
+                .save(writer, this.getFolderMinecraft("totem_of_undying"));
+
+        this.generator.getAdvancement(this, "brush_armadillo", provider)
+                .parent(this.generator.createParent(this, "salvage_sherd"))
+                .save(writer, this.getFolderMinecraft("brush_armadillo"));
+
+        this.generator.getAdvancement("husbandry", "repair_wolf_armor", provider)
+                .parent(this.generator.createParent(this, "brush_armadillo"))
+                .save(writer, this.getFolderMinecraft("husbandry", "repair_wolf_armor"));
+
+        this.generator.getAdvancement("husbandry", "remove_wolf_armor", provider)
+                .parent(this.generator.createParent(this, "brush_armadillo"))
+                .save(writer, this.getFolderMinecraft("husbandry", "remove_wolf_armor"));
+
+        this.generator.getAdvancement("husbandry", "obtain_sniffer_egg", provider)
+                .parent(this.generator.createParent(this, "salvage_sherd"))
+                .save(writer, this.getFolderMinecraft("husbandry", "obtain_sniffer_egg"));
     }
 
     @Override

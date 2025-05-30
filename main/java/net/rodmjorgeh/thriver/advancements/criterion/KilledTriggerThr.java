@@ -1,8 +1,6 @@
 package net.rodmjorgeh.thriver.advancements.criterion;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.KilledTrigger;
 import net.rodmjorgeh.thriver.advancements.CriteriaTriggerReg;

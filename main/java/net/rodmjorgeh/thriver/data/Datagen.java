@@ -3,12 +3,16 @@ package net.rodmjorgeh.thriver.data;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.google.gson.internal.Streams;
+import com.google.gson.stream.JsonReader;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.rodmjorgeh.thriver.ThriverMod;
@@ -36,8 +40,8 @@ public interface Datagen<T, U> {
 
     List<U> getProviderEntries();
 
-    default ResourceLocation copyLocation(DataGeneratorProvider provider, String filename) {
-        String locName = this.getCopyFolder() + "/" + provider.getType() + "/";
+    default ResourceLocation copyLocation(String type, String filename) {
+        String locName = this.getCopyFolder() + "/" + type + "/";
         return ResourceLocation.withDefaultNamespace(locName + filename + ".json");
     }
 
@@ -45,23 +49,26 @@ public interface Datagen<T, U> {
      * Since this is in runClientData, the file has to be inside the resources folder inside a special copy data type
      * folder.
      */
-    default T getInfoFromFile(DataGeneratorProvider provider, String name, HolderLookup.Provider lookupProvider) {
-        ResourceLocation location = this.copyLocation(provider, name);
+    default T getInfoFromFile(String type, String name, HolderLookup.Provider lookupProvider) {
+        ResourceLocation location = this.copyLocation(type, name);
         PackOutput output = this.getOutput();
 
-        DynamicOps<JsonElement> ops = lookupProvider.createSerializationContext(JsonOps.INSTANCE);
+        RegistryOps<JsonElement> ops = lookupProvider.createSerializationContext(JsonOps.INSTANCE);
         Codec<Optional<T>> conditionalCodec = ConditionalOps.createConditionalCodec(this.getCodec());
         String outputFolder = output.getOutputFolder().toString();
         Path filePath = Path.of(ResourceMod.mainFromGenerated(outputFolder), "data", location.getNamespace(), location.getPath());
 
         Optional<T> optional = Optional.empty();
-        try (BufferedReader reader = Files.newBufferedReader(filePath, StandardCharsets.UTF_8)) {
-            Optional<Optional<T>> result = conditionalCodec.parse(ops, JsonParser.parseReader(reader)).result();
-            if (result.isEmpty()) {
-                throw new JsonParseException("Couldn't parse the file from path " + filePath);
+        try (JsonReader reader = new JsonReader(Files.newBufferedReader(filePath, StandardCharsets.UTF_8))) {
+            reader.setLenient(false);
+            JsonElement parsed = Streams.parse(reader);
+            DataResult<Optional<T>> result = conditionalCodec.parse(ops, parsed);
+
+            if (result.isError()) {
+                ThriverMod.LOGGER.error("Couldn't parse file from ID " + filePath + ", giving error: " + result.error().get());
             }
 
-            optional = result.get();
+            optional = result.getOrThrow();
         } catch (IOException e) {
             ThriverMod.LOGGER.error("Couldn't find file '{}'.", filePath);
         }

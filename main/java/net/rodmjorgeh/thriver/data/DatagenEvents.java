@@ -18,6 +18,10 @@ import net.rodmjorgeh.thriver.data.tags.ItemTagDataGenerator;
 public class DatagenEvents {
 
     public static void onGatherDataClient(GatherDataEvent.Client event) {
+        TagsProvider<Block> blockTags = event.createProvider(BlockTagDataGenerator::new);
+        event.createProvider(EntityTypeTagDataGenerator::new);
+        event.createProvider((output, future) -> new ItemTagDataGenerator(output, future, blockTags.contentsGetter()));
+
         event.createProvider(BuilderRegistries::new);
         event.createProvider(ModelDataGenerator::new);
         event.createProvider(EquipmentAssetDataGenerator::new);
@@ -26,9 +30,5 @@ public class DatagenEvents {
         event.createProvider(LootDataGenerator::createProvider);
         event.createProvider(AdvancementDataGenerator::createProvider);
         event.createProvider(ParticleDataGenerator::new);
-
-        TagsProvider<Block> blockTags = event.createProvider(BlockTagDataGenerator::new);
-        event.createProvider(EntityTypeTagDataGenerator::new);
-        event.createProvider((output, future) -> new ItemTagDataGenerator(output, future, blockTags.contentsGetter()));
     }
 }
