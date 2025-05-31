@@ -13,9 +13,7 @@ public class KilledTriggerThr {
     public static class TriggerInstance {
         public TriggerInstance() {}
 
-        public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntityWhileDollsEyesBlinded(
-                EntityPredicate.Builder entityPredicate) {
-
+        public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntityWhileDollsEyesBlinded(EntityPredicate.Builder entityPredicate) {
             return CriteriaTriggerReg.KILL_MOB_WHILE_DOLLS_EYES_BLINDED.get().createCriterion(
                     new KilledTrigger.TriggerInstance(
                             Optional.empty(),

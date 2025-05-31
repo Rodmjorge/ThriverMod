@@ -100,6 +100,10 @@ public class AdventureAdvancementsDataGenerator implements AdvancementSubProvide
         this.generator.getAdvancement("husbandry", "obtain_sniffer_egg", provider)
                 .parent(this.generator.createParent(this, "salvage_sherd"))
                 .save(writer, this.getFolderMinecraft("husbandry", "obtain_sniffer_egg"));
+
+        this.generator.getAdvancement("story", "deflect_arrow", provider)
+                .parent(this.generator.createParent(this, "shoot_arrow"))
+                .save(writer, this.getFolderMinecraft("story", "deflect_arrow"));
     }
 
     @Override

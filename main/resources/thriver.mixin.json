@@ -5,8 +5,10 @@
   "mixins": [
     "enums.DyeColorMxn",
     "enums.InsideBlockEffectTypeMxn",
+    "injections.BlockMxn",
     "injections.BlockStatePropertiesMxn",
     "injections.BuiltInLootTablesMxn",
+    "injections.CampfireBlockEntityMxn",
     "injections.CropBlockMxn",
     "injections.EquipmentAssetsMxn",
     "injections.FarmBlockMxn",

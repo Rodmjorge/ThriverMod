@@ -24,8 +24,9 @@ public class PlayedReedFluteTrigger extends SimpleCriterionTrigger<PlayedReedFlu
         this.trigger(player, x -> x.matches(item, mobAmount));
     }
 
-    public static record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ItemPredicate> item, MinMaxBounds.Ints mobAmount)
-            implements SimpleCriterionTrigger.SimpleInstance {
+    public static record TriggerInstance(Optional<ContextAwarePredicate> player,
+                                         Optional<ItemPredicate> item,
+                                         MinMaxBounds.Ints mobAmount) implements SimpleCriterionTrigger.SimpleInstance {
 
         public static final Codec<PlayedReedFluteTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
                 x -> x.group(

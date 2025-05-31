@@ -4,15 +4,12 @@ import com.mojang.serialization.*;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.datafix.DataFixTypes;
-import net.neoforged.neoforge.common.conditions.WithConditions;
 import net.rodmjorgeh.thriver.data.Datagen;
 
 import java.util.List;
@@ -38,13 +35,18 @@ public class AdvancementDataGenerator extends AdvancementProvider implements Dat
         return List.of(
                 new AdventureAdvancementsDataGenerator(this, "adventure"),
                 new HusbandryAdvancementsDataGenerator(this, "husbandry"),
-                new MiningAdvancementsDataGenerator(this, "mining")
+                new MiningAdvancementsDataGenerator(this, "mining"),
+                new NetherAdvancementsDataGenerator(this, "nether")
         );
     }
 
     public Advancement.Builder getAdvancement(AdvancementDataGeneratorProvider provider, String name,
                                                      HolderLookup.Provider lookupProvider) {
-        return getAdvancement(provider.getType(), name, lookupProvider);
+        return getAdvancement(provider, name, lookupProvider, true);
+    }
+    public Advancement.Builder getAdvancement(AdvancementDataGeneratorProvider provider, String name,
+                                              HolderLookup.Provider lookupProvider, boolean addCriteria) {
+        return getAdvancement(provider.getType(), name, lookupProvider, addCriteria);
     }
     public Advancement.Builder getAdvancement(String type, String name,
                                               HolderLookup.Provider lookupProvider) {
@@ -98,10 +100,12 @@ public class AdvancementDataGenerator extends AdvancementProvider implements Dat
     }
 
     public AdvancementHolder createParent(AdvancementDataGeneratorProvider provider, String advancementLocation) {
-        return createParent(provider, advancementLocation, "minecraft");
+        return createParent(provider.getType(), advancementLocation);
     }
-    public AdvancementHolder createParent(AdvancementDataGeneratorProvider provider, String advancementLocation, String namespace) {
-        String type = provider.getType();
+    public AdvancementHolder createParent(String type, String advancementLocation) {
+        return createParent(type, advancementLocation, "minecraft");
+    }
+    public AdvancementHolder createParent(String type, String advancementLocation, String namespace) {
         return AdvancementSubProvider.createPlaceholder(namespace + ":" + type + "/" + advancementLocation);
     }
 }
